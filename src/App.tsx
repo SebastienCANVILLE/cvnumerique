@@ -1,6 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Accueil from './components/Accueil/accueil';
+import CvAccueil from './components/CV/cvAccueil';
 
 function App() {
   return (
