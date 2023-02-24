@@ -8,5 +8,14 @@ import Langue from "./langues";
 import Navbar from "./navbar";
 import Technique from "./techniques";
 import Competence from "./competences";
+import CreateTechnique from "./techniques";
 
-export default function CvAccueil () {}
+export default function CvAccueil () {
+    return(<div className ="CvAccueil">
+    
+
+    <CreateTechnique></CreateTechnique> 
+
+    </div>)
+
+}
