@@ -9,4 +9,12 @@ import Navbar from "./navbar";
 import Technique from "./techniques";
 import Competence from "./competences";
 
-export default function CvAccueil () {}
+export default function CvAccueil () {
+
+    return(
+    <div>
+    <ProfilCv></ProfilCv>
+    <Presentation></Presentation>
+    </div>
+)
+}

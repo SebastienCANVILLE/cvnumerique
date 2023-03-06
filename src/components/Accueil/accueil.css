@@ -1,0 +1,19 @@
+/* body{
+    background-image: url('/public/photos/color-ink_DBHIOSA9CB.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+} */
+
+/* .bg-img {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+} */
+
+.bg-img {
+    position:fixed;
+    z-index: -1;
+    width: 220vh;
+    height: 100vh;
+    background-size: auto;
+}
