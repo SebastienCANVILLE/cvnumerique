@@ -1,5 +1,5 @@
 import './App.css';
-import Accueil from './components/Accueil/accueil';
+import CreateTechnique from './components/CV/techniques';
 import CvAccueil from './components/CV/cvAccueil';
 
 function App() {
