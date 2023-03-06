@@ -6,15 +6,29 @@ import Fonctionnelle from "./fonctionnelles";
 import Formation from "./formations";
 import Langue from "./langues";
 import Navbar from "./navbar";
-import Technique from "./techniques";
 import Competence from "./competences";
+import Technique from "./techniques";
 
-export default function CvAccueil () {
 
-    return(
-    <div>
-    <ProfilCv></ProfilCv>
-    <Presentation></Presentation>
-    </div>
-)
+
+export default function CvAccueil() {
+
+    return (<div className="CvAccueil">
+        {/*    <Navbar></Navbar> */}
+        <ProfilCv></ProfilCv>
+
+        <div className="accordion" id="accordionPanelsStayOpenExample">
+            <Formation></Formation>
+            <Experience></Experience>
+            <Technique></Technique>
+            <Fonctionnelle></Fonctionnelle>
+            <Competence></Competence>
+            <Langue></Langue>
+            <CentreInteret></CentreInteret>
+
+        </div>
+
+
+    </div>)
+
 }
