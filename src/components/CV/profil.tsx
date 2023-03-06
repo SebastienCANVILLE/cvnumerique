@@ -1,1 +1,14 @@
-export default function ProfilCv () {}
+export default function ProfilCv() {
+
+
+
+
+    return (
+        <div>
+           
+        </div>
+
+
+
+    )
+}

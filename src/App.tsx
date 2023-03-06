@@ -1,15 +1,19 @@
 import React from 'react';
-import './App.css';
-import CreateTechnique from './components/CV/techniques';
+import {Routes, Route} from "react-router-dom";
 import CvAccueil from './components/CV/cvAccueil';
 
 function App() {
   return (
-    <div className="App">
+    <>
+    <Routes>
+
+    <Route path = "/" element = {<CvAccueil />}/> {/* element que l'on trouve à la racine */}
+
+    </Routes>
   
-<CvAccueil />
+
       
-    </div>
+    </>
   );
 }
 
