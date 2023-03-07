@@ -8,10 +8,12 @@ import Langue from "./langues";
 import Navbar from "./navbar";
 import Competence from "./competences";
 import Technique from "./techniques";
-import './cv.css'
-import 'bootstrap/dist/css/bootstrap.css';
+import './cv.css';
 
-export default function CvAccueil() {
+
+
+export default function CvAccueil()
+{
 
     return (
 
@@ -36,6 +38,7 @@ export default function CvAccueil() {
 
 
         </div>
+
 
     )
 
