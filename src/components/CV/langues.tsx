@@ -101,13 +101,14 @@ export default function Langue()
         const response = await fetch('http://localhost:8000/langues/',/*{ method: "PATCH" }*/ requestOptions)
         const responseJson = await response.json();
 
-        if(!response.ok) {
+        if (!response.ok)
+        {
             // get error message from body or default to response status
             const error = (responseJson && responseJson.message) || response
-            .status;
-            return Promise.reject (error);            
+                .status;
+            return Promise.reject(error);
         }
-        console.log ('success', responseJson);
+        console.log('success', responseJson);
         setLangue(responseJson.langue);
         SetNiveau(responseJson.niveau);
     };
@@ -115,7 +116,8 @@ export default function Langue()
 
 
     // Suppression d'une langue : avec le 'delete' du front.
-    async function DeleteLangue(){
+    async function DeleteLangue()
+    {
 
         const requestOptions = {
             method: 'DELETE',
@@ -125,23 +127,25 @@ export default function Langue()
             }
         };
 
-        const response = await fetch ('http://localhost:8000/langues/',/*{ method: "DELETE" }*/ requestOptions);
+        const response = await fetch('http://localhost:8000/langues/',/*{ method: "DELETE" }*/ requestOptions);
         const responseJson = await response.json();
 
-        if(!response.ok) {
+        if (!response.ok)
+        {
             // get error message from body or default to response status
             const error = (responseJson && responseJson.message) || response
-            .status;
-            return Promise.reject (error);            
+                .status;
+            return Promise.reject(error);
         }
-        console.log ('success', responseJson);
+        console.log('success', responseJson);
 
         setLangue(responseJson.langue);
         SetNiveau(responseJson.niveau);
     };
 
 
-    useEffect( () => {
+    useEffect(() =>
+    {
         getLangue();
     }, []);
 
@@ -163,25 +167,46 @@ export default function Langue()
             </div>
         </div>
     );
-}
-export { CreateLangue} */
-
-
-
+} */
     return (
-        <div className='container mt-5'>
-            <div className="accordion-item">
-                <h2 className="accordion-header" id="panelsStayOpen-headingEight">
-                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseEight" aria-expanded="false" aria-controls="panelsStayOpen-collapseEight">
-                        Langues
-                    </button>
-                </h2>
-                <div id="panelsStayOpen-collapseEight" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingEight">
-                    <div className="btn-group mb-1 mt-2" role="group" aria-label="Third group">
-                        <button type="button" className="btn btn-info justify-content-end">+</button>
-                    </div>
-                    <div className="accordion-body">
-                        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+        <div className="container mt-5">
+
+            <div className="accordion" id="accordionPanelsStayOpenExample">
+                <div className="accordion-item">
+
+                    {/* <!-- Bouton de défilement --> */}
+                    <h2 className="accordion-header" id="panelsStayOpen-headingEight">
+                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="true" aria-controls="collapseEight">
+                            LANGUE</button>
+                    </h2>
+
+                    <div id="collapseEight" className="accordion-collapse collapse show" aria-labelledby="headingEight" data-bs-parent="#accordionExample">
+
+                        <div className="btn-addupd d-flex justify-content-end">
+
+                            {/* <!-- Bouton + add --> 
+                            <div className="btn-group mb-1 mt-2" role="group" aria-label="Eight group">     A supprimer
+                                <button type="button" className="btn btn-outline-dark mb-2">+</button>
+                            </div> */}
+
+                            {/* <!-- Bouton Update --> */}
+                            <div className="btn-group mb-1 mt-2" role="group" aria-label="Third group">
+                                <button type="button" className="btn btn-outline-dark mb-2">/</button>
+                            </div>
+
+                        </div>
+
+                        {/* <!-- Partie texte présentation --> */}
+                        <div className="accordion-body">
+                            <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                        </div>
+
+                        {/* <!-- Bouton delete--> */}
+                        <div className="btn-del d-flex justify-content-end">
+                            <div className="btn-group mb-1 mt-2" role="group" aria-label="Third group"> 
+                                <button type="button" className="btn btn-outline-dark mb-2">S</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
