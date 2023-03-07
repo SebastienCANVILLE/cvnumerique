@@ -144,13 +144,7 @@ export default function Langue()
         GetLangue();
     }, []);
 
-
-
-    ///////////////////////return du 'GET'
-
-    /* return (
-        <div>
-            <div className="card text-center m-3">
+    /*  <div className="card text-center m-3">
                 <h5 className="card-title">Connaissance d'une langue</h5>
                 <h5 className="card-header">{langues?.langue}</h5>
                 <input type='text' onChange={(event) => setLanguesInput(event.target.value)}></input>
@@ -159,48 +153,43 @@ export default function Langue()
                 <h5 className="card-header"> {langues?.niveau} </h5>
                 <input type='text' onChange={(event) => SetNiveauInput(event.target.value)}></input>
                 <button onClick={fetchData}>Valider</button>
-            </div>
-        </div>
-    );
-} */
+            </div>  */
     return (
-        <div className="container mt-5">
-
+        <div className='container mt-5'>
             <div className="accordion" id="accordionPanelsStayOpenExample">
                 <div className="accordion-item">
-
-                    {/* <!-- Bouton de défilement --> */}
                     <h2 className="accordion-header" id="panelsStayOpen-headingEight">
-                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="true" aria-controls="collapseEight">
+                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseEight" aria-expanded="false" aria-controls="panelsStayOpen-collapseEight">
                             LANGUE</button>
                     </h2>
-
-                    <div id="collapseEight" className="accordion-collapse collapse show" aria-labelledby="headingEight" data-bs-parent="#accordionExample">
-
-                        <div className="btn-addupd d-flex justify-content-end">
-
-                            {/* <!-- Bouton + add --> 
-                            <div className="btn-group mb-1 mt-2" role="group" aria-label="Eight group">     A supprimer
-                                <button type="button" className="btn btn-outline-dark mb-2">+</button>
-                            </div> */}
-
-                            {/* <!-- Bouton Update --> */}
-                            <div className="btn-group mb-1 mt-2" role="group" aria-label="Third group">
-                                <button type="button" className="btn btn-outline-dark mb-2">/</button>
-                            </div>
-
-                        </div>
-
-                        {/* <!-- Partie texte présentation --> */}
+                    <div id="panelsStayOpen-collapseEight" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingEight">
                         <div className="accordion-body">
-                            <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                            <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the
+                            appropriate classes that we use to style each element. These classes control the overall appearance, as well as the
+                            showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables.
+                            It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition
+                            does limit overflow.
                         </div>
+                        <div className="btn-group mb-2 mt-2 ms-2" role="group" aria-label="Third group">
 
-                        {/* <!-- Bouton delete--> */}
-                        <div className="btn-del d-flex justify-content-end">
-                            <div className="btn-group mb-1 mt-2" role="group" aria-label="Third group"> 
-                                <button type="button" className="btn btn-outline-dark mb-2">S</button>
-                            </div>
+                            {/* <!-- Add button --> */}
+                            <button type="button" className="btn btn-outline-info btn-rounded-floating" data-mdb-ripple-color="dark">
+                                <i className="bi bi-plus"></i>
+                                <h5 className="card-header">{langue?.langue}</h5>
+                                <h5 className="card-header">{langue?.niveau}</h5>
+                                <input type='text' onChange={(event) => setLangueInput(event.target.value)}></input>
+                                <button onClick={CreateLangue}>Valider</button>
+                            </button>
+
+                            {/* <!-- Update button --> */}
+                            <button type="button" className="btn btn-outline-warning btn-rounded-floating" data-mdb-ripple-color="dark" >
+                                <i className="bi bi-pencil"></i>
+                            </button>
+
+                            {/* <!-- Delete button --> */}
+                            <button type="button" className="btn btn-outline-danger btn-rounded-floating" data-mdb-ripple-color="dark" >
+                                <i className="bi bi-trash3"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
