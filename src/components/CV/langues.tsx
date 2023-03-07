@@ -141,7 +141,7 @@ export default function Langue()
 
     useEffect(() =>
     {
-        getLangue();
+        GetLangue();
     }, []);
 
 
