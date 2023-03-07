@@ -56,7 +56,7 @@ export default function Langue()
 
 
     // Récupération de toutes les langues: avec le 'get' du front.
-    async function getLangue()
+    async function GetLangue()
     {
         const requestOptions = {
             method: 'GET',

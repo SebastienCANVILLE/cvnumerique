@@ -59,7 +59,7 @@ export default function Experience() {
 
 
     // Récupération de toutes les expériences: avec le 'get' du front.
-    async function getExperience()
+    async function GetExperience()
     {
         const requestOptions = {
             method: 'GET',
@@ -86,7 +86,7 @@ export default function Experience() {
 
 
 
-    
+
 
 
     return (
