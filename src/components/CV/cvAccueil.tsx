@@ -18,6 +18,7 @@ export default function CvAccueil() {
         <ProfilCv></ProfilCv>
 
         <div className="accordion" id="accordionPanelsStayOpenExample">
+            <Presentation></Presentation>
             <Formation></Formation>
             <Experience></Experience>
             <Technique></Technique>
