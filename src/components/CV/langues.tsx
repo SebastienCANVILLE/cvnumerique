@@ -19,13 +19,11 @@ type TLangue = {
 export default function Langue()
 {
     const [ langue, setLangue ] = useState<TLangue | undefined>();
-    const [ niveau, SetNiveau ] = useState<TLangue | undefined>();
     const [ langueInput, setLangueInput ] = useState("");
-    const [ niveauInput, SetNiveauInput ] = useState("");
 
     const body = {
         langue: langueInput,
-        niveau: niveauInput
+        niveau: langueInput
     }
 
 
@@ -52,8 +50,7 @@ export default function Langue()
         }
         console.log("Success", responseJson);
 
-        setLangue(responseJson.langue);
-        SetNiveau(responseJson.niveau);
+        setLangue(responseJson);
     }
 
 
@@ -81,7 +78,6 @@ export default function Langue()
         console.log("Success", responseJson);
 
         setLangue(responseJson.langue);
-        SetNiveau(responseJson.niveau);
     }
 
 
@@ -109,8 +105,8 @@ export default function Langue()
             return Promise.reject(error);
         }
         console.log('success', responseJson);
+
         setLangue(responseJson.langue);
-        SetNiveau(responseJson.niveau);
     };
 
 
@@ -140,7 +136,6 @@ export default function Langue()
         console.log('success', responseJson);
 
         setLangue(responseJson.langue);
-        SetNiveau(responseJson.niveau);
     };
 
 
