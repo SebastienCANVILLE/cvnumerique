@@ -41,7 +41,7 @@ export default function CentreInteret() {
                 <div className="accordion-item">
                     <h2 className="accordion-header" id="panelsStayOpen-headingNine">
                         <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseNine" aria-expanded="false" aria-controls="panelsStayOpen-collapseNine">
-                            CENTRES D'INTERETS
+                        <div className= "position-absolute top-50 start-50 translate-middle text-center"> CENTRES D'INTERETS</div>
                         </button>
                     </h2>
                     <div id="panelsStayOpen-collapseNine" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingNine">

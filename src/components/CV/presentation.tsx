@@ -19,7 +19,7 @@ export default function Presentation() {
                     {/* <!-- Bouton de défilement --> */}
                     <h2 className="accordion-header" id="panelsStayOpen-headingTwo">
                         <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                            PRESENTATION
+                        <span className= "position-absolute top-50 start-50 translate-middle text-center">PRESENTATION</span>
                         </button>
                     </h2>
 

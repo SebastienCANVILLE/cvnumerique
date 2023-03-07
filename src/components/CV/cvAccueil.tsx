@@ -21,6 +21,7 @@ export default function CvAccueil() {
                 <img src="/photos/FondEcranCV.jpg" className="bg-img" img-fluid></img>
             </div>
 
+
             <Navbar></Navbar>
             <ProfilCv></ProfilCv>
 
@@ -32,6 +33,7 @@ export default function CvAccueil() {
             <Competence></Competence>
             <Langue></Langue>
             <CentreInteret></CentreInteret>
+
 
         </div>
 
