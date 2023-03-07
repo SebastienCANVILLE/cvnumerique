@@ -8,6 +8,7 @@ import Langue from "./langues";
 import Navbar from "./navbar";
 import Competence from "./competences";
 import Technique from "./techniques";
+import './cv.css';
 
 
 
@@ -33,7 +34,6 @@ export default function CvAccueil()
             <Competence></Competence>
             <Langue></Langue>
             <CentreInteret></CentreInteret>
-
         </div>
 
 
