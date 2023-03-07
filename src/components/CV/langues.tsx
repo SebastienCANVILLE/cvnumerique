@@ -27,9 +27,15 @@ export default function CreateLangue() {
             },
             body: JSON.stringify(body)
         };
-        const response = await fetch ('http://localhost:8000/langues', requestOptions);
+        const response = await fetch ('http://localhost:8000/langues',/*{ method: "POST" }*/ requestOptions);
         const responseJson = await response.json();
-        console.log(responseJson);
+
+        if (!response.ok) {
+            // get error message from body or default to response status
+            const error = (responseJson && responseJson.message) || response.status;
+            return Promise.reject(error);
+        }
+        console.log("Success", responseJson);
 
         setLangues(responseJson);
         console.log(langues);
@@ -39,7 +45,15 @@ export default function CreateLangue() {
     //fetchData();
 //},[]);
 
-    return (
+// Récupération de tous les langages:
+async function getLangue(){
+
+}
+
+
+///////////////////////return du 'GET'
+
+    /* return (
         <div>
             <div className="card text-center m-3">
                 <h5 className="card-title">Connaissance d'une langue</h5>
@@ -54,11 +68,11 @@ export default function CreateLangue() {
         </div>
     );
 }
-export { CreateLangue}
+export { CreateLangue} */
 
 
 
-    /* return (
+    return (
         <div className='container mt-5'>
         <div className="accordion-item">
             <h2 className="accordion-header" id="panelsStayOpen-headingEight">
@@ -76,4 +90,6 @@ export { CreateLangue}
             </div>
         </div>
         </div>
-    ); */
+    );
+}
+    export { CreateLangue}
