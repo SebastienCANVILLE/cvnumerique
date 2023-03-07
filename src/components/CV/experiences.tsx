@@ -114,6 +114,33 @@ export default function Experience() {
 
 
 
+    // Suppression d'une expérience : avec le 'delete' du front.
+    async function DeleteExperience()
+    {
+
+        const requestOptions = {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                Autorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODExMzgwOSwiZXhwIjoxNjgzMTEzODA5fQ.SGeVdA_5QzUAfYmwy8dYn0MueTm6p6f7mVsbuGKReys'
+            }
+        };
+
+        const response = await fetch('http://localhost:8000/langues/',/*{ method: "DELETE" }*/ requestOptions);
+        const responseJson = await response.json();
+
+        if (!response.ok)
+        {
+            // get error message from body or default to response status
+            const error = (responseJson && responseJson.message) || response
+                .status;
+            return Promise.reject(error);
+        }
+        console.log('success', responseJson);
+
+        setExperience(responseJson.experience);
+    };
+
 
 
     return (
