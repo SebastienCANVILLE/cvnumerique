@@ -37,7 +37,7 @@ export default function Competence() {
                 <div className="accordion-item">
                     <h2 className="accordion-header" id="panelsStayOpen-headingSeven">
                         <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSeven" aria-expanded="false" aria-controls="panelsStayOpen-collapseSeven">
-                            COMPETENCES CLES
+                        <div className= "position-absolute top-50 start-50 translate-middle text-center"> COMPÉTENCES CLÉS</div>
                         </button>
                     </h2>
                     <div id="panelsStayOpen-collapseSeven" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingSeven">

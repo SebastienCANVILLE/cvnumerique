@@ -78,7 +78,7 @@ export default function Formation() {
                 <div className="accordion-item">
                     <h2 className="accordion-header" id="panelsStayOpen-headingThree">
                         <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                            FORMATIONS
+                        <div className= "position-absolute top-50 start-50 translate-middle text-center"> FORMATIONS</div>
                         </button>
                     </h2>
                     <div id="panelsStayOpen-collapseThree" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
