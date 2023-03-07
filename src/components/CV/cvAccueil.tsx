@@ -7,18 +7,9 @@ import Formation from "./formations";
 import Langue from "./langues";
 import Navbar from "./navbar";
 import Competence from "./competences";
-<<<<<<< HEAD
-import CreateTechnique from "./techniques";
-import CreateLangue from "./langues";
-=======
 import Technique from "./techniques";
->>>>>>> 9374642eb95dcc7fffb45fe0906ac0ebd296028f
 
 
-<<<<<<< HEAD
-    <CreateTechnique></CreateTechnique> 
-    <CreateLangue></CreateLangue>
-=======
 
 export default function CvAccueil() {
 
@@ -38,7 +29,6 @@ export default function CvAccueil() {
 
         </div>
 
->>>>>>> 9374642eb95dcc7fffb45fe0906ac0ebd296028f
 
     </div>)
 
