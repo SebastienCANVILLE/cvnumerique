@@ -14,7 +14,7 @@ export default function Navbar() {
     return (
         <nav className="navbar navbar-dark bg-dark fixed-top">
             <div className="container-fluid">
-                <a className="navbar-brand" href="#">Cv numérique</a>
+                <a className="navbar-brand" href="#">Votre profil utilisateur</a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -33,15 +33,15 @@ export default function Navbar() {
                             </li>
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Dropdown
+                                    Utiles
                                 </a>
                                 <ul className="dropdown-menu dropdown-menu-dark">
-                                    <li><a className="dropdown-item" href="#">Admin</a></li>
-                                    <li><a className="dropdown-item" href="#">Consultant</a></li>
+                                    <li><a className="dropdown-item">Admin</a></li>
+                                    <li><a className="dropdown-item">Consultant</a></li>
                                     <li>
                                         <hr className="dropdown-divider" />
                                     </li>
-                                    <li><a className="dropdown-item" href="#">Déconnexion</a></li>
+                                    <li><button type = "button" className="btn btn-outline-danger">Déconnexion</button></li>
                                 </ul>
                             </li>
                         </ul>

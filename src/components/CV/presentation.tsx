@@ -33,7 +33,7 @@ export default function Presentation() {
                             </div> */}
 
                             {/* <!-- Bouton Update --> */}
-                            <div className="btn-group mb-1 mt-2" role="group" aria-label="Third group">
+                            <div className="btn-group mb-1 mt-2 me-3" role="group" aria-label="Third group">
                                 <button type="button" className="btn btn-outline-dark mb-2">/</button>
                             </div>
 
@@ -46,7 +46,7 @@ export default function Presentation() {
 
                         {/* <!-- Bouton delete--> */}
                         <div className="btn-del d-flex justify-content-end">
-                            <div className="btn-group mb-1 mt-2" role="group" aria-label="Third group"> 
+                            <div className="btn-group mb-1 mt-2 me-3" role="group" aria-label="Third group"> 
                                 <button type="button" className="btn btn-outline-dark mb-2">S</button>
                             </div>
 
