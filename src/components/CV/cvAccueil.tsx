@@ -11,8 +11,6 @@ import Technique from "./techniques";
 import './cv.css'
 import 'bootstrap/dist/css/bootstrap.css';
 
-
-
 export default function CvAccueil() {
 
     return (
@@ -23,11 +21,8 @@ export default function CvAccueil() {
                 <img src="/photos/FondEcranCV.jpg" className="bg-img" img-fluid></img>
             </div>
 
-
-
             <Navbar></Navbar>
             <ProfilCv></ProfilCv>
-
 
             <Presentation></Presentation>
             <Formation></Formation>
@@ -38,10 +33,7 @@ export default function CvAccueil() {
             <Langue></Langue>
             <CentreInteret></CentreInteret>
 
-
         </div>
-
-
 
     )
 
