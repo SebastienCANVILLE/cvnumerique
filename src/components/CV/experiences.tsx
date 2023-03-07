@@ -19,9 +19,42 @@ type TExperience = {
  * * **DeleteExperience : fonction qui va utiliser le front pour faire un 'DELETE'.
  */
 export default function Experience() {
-    const
+    const [ experience, setExperience ] = useState <TExperience | undefined> ();
+    const [ experienceInput, setExperienceInput ] = useState("");
 
+    const body = {
+        intitulé_poste: experienceInput,
+        entreprise: experienceInput,
+        lieu: experienceInput,
+        date_début: experienceInput,
+        date_fin: experienceInput,
+        descriptif: experienceInput
+    }
 
+    // Création d'une expérience : avec le 'create' du front.
+    async function CreateExperience()
+    {
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODExMzgwOSwiZXhwIjoxNjgzMTEzODA5fQ.SGeVdA_5QzUAfYmwy8dYn0MueTm6p6f7mVsbuGKReys'
+            },
+            body: JSON.stringify(body)
+        };
+        const response = await fetch('http://localhost:8000/langues',/*{ method: "POST" }*/ requestOptions);
+        const responseJson = await response.json();
+
+        if (!response.ok)
+        {
+            // get error message from body or default to response status
+            const error = (responseJson && responseJson.message) || response.status;
+            return Promise.reject(error);
+        }
+        console.log("Success", responseJson);
+
+        setExperience(responseJson);
+    }
 
 
     return (
