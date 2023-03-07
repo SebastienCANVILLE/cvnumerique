@@ -8,16 +8,22 @@ import Langue from "./langues";
 import Navbar from "./navbar";
 import Competence from "./competences";
 import Technique from "./techniques";
-
-
+import './cv.css'
+import 'bootstrap/dist/css/bootstrap.css';
 
 export default function CvAccueil() {
 
-    return (<div className="CvAccueil">
-        {/*    <Navbar></Navbar> */}
-        <ProfilCv></ProfilCv>
+    return (
 
-        <div className="accordion" id="accordionPanelsStayOpenExample">
+        <div className="CvAccueil">
+
+            <div className="imageCV">
+                <img src="/photos/FondEcranCV.jpg" className="bg-img" img-fluid></img>
+            </div>
+
+            <Navbar></Navbar>
+            <ProfilCv></ProfilCv>
+
             <Presentation></Presentation>
             <Formation></Formation>
             <Experience></Experience>
@@ -29,7 +35,6 @@ export default function CvAccueil() {
 
         </div>
 
-
-    </div>)
+    )
 
 }
