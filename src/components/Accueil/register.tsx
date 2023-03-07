@@ -1,9 +1,16 @@
 import { useState } from 'react';
 
 type ProfilRegister = {
-    id: number;
-    libelle: string;
-    user: {}
+    lastname: string;
+    firstname: string,
+    email: string,
+    password: string,
+    password_confirm: string,
+    telephone: string,
+    classe_professionnelle: string,
+    poste_actuel: string,
+    region_affectation: string,
+    ville_affectation: string,
 }
 
 
@@ -20,12 +27,16 @@ export default function Register() {
     const [responsabilityInput, setResponsabilityInput] = useState("")
     const [jobInput, setJobInput] = useState("")
     const [regionInput, setRegionInput] = useState("")
-    /* const [departmentInput, setDepartmentInput] = useState("") */ /* à créer en BDD */
     const [cityInput, setCityInput] = useState("")
 
     async function fetchDataRegister() {
 
-        const body = {
+        setLastnameInput("")
+
+
+
+        
+        const body : ProfilRegister = {
             lastname: lastnameInput,
             firstname: firstnameInput,
             email: emailInput,
@@ -35,16 +46,12 @@ export default function Register() {
             classe_professionnelle: responsabilityInput,
             poste_actuel: jobInput,
             region_affectation: regionInput,
-            /* departement_affectation: departmentInput, */ /* à créer en BDD */
             ville_affectation: cityInput,
         }
 
         const requestOptions = {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvcGhpZUBnbWFpbC5mciIsInN1YiI6MSwiaWF0IjoxNjc3MjQ3NDg0LCJleHAiOjE2ODIyNDc0ODR9.XUDUNkBZiqT3fUmdn9IDW5K2kb2BegVxDZpMMNUQ_U4'
-            },
+            headers: { 'Content-Type': 'application/json', },
             body: JSON.stringify(body)
         };
 
@@ -75,63 +82,58 @@ export default function Register() {
 
                                 {/* <!-- Lastname input --> */}
                                 <div className="form-outline mb-3 ">
-                                    <input type="text" id="form1Example1" className="form-control text-center" placeholder="Nom de famille" onChange={(event) => setLastnameInput(event.target.value)}></input>
+                                    <input type="text" /* id="form1Example1" */ className="form-control text-center" placeholder="Nom de famille" value ={lastnameInput}  onChange={(event) => setLastnameInput(event.target.value)}></input>
                                 </div>
 
                                 {/* <!-- Firstname input --> */}
                                 <div className="form-outline mb-3">
-                                    <input type="text" id="form1Example1" className="form-control text-center" placeholder="Prénom" onChange={(event) => setFirstnameInput(event.target.value)}></input>
+                                    <input type="text" /* id="form1Example1" */ className="form-control text-center" placeholder="Prénom" onChange={(event) => setFirstnameInput(event.target.value)}></input>
                                 </div>
 
                                 {/* <!-- Email input --> */}
                                 <div className="form-outline mb-3">
-                                    <input type="email" id="form1Example1" className="form-control text-center" placeholder="Email" onChange={(event) => setEmailInput(event.target.value)}></input>
+                                    <input type="email" /* id="form1Example1" */ className="form-control text-center" placeholder="Email" onChange={(event) => setEmailInput(event.target.value)}></input>
                                 </div>
 
                                 {/* <!-- Password input --> */}
                                 <div className="form-outline mb-3">
-                                    <input type="password" id="form1Example1" className="form-control text-center" placeholder="Mot de passe" onChange={(event) => setPasswordInput(event.target.value)}></input>
+                                    <input type="password" /* id="form1Example1" */ className="form-control text-center" placeholder="Mot de passe" onChange={(event) => setPasswordInput(event.target.value)}></input>
                                 </div>
 
                                 {/* <!-- Password_confirm input --> */}
                                 <div className="form-outline mb-3">
-                                    <input type="password" id="form1Example1" className="form-control text-center" placeholder="Confirmation du mot de passe" onChange={(event) => setPasswordConfirmInput(event.target.value)}></input> {/* à vérifier */}
+                                    <input type="password" /* id="form1Example1" */ className="form-control text-center" placeholder="Confirmation du mot de passe" onChange={(event) => setPasswordConfirmInput(event.target.value)}></input> {/* à vérifier */}
                                 </div>
 
                                 {/* <!-- Phone_number input --> */}
                                 <div className="form-outline mb-3">
-                                    <input type="text" id="form1Example1" className="form-control text-center" placeholder="Votre numéro de téléphone (facultatif)" onChange={(event) => setPhoneNumberInput(event.target.value)}></input>
+                                    <input type="text" /* id="form1Example1" */ className="form-control text-center" placeholder="Votre numéro de téléphone (facultatif)" onChange={(event) => setPhoneNumberInput(event.target.value)}></input>
                                 </div>
 
                                 {/* <!-- Responsability input --> */}
                                 <div className="form-outline mb-3">
-                                    <input type="text" id="form1Example1" className="form-control text-center" placeholder="Votre responsabilité hiérarchique" onChange={(event) => setResponsabilityInput(event.target.value)}></input>
+                                    <input type="text" /* id="form1Example1" */ className="form-control text-center" placeholder="Votre responsabilité hiérarchique" onChange={(event) => setResponsabilityInput(event.target.value)}></input>
                                 </div>
 
                                 {/* <!-- Job input --> */}
                                 <div className="form-outline mb-3">
-                                    <input type="text" id="form1Example1" className="form-control text-center" placeholder="Votre métier" onChange={(event) => setJobInput(event.target.value)}></input>
+                                    <input type="text" /* id="form1Example1" */ className="form-control text-center" placeholder="Votre métier" onChange={(event) => setJobInput(event.target.value)}></input>
                                 </div>
 
                                 {/* <!-- Region_of_job input --> */}
                                 <div className="form-outline mb-3">
-                                    <input type="text" id="form1Example1" className="form-control text-center" placeholder="Votre région d'affectation" onChange={(event) => setRegionInput(event.target.value)}></input>
+                                    <input type="text" /* id="form1Example1" */ className="form-control text-center" placeholder="Votre région d'affectation" onChange={(event) => setRegionInput(event.target.value)}></input>
                                 </div>
-
-                                {/* <!-- Department_of_job input --> 
-                        <div className="form-outline mb-3">
-                            <input type="text" id="form1Example1" className="form-control text-center" placeholder="Votre département d'affectation" onChange={(event) => setDepartmentInput(event.target.value)}></input>
-                        </div> /* à créer en BDD */}
 
                                 {/* <!-- City_of_job input --> */}
                                 <div className="form-outline mb-3">
-                                    <input type="text" id="form1Example1" className="form-control text-center" placeholder="Votre ville d'affectation" onChange={(event) => setCityInput(event.target.value)}></input>
+                                    <input type="text" /* id="form1Example1" */ className="form-control text-center" placeholder="Votre ville d'affectation" onChange={(event) => setCityInput(event.target.value)}></input>
                                 </div>
 
                             </div>
 
                             {/* <!-- Buttom register --> */}
-                            {/* <div className="modal-footer col-center"> */} 
+                            {/* <div className="modal-footer col-center"> */}
                             <div className="col-center text-center align-items-center mt-4">
                                 <button type="submit" className="btn btn-primary mb-4 col-10" onClick={fetchDataRegister}>Enregister</button>
                             </div>

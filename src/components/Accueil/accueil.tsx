@@ -11,7 +11,7 @@ export default function Accueil() {
         <div className="fondaccueil">
 
             <div className="imageLog">
-                <img src="/photos/photoEcranLog.jpg" className="bg-img" img-fluid></img>
+                <img src="/photos/photoEcranLog.jpg" className="bg-img" /* img-fluid */></img>
             </div>            
 
             <div className="text-center text-white">

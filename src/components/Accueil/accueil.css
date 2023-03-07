@@ -6,8 +6,8 @@
 
 /* .bg-img {
     background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+   min-height: 60vh;
+   position: relative;
 } */
 
 .bg-img {
@@ -16,4 +16,5 @@
     width: 220vh;
     height: 100vh;
     background-size: auto;
+    
 }
