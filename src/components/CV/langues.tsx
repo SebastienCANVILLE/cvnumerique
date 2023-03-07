@@ -160,7 +160,8 @@ export default function Langue()
                 <div className="accordion-item">
                     <h2 className="accordion-header" id="panelsStayOpen-headingEight">
                         <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseEight" aria-expanded="false" aria-controls="panelsStayOpen-collapseEight">
-                            LANGUE</button>
+                        <div className= "position-absolute top-50 start-50 translate-middle text-center"> LANGUES</div>
+                            </button>
                     </h2>
                     <div id="panelsStayOpen-collapseEight" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingEight">
                         <div className="accordion-body">

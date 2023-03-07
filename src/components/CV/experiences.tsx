@@ -150,7 +150,7 @@ export default function Experience()
                 <div className="accordion-item">
                     <h2 className="accordion-header" id="panelsStayOpen-headingFour">
                         <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
-                            EXPERIENCES PROFESSIONNELLES
+                        <div className= "position-absolute top-50 start-50 translate-middle text-center">EXPÉRIENCES PROFESSIONNELLES</div>
                         </button>
                     </h2>
                     <div id="panelsStayOpen-collapseFour" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFour">

@@ -123,7 +123,7 @@ export default function Technique() {
                 <div className="accordion-item">
                     <h2 className="accordion-header" id="panelsStayOpen-headingFive">
                         <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
-                        <div className= "position-absolute top-50 start-50 translate-middle text-center">  COMPETENCES TECHNIQUES</div>
+                        <div className= "position-absolute top-50 start-50 translate-middle text-center">  COMPÉTENCES TECHNIQUES</div>
                         </button>
                     </h2>
                     {/* <!-- Get All Compétences Techniques --> */}

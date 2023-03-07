@@ -40,7 +40,7 @@ export default function Fonctionnelle() {
                 <div className="accordion-item">
                     <h2 className="accordion-header" id="panelsStayOpen-headingSix">
                         <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSix" aria-expanded="false" aria-controls="panelsStayOpen-collapseSix">
-                            <div className= "position-absolute top-50 start-50 translate-middle text-center">COMPETENCES FONCTIONNELLES</div>
+                            <div className= "position-absolute top-50 start-50 translate-middle text-center">COMPÉTENCES FONCTIONNELLES</div>
                         </button>
                     </h2>
                     <div id="panelsStayOpen-collapseSix" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingSix">

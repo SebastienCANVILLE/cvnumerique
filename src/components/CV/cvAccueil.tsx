@@ -20,7 +20,7 @@ export default function CvAccueil()
         <div className="CvAccueil">
 
             <div className="imageCV">
-                <img src="/photos/FondEcranCV.jpg" className="bg-img" img-fluid></img>
+                <img src="/photos/FondEcranCV.jpg" className="bg-img" alt ="" img-fluid></img>
             </div>
 
 
