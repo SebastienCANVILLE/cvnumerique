@@ -42,7 +42,7 @@ export default function Login() {
             <div className="row justify-content-center">
                 <div className="col-xl-4 col-md-8">
 
-                    <form className="rounded-5 shadow-5-strong p-5"> {/* à changer */}
+                    <form className="rounded-5 shadow-5-strong p-5"> {/* à changer en div */}
 
                         {/* <!-- title connexion --> */}
                         <div className="col text-center text-white align-items-center mb-5 mt-5">

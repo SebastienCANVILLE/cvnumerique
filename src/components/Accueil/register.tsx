@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+// permet le typage de la partie body
 type ProfilRegister = {
     lastname: string;
     firstname: string,
@@ -13,10 +14,20 @@ type ProfilRegister = {
     ville_affectation: string,
 }
 
-
+/**
+  * @function Register
+  * 
+  * Elle permet de créer un composant globale de tous les éléments liés à la création d'un compte utilisateur:
+  * 
+  * * Variables de stockage des données
+  * * Faire appel aux requêtes back-end pour la relation Front/Back
+  * * Un return visuel avec bootstrap pour la partie visible en html
+  * * Des méthodes de fonctionnement aux events onChange(input), Onclick(buttom)
+  * * Gestion des erreurs en Front, visible de l'utilisateur pour le guider
+  */
 export default function Register() {
 
-    const [register, setRegister] = useState<ProfilRegister | undefined>();
+    /* const [register, setRegister] = useState<ProfilRegister | undefined>(); à supprimer */
 
     const [lastnameInput, setLastnameInput] = useState("")
     const [firstnameInput, setFirstnameInput] = useState("")
@@ -29,14 +40,33 @@ export default function Register() {
     const [regionInput, setRegionInput] = useState("")
     const [cityInput, setCityInput] = useState("")
 
+    const [closeRegisterButtom, setCloseRegisterButtom] = useState("")
+
+    /**
+     * @function fetchDataRegister
+     * 
+     * Fonction qui permet de récupérer la data implémentée en Front par l'utilisateur et de la stocker en BDD
+     * 
+     * * Création du body register afin de les lier avec les input dans le return
+     * * Faire appel aux requêtes back-end pour la relation Front/Back
+     */
     async function fetchDataRegister() {
 
+        /* permet de supprimer les données dans l'input après validation du formulaire  
+        ne pas oublier de créer une value ={lastnameInput} etc ... pour revenir à l'état inital sans données */
         setLastnameInput("")
+        setFirstnameInput("")
+        setEmailInput("")
+        setPasswordInput("")
+        setPasswordConfirmInput("")
+        setPhoneNumberInput("")
+        setResponsabilityInput("")
+        setJobInput("")
+        setRegionInput("")
+        setCityInput("")
 
-
-
-        
-        const body : ProfilRegister = {
+        // body du register sur la partie html
+        const body: ProfilRegister = {
             lastname: lastnameInput,
             firstname: firstnameInput,
             email: emailInput,
@@ -49,6 +79,7 @@ export default function Register() {
             ville_affectation: cityInput,
         }
 
+        // Options de requêtes
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', },
@@ -59,10 +90,17 @@ export default function Register() {
         const responseJson = await response.json();
         console.log(responseJson);
 
-        setRegister(responseJson);
-        console.log(register);
+
+        /*  setRegister(responseJson);   à supprimer
+         console.log(register); */
 
     }
+
+    async function closeModalRegister() {
+
+        setCloseRegisterButtom("")
+    }
+
 
     return (<div>
 
@@ -75,59 +113,67 @@ export default function Register() {
 
                             <div className="modal-header">
                                 <h1 className="modal-title fs-3 " id="staticBackdropLabel">Parlez-nous de vous ...</h1>
-                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                                {/* <!-- Buttom Close --> */}
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" value={lastnameInput} onClick={closeModalRegister}></button>
                             </div>
 
                             <div className="modal-body">
 
+                                {/* type: donne le type de donnée dans l'input, classname: peut recevoir un nom pour la partie css, placeholder: définit un nom 
+                                dans l'input qui disparait une fois une donnée rentrée, value permet de revenir à l'état initiale sans les valeurs cf le schéma 
+                                dans la fonction plus haut, onchange: permet de sauvegarder la donnée saisie dans l'input avant la validation par un onClick
+                                form-control dans classname permet de dire à l'input d'appliquer le champs prévu par bootstrap quand le type est fixé soit email
+                                (@.fr) ou password (... motif caché) */}
+
                                 {/* <!-- Lastname input --> */}
                                 <div className="form-outline mb-3 ">
-                                    <input type="text" /* id="form1Example1" */ className="form-control text-center" placeholder="Nom de famille" value ={lastnameInput}  onChange={(event) => setLastnameInput(event.target.value)}></input>
+                                    <input type="text" /* id="form1Example1" */ className="form-control text-center" placeholder="Nom de famille" value={lastnameInput} onChange={(event) => setLastnameInput(event.target.value)}></input>
                                 </div>
 
                                 {/* <!-- Firstname input --> */}
                                 <div className="form-outline mb-3">
-                                    <input type="text" /* id="form1Example1" */ className="form-control text-center" placeholder="Prénom" onChange={(event) => setFirstnameInput(event.target.value)}></input>
+                                    <input type="text" /* id="form1Example1" */ className="form-control text-center" placeholder="Prénom" value={firstnameInput} onChange={(event) => setFirstnameInput(event.target.value)}></input>
                                 </div>
 
                                 {/* <!-- Email input --> */}
                                 <div className="form-outline mb-3">
-                                    <input type="email" /* id="form1Example1" */ className="form-control text-center" placeholder="Email" onChange={(event) => setEmailInput(event.target.value)}></input>
+                                    <input type="email" /* id="form1Example1" */ className="form-control text-center" placeholder="Email" value={emailInput} onChange={(event) => setEmailInput(event.target.value)}></input>
                                 </div>
 
                                 {/* <!-- Password input --> */}
                                 <div className="form-outline mb-3">
-                                    <input type="password" /* id="form1Example1" */ className="form-control text-center" placeholder="Mot de passe" onChange={(event) => setPasswordInput(event.target.value)}></input>
+                                    <input type="password" /* id="form1Example1" */ className="form-control text-center" placeholder="Mot de passe" value={passwordInput} onChange={(event) => setPasswordInput(event.target.value)}></input>
                                 </div>
 
                                 {/* <!-- Password_confirm input --> */}
                                 <div className="form-outline mb-3">
-                                    <input type="password" /* id="form1Example1" */ className="form-control text-center" placeholder="Confirmation du mot de passe" onChange={(event) => setPasswordConfirmInput(event.target.value)}></input> {/* à vérifier */}
+                                    <input type="password" /* id="form1Example1" */ className="form-control text-center" placeholder="Confirmation du mot de passe" value={passwordConfirmInput} onChange={(event) => setPasswordConfirmInput(event.target.value)}></input> {/* à vérifier */}
                                 </div>
 
                                 {/* <!-- Phone_number input --> */}
                                 <div className="form-outline mb-3">
-                                    <input type="text" /* id="form1Example1" */ className="form-control text-center" placeholder="Votre numéro de téléphone (facultatif)" onChange={(event) => setPhoneNumberInput(event.target.value)}></input>
+                                    <input type="text" /* id="form1Example1" */ className="form-control text-center" placeholder="Votre numéro de téléphone (facultatif)" value={phoneNumberInput} onChange={(event) => setPhoneNumberInput(event.target.value)}></input>
                                 </div>
 
                                 {/* <!-- Responsability input --> */}
                                 <div className="form-outline mb-3">
-                                    <input type="text" /* id="form1Example1" */ className="form-control text-center" placeholder="Votre responsabilité hiérarchique" onChange={(event) => setResponsabilityInput(event.target.value)}></input>
+                                    <input type="text" /* id="form1Example1" */ className="form-control text-center" placeholder="Votre responsabilité hiérarchique" value={responsabilityInput} onChange={(event) => setResponsabilityInput(event.target.value)}></input>
                                 </div>
 
                                 {/* <!-- Job input --> */}
                                 <div className="form-outline mb-3">
-                                    <input type="text" /* id="form1Example1" */ className="form-control text-center" placeholder="Votre métier" onChange={(event) => setJobInput(event.target.value)}></input>
+                                    <input type="text" /* id="form1Example1" */ className="form-control text-center" placeholder="Votre métier" value={jobInput} onChange={(event) => setJobInput(event.target.value)}></input>
                                 </div>
 
                                 {/* <!-- Region_of_job input --> */}
                                 <div className="form-outline mb-3">
-                                    <input type="text" /* id="form1Example1" */ className="form-control text-center" placeholder="Votre région d'affectation" onChange={(event) => setRegionInput(event.target.value)}></input>
+                                    <input type="text" /* id="form1Example1" */ className="form-control text-center" placeholder="Votre région d'affectation" value={regionInput} onChange={(event) => setRegionInput(event.target.value)}></input>
                                 </div>
 
                                 {/* <!-- City_of_job input --> */}
                                 <div className="form-outline mb-3">
-                                    <input type="text" /* id="form1Example1" */ className="form-control text-center" placeholder="Votre ville d'affectation" onChange={(event) => setCityInput(event.target.value)}></input>
+                                    <input type="text" /* id="form1Example1" */ className="form-control text-center" placeholder="Votre ville d'affectation" value={cityInput} onChange={(event) => setCityInput(event.target.value)}></input>
                                 </div>
 
                             </div>
