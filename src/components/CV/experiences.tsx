@@ -1,4 +1,25 @@
+import { useEffect, useState } from 'react';
+
+// Typage de la table 'experiences'
+type TExperience = {
+    id: number;
+    intitulé_poste: string;
+    entreprise: string;
+    lieu: string;
+    date_début: Date;
+    date_fin: Date;
+    descriptif: string;
+    user: {}
+}
+
+/** Foncton qui appelle:
+ * * **CreateExperience : fonction qui va utiliser le front pour faire un 'POST'.
+ * * **GetExperience    : fonction qui va utiloser le front pour faire un 'GET'.
+ * * **PatchExperience  : fonction qui va utiliser le front pour faire un 'PATCH'.
+ * * **DeleteExperience : fonction qui va utiliser le front pour faire un 'DELETE'.
+ */
 export default function Experience() {
+    const
 
 
 
