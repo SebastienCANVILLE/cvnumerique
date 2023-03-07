@@ -1,14 +1,15 @@
-.bg-img {
-    position: fixed;
-    z-index: -1;
-    width: 220vh;
-    height: 100vh;
-    background-size: auto;
+
+.Items{
+
+    justify-content: center;
+    align-items: center;
 }
 
 
+
+
 span {
-    font-size:20px;
+    font-size: 20px;
     font-weight: 600;
 
 }

@@ -13,10 +13,10 @@ export default function Presentation() {
 
         <div className='container mt-5'>
             <div className="accordion" id="accordionPanelsStayOpenExample">
-                <div className="accordion-item">
+                <div className="accordion-item ms-4 me-4">
                     <h2 className="accordion-header" id="panelsStayOpen-headingTwo">
                         <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                            <span className= "position-absolute top-50 start-50 translate-middle text-center">PRÉSENTATION</span>
+                            <span className="position-absolute top-50 start-50 translate-middle text-center">PRÉSENTATION</span>
                         </button>
                     </h2>
                     <div id="panelsStayOpen-collapseTwo" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
@@ -38,7 +38,7 @@ export default function Presentation() {
                             </button>
                             {/* <!-- Delete button --> */}
                             <button type="button" className="btn btn-danger btn-rounded-floating" data-mdb-ripple-color="dark" >
-                            <i className="bi bi-key-fill"></i>
+                                <i className="bi bi-key-fill"></i>
                             </button>
                         </div>
                     </div>
