@@ -80,7 +80,7 @@ export default function Experience() {
         }
         console.log("Success", responseJson);
 
-        setExperience(responseJson.langue);
+        setExperience(responseJson.experience);
     };
 
 
