@@ -1,0 +1,7 @@
+.bg-img {
+    position:fixed;
+    z-index: -1;
+    width: 220vh;
+    height: 100vh;
+    background-size: auto;
+}

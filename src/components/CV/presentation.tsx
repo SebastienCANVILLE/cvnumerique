@@ -44,11 +44,11 @@ export default function Presentation() {
                             <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
                         </div>
 
-                        {/* <!-- Bouton delete--> 
+                        {/* <!-- Bouton delete--> */}
                         <div className="btn-del d-flex justify-content-end">
-                            <div className="btn-group mb-1 mt-2" role="group" aria-label="Third group">     Pas de delete
+                            <div className="btn-group mb-1 mt-2" role="group" aria-label="Third group"> 
                                 <button type="button" className="btn btn-outline-dark mb-2">S</button>
-                            </div>*/}
+                            </div>
 
                     </div>
 
@@ -56,7 +56,7 @@ export default function Presentation() {
 
             </div>
         </div>
-        /* </div >   pour le add       */
+         </div >      
         /* </div >   pour le delete       */
 
 
