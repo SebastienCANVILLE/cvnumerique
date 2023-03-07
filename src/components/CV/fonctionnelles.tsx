@@ -44,12 +44,27 @@ export default function Fonctionnelle() {
                         </button>
                     </h2>
                     <div id="panelsStayOpen-collapseSix" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingSix">
-                        <div className="btn-group mb-1 mt-2 ms-3" role="group" aria-label="Third group">
-                            <button type="button" className="btn btn-info justify-content-end">+</button>
-                        </div>
                         <div className="accordion-body">
-                            <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                            <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the 
+                            appropriate classes that we use to style each element. These classes control the overall appearance, as well as the 
+                            showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables.
+                             It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition 
+                             does limit overflow.
                         </div>
+                        <div className="btn-group mb-2 mt-2 ms-2" role="group" aria-label="Third group">
+                                 {/* <!-- Add button --> */}
+                                <button type="button" className="btn btn-outline-info btn-rounded-floating" data-mdb-ripple-color="dark">
+                                    <i className="bi bi-plus"></i>
+                                </button>
+                                {/* <!-- Update button --> */}
+                                <button type="button" className="btn btn-outline-warning btn-rounded-floating" data-mdb-ripple-color="dark" >
+                                    <i className="bi bi-pencil"></i>
+                                </button>
+                                 {/* <!-- Delete button --> */}
+                                <button type="button" className="btn btn-outline-danger btn-rounded-floating" data-mdb-ripple-color="dark" >
+                                    <i className="bi bi-trash3"></i>
+                                </button>
+                            </div>
                     </div>
                 </div>
             </div>
