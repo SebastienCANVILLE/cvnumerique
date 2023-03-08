@@ -64,17 +64,17 @@ export default function Langue()
                 'Content-Type': 'application/json',
                 Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODExMzgwOSwiZXhwIjoxNjgzMTEzODA5fQ.SGeVdA_5QzUAfYmwy8dYn0MueTm6p6f7mVsbuGKReys'
             },
-            body: JSON.stringify(body)
+           /*  body: JSON.stringify(body) */
         };
         const response = await fetch('http://localhost:8000/langues',/*{ method: "GET" }*/ requestOptions);
         const responseJson = await response.json();
-
+/* 
         if (!response.ok)
         {
             // get error message from body or default to response status
             const error = (responseJson && responseJson.message) || response.status;
             return Promise.reject(error);
-        }
+        } */
         console.log("Success", responseJson);
 
         setLangue(responseJson.langue);
@@ -92,18 +92,18 @@ export default function Langue()
                 'Content-Type': 'application/json',
                 Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODExMzgwOSwiZXhwIjoxNjgzMTEzODA5fQ.SGeVdA_5QzUAfYmwy8dYn0MueTm6p6f7mVsbuGKReys'
             },
-            body: JSON.stringify(body)
+            body: JSON.stringify(body) 
         };
         const response = await fetch('http://localhost:8000/langues/',/*{ method: "PATCH" }*/ requestOptions)
         const responseJson = await response.json();
 
-        if (!response.ok)
+        /* if (!response.ok)
         {
             // get error message from body or default to response status
             const error = (responseJson && responseJson.message) || response
                 .status;
             return Promise.reject(error);
-        }
+        } */
         console.log('success', responseJson);
 
         setLangue(responseJson.langue);

@@ -7,9 +7,10 @@ import Formation from "./formations";
 import Langue from "./langues";
 import Navbar from "./navbar";
 import Competence from "./competences";
-import Technique from "./techniques";
+import Techniques from "./techniques";
 import './cv.css';
 import { Link } from "react-router-dom";
+
 
 
 
@@ -27,7 +28,7 @@ export default function CvAccueil() {
                 <Presentation></Presentation>
                 <Formation></Formation>
                 <Experience></Experience>
-                <Technique></Technique>
+                <Techniques></Techniques>
                 <Fonctionnelle></Fonctionnelle>
                 <Competence></Competence>
                 <Langue></Langue>
