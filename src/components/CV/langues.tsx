@@ -21,14 +21,14 @@ export default function Langue()
     const [ langue, setLangue ] = useState<TLangue | undefined>();
     const [ langueInput, setLangueInput ] = useState("");
 
-    const body = {
+    /* const body = {
         langue: langueInput,
         niveau: langueInput
-    }
+    } */
 
 
 
-    // Création d'une langue : avec le 'create' du front.
+    // Création d'une langue dans la BDD.
     async function CreateLangue()
     {
         const requestOptions = {
@@ -37,17 +37,14 @@ export default function Langue()
                 'Content-Type': 'application/json',
                 Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODExMzgwOSwiZXhwIjoxNjgzMTEzODA5fQ.SGeVdA_5QzUAfYmwy8dYn0MueTm6p6f7mVsbuGKReys'
             },
-            body: JSON.stringify(body)
+            body: JSON.stringify({
+                langue: langueInput,
+                niveau: langueInput
+            })
         };
         const response = await fetch('http://localhost:8000/langues',/*{ method: "POST" }*/ requestOptions);
         const responseJson = await response.json();
 
-        if (!response.ok)
-        {
-            // get error message from body or default to response status
-            const error = (responseJson && responseJson.message) || response.status;
-            return Promise.reject(error);
-        }
         console.log("Success", responseJson);
 
         setLangue(responseJson);
@@ -55,7 +52,7 @@ export default function Langue()
 
 
 
-    // Récupération de toutes les langues: avec le 'get' du front.
+    // Récupération de toutes les langues dans la BDD.
     async function GetLangue()
     {
         const requestOptions = {
@@ -63,18 +60,12 @@ export default function Langue()
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODExMzgwOSwiZXhwIjoxNjgzMTEzODA5fQ.SGeVdA_5QzUAfYmwy8dYn0MueTm6p6f7mVsbuGKReys'
-            },
-            body: JSON.stringify(body)
+            }
         };
         const response = await fetch('http://localhost:8000/langues',/*{ method: "GET" }*/ requestOptions);
+
         const responseJson = await response.json();
 
-        if (!response.ok)
-        {
-            // get error message from body or default to response status
-            const error = (responseJson && responseJson.message) || response.status;
-            return Promise.reject(error);
-        }
         console.log("Success", responseJson);
 
         setLangue(responseJson.langue);
@@ -82,7 +73,7 @@ export default function Langue()
 
 
 
-    // Modification d'une langue : avec le 'patch' du front.
+    /* // Modification d'une langue : avec le 'patch' du front.
     async function PatchLangue()
     {
 
@@ -92,18 +83,14 @@ export default function Langue()
                 'Content-Type': 'application/json',
                 Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODExMzgwOSwiZXhwIjoxNjgzMTEzODA5fQ.SGeVdA_5QzUAfYmwy8dYn0MueTm6p6f7mVsbuGKReys'
             },
-            body: JSON.stringify(body)
+            body: JSON.stringify({
+        langue: langueInput,
+        niveau: langueInput
+    })
         };
-        const response = await fetch('http://localhost:8000/langues/',/*{ method: "PATCH" }*/ requestOptions)
+        const response = await fetch('http://localhost:8000/langues/', requestOptions)
         const responseJson = await response.json();
 
-        if (!response.ok)
-        {
-            // get error message from body or default to response status
-            const error = (responseJson && responseJson.message) || response
-                .status;
-            return Promise.reject(error);
-        }
         console.log('success', responseJson);
 
         setLangue(responseJson.langue);
@@ -123,7 +110,7 @@ export default function Langue()
             }
         };
 
-        const response = await fetch('http://localhost:8000/langues/',/*{ method: "DELETE" }*/ requestOptions);
+        const response = await fetch('http://localhost:8000/langues/', requestOptions);
         const responseJson = await response.json();
 
         if (!response.ok)
@@ -136,7 +123,7 @@ export default function Langue()
         console.log('success', responseJson);
 
         setLangue(responseJson.langue);
-    };
+    }; */
 
 
     useEffect(() =>
