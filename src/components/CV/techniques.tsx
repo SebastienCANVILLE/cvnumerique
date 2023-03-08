@@ -120,7 +120,7 @@ export default function Technique() {
     return (
         <div className='container mt-5'>
             <div className="accordion" id="accordionPanelsStayOpenExample">
-                <div className="accordion-item">
+                <div className="accordion-item ms-4 me-4">
                     <h2 className="accordion-header" id="panelsStayOpen-headingFive">
                         <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
                         <div className= "position-absolute top-50 start-50 translate-middle text-center">  COMPÉTENCES TECHNIQUES</div>
@@ -155,9 +155,7 @@ export default function Technique() {
                                 <button type="button" className="btn btn-outline-info btn-rounded-floating" data-mdb-ripple-color="dark">
                                     <i className="bi bi-plus"></i>
                                 </button>
-
-                                <h5 className="Ajouter une compétence">Ajout</h5>
-                                <input type='text' onChange={(event) => setTechInput(event.target.value)}></input>
+                                <input type='text' placeholder ="Votre compétence ici" onChange={(event) => setTechInput(event.target.value)}></input>
                                 <button onClick={() => createTechnique()}>Valider</button>
 
 

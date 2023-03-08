@@ -27,7 +27,7 @@ type ProfilRegister = {
   */
 export default function Register() {
 
-    /* const [register, setRegister] = useState<ProfilRegister | undefined>(); à supprimer */
+    /* const [register, setRegister] = useState<ProfilRegister[]>([]); en attente */
 
     const [lastnameInput, setLastnameInput] = useState("")
     const [firstnameInput, setFirstnameInput] = useState("")
@@ -40,8 +40,6 @@ export default function Register() {
     const [regionInput, setRegionInput] = useState("")
     const [cityInput, setCityInput] = useState("")
 
-    const [closeRegisterButtom, setCloseRegisterButtom] = useState("")
-
     /**
      * @function fetchDataRegister
      * 
@@ -53,7 +51,7 @@ export default function Register() {
     async function fetchDataRegister() {
 
         /* permet de supprimer les données dans l'input après validation du formulaire  
-        ne pas oublier de créer une value ={lastnameInput} etc ... pour revenir à l'état inital sans données */
+        ne pas oublier de créer une value ={lastnameInput} etc ... pour revenir à l'état inital sans données 
         setLastnameInput("")
         setFirstnameInput("")
         setEmailInput("")
@@ -63,7 +61,7 @@ export default function Register() {
         setResponsabilityInput("")
         setJobInput("")
         setRegionInput("")
-        setCityInput("")
+        setCityInput("")*/
 
         // body du register sur la partie html
         const body: ProfilRegister = {
@@ -79,10 +77,10 @@ export default function Register() {
             ville_affectation: cityInput,
         }
 
-        // Options de requêtes
+        // Options de requêtes et envoi des données des input en BDD
         const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json', },
+            headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify(body)
         };
 
@@ -90,24 +88,41 @@ export default function Register() {
         const responseJson = await response.json();
         console.log(responseJson);
 
+        //si nous avons la réponse json du register dans la console alors nous faisons un reset des input du formulaire
+        // vérifier la condition pour ne pas quelle reset s'il y a une erreur
+        
+        if (responseJson.statusCode === 201) {
+            resetInput()
+        }
+        else {
+            return
+        } 
 
-        /*  setRegister(responseJson);   à supprimer
-         console.log(register); */
+
+        
 
     }
 
-    async function closeModalRegister() {
+    async function resetInput() { //resetInput
 
-        /* setCloseRegisterButtom("") */
+        setLastnameInput("")
+        setFirstnameInput("")
+        setEmailInput("")
+        setPasswordInput("")
+        setPasswordConfirmInput("")
+        setPhoneNumberInput("")
+        setResponsabilityInput("")
+        setJobInput("")
+        setRegionInput("")
+        setCityInput("")
 
-        
-     }
+    }
 
 
     return (<div>
 
-        {/* <!-- Modal --> */}
-        <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" /* tabindex="-1" */ aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        {/* <!-- Modal --> show useRef*/}
+        <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex={-1} aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div className="position-fixed top-0 vw-100 vh-100">
                 <div className=" w-100 h-100 bg-dark bg-opacity-10">
                     <div className="modal-dialog modal-dialog-scrollable">
@@ -117,7 +132,7 @@ export default function Register() {
                                 <h1 className="modal-title fs-3 " id="staticBackdropLabel">Parlez-nous de vous ...</h1>
 
                                 {/* <!-- Buttom Close --> */}
-                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" value={closeRegisterButtom} onClick={closeModalRegister}></button>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={resetInput}></button>
                             </div>
 
                             <div className="modal-body">
@@ -183,7 +198,7 @@ export default function Register() {
                             {/* <!-- Buttom register --> */}
                             {/* <div className="modal-footer col-center"> */}
                             <div className="col-center text-center align-items-center mt-4">
-                                <button type="submit" className="btn btn-primary mb-4 col-10" onClick={fetchDataRegister}>Enregister</button>
+                                <button type="submit" className="btn btn-primary mb-4 col-10" data-bs-dismiss="modal" onClick={fetchDataRegister}>Enregister</button>
                             </div>
 
                         </div>
