@@ -130,16 +130,15 @@ export default function Langue()
         GetLangue();
     }, []);
 
-    /*  <div className="card text-center m-3">
-                <h5 className="card-title">Connaissance d'une langue</h5>
-                <h5 className="card-header">{langues?.langue}</h5>
-                <input type='text' onChange={(event) => setLanguesInput(event.target.value)}></input>
-                
-                <h5 className="card-title">Mon niveau de connaissance de la langue:</h5>
-                <h5 className="card-header"> {langues?.niveau} </h5>
-                <input type='text' onChange={(event) => SetNiveauInput(event.target.value)}></input>
-                <button onClick={fetchData}>Valider</button>
-            </div>  */
+    const listLangue = langue?.map((item) => (
+        <li>
+            <p> {item.langue} </p>
+            <p> {item.niveau} </p>
+        </li>
+    ))
+
+
+
     return (
         <div className='container mt-5'>
             <div className="accordion" id="accordionPanelsStayOpenExample">
@@ -149,6 +148,7 @@ export default function Langue()
                         <div className= "position-absolute top-50 start-50 translate-middle text-center"> LANGUES</div>
                             </button>
                     </h2>
+                    {/* Récupération de toutes les langues */}
                     <div id="panelsStayOpen-collapseEight" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingEight">
                         <div className="accordion-body">
                             <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the
