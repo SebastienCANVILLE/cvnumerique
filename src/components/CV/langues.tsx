@@ -5,7 +5,6 @@ type TLangue = {
     id: number;
     langue: string;
     niveau: string;
-    user: {}
 }
 
 
@@ -18,7 +17,7 @@ type TLangue = {
  */
 export default function Langue()
 {
-    const [ langue, setLangue ] = useState<TLangue | undefined>();
+    const [ langue, setLangue ] = useState < TLangue [] | undefined> ([]);
     const [ langueInput, setLangueInput ] = useState("");
 
     /* const body = {
@@ -42,7 +41,7 @@ export default function Langue()
                 niveau: langueInput
             })
         };
-        const response = await fetch('http://localhost:8000/langues',/*{ method: "POST" }*/ requestOptions);
+        const response = await fetch('http://localhost:8000/langues', requestOptions);
         const responseJson = await response.json();
 
         console.log("Success", responseJson);
@@ -62,7 +61,7 @@ export default function Langue()
                 Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODExMzgwOSwiZXhwIjoxNjgzMTEzODA5fQ.SGeVdA_5QzUAfYmwy8dYn0MueTm6p6f7mVsbuGKReys'
             }
         };
-        const response = await fetch('http://localhost:8000/langues',/*{ method: "GET" }*/ requestOptions);
+        const response = await fetch('http://localhost:8000/langues', requestOptions);
 
         const responseJson = await response.json();
 
