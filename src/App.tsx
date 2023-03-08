@@ -8,8 +8,8 @@ function App() {
 
 <div>
 
-    <Accueil></Accueil>
-    {/* <CvAccueil></CvAccueil> */}
+    {/* <Accueil></Accueil> */}
+    <CvAccueil></CvAccueil>
 
 </div>
     );

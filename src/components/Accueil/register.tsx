@@ -98,8 +98,10 @@ export default function Register() {
 
     async function closeModalRegister() {
 
-        setCloseRegisterButtom("")
-    }
+        /* setCloseRegisterButtom("") */
+
+        
+     }
 
 
     return (<div>
@@ -115,7 +117,7 @@ export default function Register() {
                                 <h1 className="modal-title fs-3 " id="staticBackdropLabel">Parlez-nous de vous ...</h1>
 
                                 {/* <!-- Buttom Close --> */}
-                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" value={lastnameInput} onClick={closeModalRegister}></button>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" value={closeRegisterButtom} onClick={closeModalRegister}></button>
                             </div>
 
                             <div className="modal-body">
