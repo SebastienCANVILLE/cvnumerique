@@ -81,14 +81,18 @@ export default function Langue()
 
     return (
         <div className='container mt-5'>
+
+            {/* Récupération de toutes les langues et niveaux */}
             <div className="accordion" id="accordionPanelsStayOpenExample">
                 <div className="accordion-item ms-4 me-4">
+
+                    {/*Titre dans l'entête accordéon */}
                     <h2 className="accordion-header" id="panelsStayOpen-headingEight">
                         <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseEight" aria-expanded="false" aria-controls="panelsStayOpen-collapseEight">
                             <div className="position-absolute top-50 start-50 translate-middle text-center"> LANGUES</div>
                         </button>
                     </h2>
-                    {/* Récupération de toutes les langues */}
+                    {/* Récupération de toutes les langues lors de l'effondrement */}
                     <div id="panelsStayOpen-collapseEight" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingEight">
                         <div id="collapseEight" className="accordion-collapse collapse show" aria-labelledby="headingEight" data-bs-parent="#accordionExample">
                             <div className="accordion-body">
