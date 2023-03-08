@@ -32,23 +32,19 @@ export default function Navbar() {
                             </li>
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Utiles
+                                    Profil
                                 </a>
                                 <ul className="dropdown-menu dropdown-menu-dark">
-                                    <li><a className="dropdown-item">Admin</a></li>
-                                    <li><a className="dropdown-item">Consultant</a></li>
+                                    <li><a className="dropdown-item">Admin</a></li>   
                                     <li>
                                         <hr className="dropdown-divider" />
                                     </li>
-                                    <li><button type = "button" className="btn btn-outline-danger">Déconnexion</button></li>
+                                    <li><a className="dropdown-item">Consultant</a></li>
                                 </ul>
                             </li>
                         </ul>
-                        <form className="d-flex mt-3" role="search">
-                            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                            <button className="btn btn-success" type="submit">Recherche</button>
-                        </form>
-                    </div>
+                        <button type = "button" className="btn btn-outline-danger mt-4">Déconnexion</button>
+                    </div> 
                 </div>
             </div>
         </nav>

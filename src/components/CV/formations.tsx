@@ -61,7 +61,7 @@ export default function Formation() {
             }
             console.log("Success!", responseJson);
 
-            setFormation(responseJson.formation);
+            setFormation(responseJson);
 
         }
         /* useEffect(() => {

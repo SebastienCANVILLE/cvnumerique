@@ -1,20 +1,21 @@
 import React from 'react';
 import {Routes, Route} from "react-router-dom";
+import Accueil from './components/Accueil/accueil';
 import CvAccueil from './components/CV/cvAccueil';
 
 function App() {
   return (
-    <>
-    <Routes>
 
-    <Route path = "/" element = {<CvAccueil />}/> {/* element que l'on trouve à la racine */}
+<div>
 
-    </Routes>
+    <Accueil></Accueil>
+    {/* <CvAccueil></CvAccueil> */}
+
+</div>
+    );
+  }
   
-
+  export default App;
+  
+  
       
-    </>
-  );
-}
-
-export default App;
