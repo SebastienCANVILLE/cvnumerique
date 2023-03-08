@@ -20,8 +20,8 @@ export default function CvAccueil() {
         <div className="CvAccueil">
 
             <Navbar></Navbar>
-            <div className="container pt-4 pb-6">
-                <div className="Items">
+            <div className="container" id ="containerAccueil">
+             {/*    <div className="Items"> */}
 
                     <ProfilCv></ProfilCv>
 
@@ -33,7 +33,7 @@ export default function CvAccueil() {
                     <Competence></Competence>
                     <Langue></Langue>
                     <CentreInteret></CentreInteret>
-                </div>
+                {/* </div> */}
 
             </div>
         </div>
