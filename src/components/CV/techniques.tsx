@@ -1,15 +1,12 @@
 import { useState, useEffect } from 'react';
-
-
-
-
+import Technique from './technique';
 
 type TTech = {
-    id: number;
-    libelle: string;
+    id: number,
+    libelle: string
 }
 
-export default function Technique() {
+export default function Techniques() {
 
     const [technique, setTechnique] = useState<TTech[]>([]);//array qui contient des techniques
     const [techInput, setTechInput] = useState<string>("");
@@ -29,7 +26,6 @@ export default function Technique() {
                 Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvcGhpZUBnbWFpbC5mciIsInN1YiI6MSwiaWF0IjoxNjc3MjQ3NDg0LCJleHAiOjE2ODIyNDc0ODR9.XUDUNkBZiqT3fUmdn9IDW5K2kb2BegVxDZpMMNUQ_U4'
             },
             body: JSON.stringify({
-
                 libelle: techInput
             })
         };
@@ -57,49 +53,15 @@ export default function Technique() {
         setTechnique(responseJson);
 
     };
-
-    async function patchTechnique() {
-        const requestOptions = {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvcGhpZUBnbWFpbC5mciIsInN1YiI6MSwiaWF0IjoxNjc3MDA1MDc3LCJleHAiOjE2ODIwMDUwNzd9.zkOyUiBggcgOtdOdNzwI4orxX-gV5fMmEacWqZn4Zk4'
-            },
-            body: JSON.stringify({
-
-                libelle: techInput
-            })
-        };
-        const response = await fetch('http://localhost:8000/techniques/', requestOptions)
-        const responseJson = await response.json();
-
-        console.log("Success!", responseJson);
-        setTechnique(responseJson);
-    };
-
-    async function deleteTechnique() {
-        const requestOptions = {
-            method: 'DELETE',
-            headers: {
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvcGhpZUBnbWFpbC5mciIsInN1YiI6MSwiaWF0IjoxNjc3MDA1MDc3LCJleHAiOjE2ODIwMDUwNzd9.zkOyUiBggcgOtdOdNzwI4orxX-gV5fMmEacWqZn4Zk4'
-            }
-        };
-
-        const response = await fetch('http://localhost:8000/techniques/', requestOptions)
-        const responseJson = await response.json()
-        console.log("Success!", responseJson);
-        setTechnique(responseJson);
-    }
-
     useEffect(() => {
         getTechnique();
     }, []);
 
-    const listTechnique = technique?.map((item) => (
-        <li>
-            <p>{item?.libelle}</p>
-        </li>
-    ))
+    function deleteTechnique(id: number) {
+        const newTechnique = technique.filter(item => item.id !== id)
+        setTechnique(newTechnique);
+    }
+    const listTechnique = technique?.map(item => <Technique del={deleteTechnique} item={item} key={item.id} />)
 
     return (
         <div className='container mt-5'>
@@ -110,66 +72,39 @@ export default function Technique() {
                             <div className="position-absolute top-50 start-50 translate-middle text-center">  COMPÉTENCES TECHNIQUES</div>
                         </button>
                     </h2>
+
+
                     {/* <!-- Get All Compétences Techniques --> */}
                     <div id="panelsStayOpen-collapseFive" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFive">
                         <div id="collapseFive" className="accordion-collapse collapse show" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
                             <div className="accordion-body">
                                 <div className="p-2">
-                                    <ul>
-                                        <tbody>
-                                            {listTechnique}
-                                        </tbody>
-                                    </ul>
+                                    <div className="col">
+                                        {listTechnique}
+                                    </div>
                                 </div>
                             </div>
 
-                            <div className="btn-group mb-2 mt-2 ms-2" role="group" aria-label="Third group">
-                                {/* <!-- Add button --> */}
-                                <button type="button" className="btn btn-outline-info btn-rounded-floating" data-mdb-ripple-color="dark">
+
+
+
+                            {/* <!-- Add Technique button --> */}
+                            
+
+                            <div className="input-group mb-3">
+                                <input type='text' className="form-control" value={techInput} placeholder="Saisir votre compétence" onChange={(event) => setTechInput(event.target.value)}aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                                <button onClick={() => createTechnique()} type="button" className="btn btn-outline-info" data-mdb-ripple-color="dark">
                                     <i className="bi bi-plus"></i>
                                 </button>
-                                <input type='text' value={techInput} placeholder="Votre compétence ici" onChange={(event) => setTechInput(event.target.value)}></input>
-                                <button onClick={() => createTechnique()}>Valider</button>
-
-
-                                {/* <!-- Update button --> */}
-                                <button type="button" className="btn btn-outline-warning btn-rounded-floating" data-mdb-ripple-color="dark" >
-                                    <i className="bi bi-pencil"></i>
-                                </button>
-                                {/* <!-- Delete button --> */}
-                                <button type="button" className="btn btn-outline-danger btn-rounded-floating" data-mdb-ripple-color="dark" >
-                                    <i className="bi bi-trash3"></i>
-                                </button>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
             </div>
 
         </div>
-
-
     );
-    {/* <div className="card text-center m-3">
-                <h4>Compétences Techniques</h4>
-                <h5 className="card-header ms-3"></h5>
-                <input type='text' onChange={(event) => setTechInput(event.target.value)}></input>
-                <button onClick={() => createTechnique()}>Valider</button>
 
-
-
-                <div className="card text-center m-3" >
-                    <h6>Affichage des compétences techniques</h6>
-
-                    {techInput.libelle?.map((item: any) =>
-                    <option key={item.id} className="font-weight-bold text-info">
-                        {item.libelle}
-                        <h5>{item.libelle}</h5>
-                    </option>)} 
-                </div>
-            </div> */}
 
 }
 
