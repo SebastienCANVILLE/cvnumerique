@@ -1,23 +1,30 @@
 import { useState, useEffect } from 'react';
+import Formation from './formation';
 
 type TForm = {
-    id: number;
+    id: number,
     specialite: string,
     diplôme: string,
     date_obtention: Date,
-    user: {}
 }
-export default function Formation() {
 
-    const [formation, setFormation] = useState<TForm | undefined>();
-    const [formInput, setFormInput] = useState("")
 
-    const body = {
-        specialite: formInput,
-        diplôme: formInput,
-        date_obtention: formInput
-    }
-    async function fetchData() {
+
+export default function Formations() {
+
+    const [formation, setFormation] = useState<TForm[]>([]);
+
+    const [formInput, setFormInput] = useState("");
+    const [diplomeInput, setDiplomeInput] = useState("");
+    const [dateInput, setDateInput] = useState("");
+
+
+    /*  const body = {
+         specialite: formInput,
+         diplôme: formInput,
+         date_obtention: formInput
+     } */
+    async function createFormation() {
 
         const requestOptions = {
             method: 'POST',
@@ -25,51 +32,68 @@ export default function Formation() {
                 'Content-Type': 'application/json',
                 Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvcGhpZUBnbWFpbC5mciIsInN1YiI6OCwiaWF0IjoxNjc2OTY4NTA5LCJleHAiOjE2ODE5Njg1MDl9.BwDYPpK0WHJYcviyhTb05rCmqI0I1wWXbiYjC_VZbiY'
             },
-            body: JSON.stringify(body)
+            body: JSON.stringify({
+                specialite: formInput,
+                diplôme: diplomeInput,
+                date_obtention: dateInput
+            })
         };
 
         const response = await fetch('http://localhost:8000/formations', requestOptions)
         const responseJson = await response.json();
 
-        if (!response.ok) {
+        /*  if (!response.ok) {
+             // get error message from body or default to response status
+             const error = (responseJson && responseJson.message) || response.status;
+             return Promise.reject(error);
+         } */
+        console.log("Success!", responseJson);
+
+        setFormation([...formation, responseJson]);
+        setFormInput("");
+        setDiplomeInput("");
+        setDateInput("");
+    };
+
+    async function getFormations() {
+
+        const requestOptions = {
+            method: 'GET',
+            headers: {
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvcGhpZUBnbWFpbC5mciIsInN1YiI6MSwiaWF0IjoxNjc3MDA1MDc3LCJleHAiOjE2ODIwMDUwNzd9.zkOyUiBggcgOtdOdNzwI4orxX-gV5fMmEacWqZn4Zk4'
+            },
+        };
+
+
+        const response = await fetch('http://localhost:8000/formations', requestOptions)
+        const responseJson = await response.json();
+
+        /* if (!response.ok) {
             // get error message from body or default to response status
             const error = (responseJson && responseJson.message) || response.status;
             return Promise.reject(error);
-        }
+        } */
         console.log("Success!", responseJson);
-
         setFormation(responseJson);
 
-        async function getFormations() {
+    };
+    useEffect(() => {
+        getFormations();
+    }, []);
+    const listFormation = formation?.map(item => <Formation item={item} key = {item.id}/>)
+    /* const listFormation = formation?.map((item) => (
+        <div className='grid-row' key={item.id}>
+            <div className='grid_item'>
+                <h5 className='grid_specialite'>{item.specialite}</h5>
+            </div>
+            <div className="grid text-left" >
+                <div className="g-col-6">{item.date_obtention}</div>
+                <div className="g-col-4">{item.diplôme}</div>
+            </div>
 
-            const requestOptions = {
-                method: 'GET',
-                headers: {
-                    Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvcGhpZUBnbWFpbC5mciIsInN1YiI6MSwiaWF0IjoxNjc3MDA1MDc3LCJleHAiOjE2ODIwMDUwNzd9.zkOyUiBggcgOtdOdNzwI4orxX-gV5fMmEacWqZn4Zk4'
-                },
-                body: JSON.stringify(body)
-            };
-
-
-            const response = await fetch('http://localhost:8000/formations', requestOptions)
-            const responseJson = await response.json();
-
-            if (!response.ok) {
-                // get error message from body or default to response status
-                const error = (responseJson && responseJson.message) || response.status;
-                return Promise.reject(error);
-            }
-            console.log("Success!", responseJson);
-
-            setFormation(responseJson);
-
-        }
-        /* useEffect(() => {
-
-            getFormations();
-
-        }, []); */
-    }
+        </div>
+ 
+    ))*/
     return (
 
 
@@ -78,34 +102,32 @@ export default function Formation() {
                 <div className="accordion-item ms-4 me-4">
                     <h2 className="accordion-header" id="panelsStayOpen-headingThree">
                         <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                        <div className= "position-absolute top-50 start-50 translate-middle text-center"> FORMATIONS</div>
+                            <div className="position-absolute top-50 start-50 translate-middle text-center"> FORMATIONS</div>
                         </button>
                     </h2>
+
+                    {/* <!-- Get All Formations --> */}
                     <div id="panelsStayOpen-collapseThree" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
                         <div id="collapseThree" className="accordion-collapse collapse show" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                         </div>
-                        <div className="accordion-body">
-                            <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate 
-                            classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS 
-                            transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about 
-                            any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                            </div>
-                            <div className="btn-group mb-2 mt-2 ms-2" role="group" aria-label="Third group">
-                                <button type="button" className="btn btn-outline-info btn-rounded-floating" data-mdb-ripple-color="dark">
-                                    <i className="bi bi-plus"></i>
-                                </button>
-                                <button type="button" className="btn btn-outline-warning btn-rounded-floating" data-mdb-ripple-color="dark" >
-                                    <i className="bi bi-pencil"></i>
-                                </button>
-                                <button type="button" className="btn btn-outline-danger btn-rounded-floating" data-mdb-ripple-color="dark" >
-                                    <i className="bi bi-trash3"></i>
-                                </button>
-                            </div>
+                        <ul>
+                            {listFormation}
+                        </ul>
+                        {/* <!-- Add Formations button --> */}
+                        <div className="btn-group mb-2 mt-2 ms-2 me -2" role="group" aria-label="Third group">
+                            <input type='text' value={formInput} placeholder="Saisir votre formation" onChange={(event) => setFormInput(event.target.value)}></input>
+                            <input type='text' value={diplomeInput} placeholder="Saisir votre diplôme" onChange={(event) => setDiplomeInput(event.target.value)}></input>
+                            <input type='text' value={dateInput} placeholder="Date d'obtention" onChange={(event) => setDateInput(event.target.value)}></input>
+                            <button onClick={() => createFormation()} type="button" className="btn btn-outline-info btn-rounded-floating" data-mdb-ripple-color="dark">
+                                <i className="bi bi-plus"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
-       
+        </div>
+
+
 
     )
 }

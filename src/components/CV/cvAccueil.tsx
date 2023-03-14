@@ -1,7 +1,7 @@
 import Presentation from "./presentation";
 import ProfilCv from "./profil";
 import Experience from "./experiences";
-import CentreInteret from "./centresInterets";
+import CentreInterets from "./centresInterets";
 import Fonctionnelle from "./fonctionnelles";
 import Formation from "./formations";
 import Langue from "./langues";
@@ -9,7 +9,7 @@ import Navbar from "./navbar";
 import Competence from "./competences";
 import Techniques from "./techniques";
 import './cv.css';
-import { Link } from "react-router-dom";
+
 
 
 
