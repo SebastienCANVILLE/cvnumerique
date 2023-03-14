@@ -22,7 +22,6 @@ export default function CvAccueil() {
 
             <Navbar></Navbar>
             <div className="container" id="containerAccueil">
-                {/*    <div className="Items"> */}
 
                 <ProfilCv></ProfilCv>
 
@@ -33,8 +32,8 @@ export default function CvAccueil() {
                 <Fonctionnelle></Fonctionnelle>
                 <Competence></Competence>
                 <Langue></Langue>
-                <CentreInterets></CentreInterets>
-                {/* </div> */}
+                <CentreInteret></CentreInteret>
+
 
             </div>
         </div>
