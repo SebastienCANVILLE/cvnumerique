@@ -32,7 +32,7 @@ export default function CvAccueil() {
                 <Fonctionnelle></Fonctionnelle>
                 <Competence></Competence>
                 <Langue></Langue>
-                <CentreInteret></CentreInteret>
+                <CentreInterets></CentreInterets>
 
 
             </div>
