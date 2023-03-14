@@ -119,7 +119,7 @@ export default function Langue()
 
                                 <input type='text' className="form-control" value={niveauInput} placeholder="Saisir votre niveau" onChange={(event) => setNiveauInput(event.target.value)}aria-label="Recipient's username" aria-describedby="button-addon2"></input>
 
-                                <button onClick={() => GetLangue()} type="button" className="btn btn-outline-info" data-mdb-ripple-color="dark">
+                                <button onClick={() => CreateLangue()} type="button" className="btn btn-outline-info" data-mdb-ripple-color="dark">
                                     <i className="bi bi-plus"></i>
                                 </button>
                             </div>
