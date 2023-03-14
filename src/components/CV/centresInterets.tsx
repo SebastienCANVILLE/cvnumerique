@@ -3,8 +3,8 @@ import Interet from './centreInteret';
 
 
 type TCInt = {
-    id: number;
-    intitule: string;
+    id: number,
+    intitule: string
 
 }
 export default function CentreInterets() {
@@ -35,7 +35,7 @@ export default function CentreInterets() {
         setInteret([...interet, responseJson]);
         setIntInput("");
     };
-    async function GetInteret() {
+    async function getInteret() {
         const requestOptions = {
             method: 'GET',
             headers: {
@@ -50,14 +50,14 @@ export default function CentreInterets() {
 
     };
     useEffect(() => {
-        GetInteret();
+        getInteret();
     }, []);
 
     function deleteInteret(id: number) {
         const newInteret = interet.filter(item => item.id !== id)
         setInteret(newInteret);
     }
-    const listInteret = interet?.map(item => <CentreInterets del={deleteInteret} item={item} key={item.id} />)
+    const listInteret = interet?.map(item => <Interet del={deleteInteret} item={item} key={item.id} />)
 
     return (
 
@@ -69,25 +69,25 @@ export default function CentreInterets() {
                             <div className="position-absolute top-50 start-50 translate-middle text-center"> CENTRES D'INTÉRÊTS</div>
                         </button>
                     </h2>
+
+
                     <div id="panelsStayOpen-collapseNine" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingNine">
                         <div id="collapseNine" className="accordion-collapse collapse show" aria-labelledby="headingNine" data-bs-parent="#accordionExample">
                             <div className="accordion-body">
-                                <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds
-                                the appropriate classes that we use to style each element. These classes control the overall appearance, as well as
-                                the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default
-                                variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though
-                                the transition does limit overflow.
+                                <div className="p-2">
+                                    <div className="col">
+                                        {listInteret}
+                                    </div>
+                                </div>
                             </div>
-                            <div className="btn-group mb-2 mt-2 ms-2" role="group" aria-label="Third group">
-                                <button type="button" className="btn btn-outline-info btn-rounded-floating" data-mdb-ripple-color="dark">
+
+
+                            <div className="input-group mb-3">
+                                <input type='text' className="form-control" value={intInput} placeholder="Centre d'intérêt" onChange={(event) => setIntInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                                <button onClick={() => createInteret()} type="button" className="btn btn-outline-info" data-mdb-ripple-color="dark">
                                     <i className="bi bi-plus"></i>
                                 </button>
-                                <button type="button" className="btn btn-outline-warning btn-rounded-floating" data-mdb-ripple-color="dark" >
-                                    <i className="bi bi-pencil"></i>
-                                </button>
-                                <button type="button" className="btn btn-outline-danger btn-rounded-floating" data-mdb-ripple-color="dark" >
-                                    <i className="bi bi-trash3"></i>
-                                </button>
+
                             </div>
 
                         </div>
@@ -95,31 +95,6 @@ export default function CentreInterets() {
                 </div>
             </div>
         </div>
-
-
-
-
     );
+}
 
-
-    {/* <div>
-            <div className="card text-center m-3">
-                <h4>Intérêts</h4>
-                <h5 className="card-header">{interet?.intitule}</h5>
-
-                <input type='text' onChange={(event) => setIntInput(event.target.value)}></input>
-                <button onClick={fetchData}>Valider</button>
-            </div>
-        </div> */}
-
-
-
-    async function GetCentreInteret() {
-
-
-
-
-    }
-};
-
-export { CentreInteret };

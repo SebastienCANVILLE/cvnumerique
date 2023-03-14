@@ -58,11 +58,11 @@ export default function Interet(props: any) {
                     <div className="btn-group mb-2 mt-2 ms-5" role="group" aria-label="Third group">
 
                         {/* <!-- Update button --> */}
-                        <button onClick={() => patchTechnique()} type="button" className="btn btn-outline-warning btn-rounded-floating ms-1" data-mdb-ripple-color="dark" >
+                        <button onClick={() => patchInteret()} type="button" className="btn btn-outline-warning btn-rounded-floating ms-1" data-mdb-ripple-color="dark" >
                             <i className="bi bi-pencil"></i>
                         </button>
                         {/* <!-- Delete button --> */}
-                        <button onClick={deleteTechnique} type="button" className="btn btn-outline-danger btn-rounded-floating ms-1" data-mdb-ripple-color="dark" >
+                        <button onClick={deleteInteret} type="button" className="btn btn-outline-danger btn-rounded-floating ms-1" data-mdb-ripple-color="dark" >
                             <i className="bi bi-trash3"></i>
                         </button>
 
