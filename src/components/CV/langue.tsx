@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 // Typage de la table 'langues'
 type TLangue = {
@@ -36,7 +36,7 @@ export default function ModificationLangue(props: any)
                 niveau: niveauInput
             })
         };
-        const response = await fetch('http://localhost:8000/langues/:id', requestOptions)
+        const response = await fetch(`http://localhost:8000/langues/${props.item.id}`, requestOptions)
         const responseJson = await response.json();
 
         console.log('success', responseJson);
@@ -60,19 +60,20 @@ export default function ModificationLangue(props: any)
             }
         };
 
-        const response = await fetch('http://localhost:8000/langues/:id', requestOptions);
+        const response = await fetch(`http://localhost:8000/langues/${props.item.id}`, requestOptions);
         const responseJson = await response.json();
 
         console.log('success', responseJson);
+
+        if (responseJson.statusCode === 200){
+            props.del(props.item.id)
+        }
 
         setLangue(responseJson.data);
     };
 
 
-    useEffect(() =>
-    {
-        DeleteLangue();
-    }, []);
+
 
 
     return (
@@ -94,12 +95,12 @@ export default function ModificationLangue(props: any)
                 {/* colone qui affiche les deux boutons  */}
                 <div className="col">
 
-                {/* bouton modifier */}
+                    {/* bouton modifier */}
                     <button type="button" className="btn btn-outline-warning btn-rounded-floating" data-mdb-ripple-color="dark" >
                         <i className="bi bi-pencil"></i>
                     </button>
 
-                {/* bouton supprimer */}
+                    {/* bouton supprimer */}
                     <button type="button" className="btn btn-outline-danger btn-rounded-floating" data-mdb-ripple-color="dark" >
                         <i className="bi bi-trash3"></i>
                     </button>

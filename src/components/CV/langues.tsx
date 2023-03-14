@@ -73,8 +73,12 @@ export default function Langue()
         GetLangue();
     }, []);
 
+    function DeleteLangue(id:number){
+        const newLangue = langue.filter(item => item.id !==id)
+        setLangue(newLangue)
+    }
     const listLangue = langue?.map(item => 
-        <ModificationLangue item={item} key={item.id}/>
+        <ModificationLangue del={DeleteLangue} item={item} key={item.id}/>
     )
 
 
@@ -96,7 +100,7 @@ export default function Langue()
                         <div id="collapseEight" className="accordion-collapse collapse show" aria-labelledby="headingEight" data-bs-parent="#accordionExample">
                             <div className="accordion-body">
                                 <div className="p-2">
-                                    <ul>
+                                    <ul className="list-inline">
                                         {listLangue}
                                     </ul>
                                 </div>
