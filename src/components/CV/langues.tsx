@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import {useEffect, useState } from "react";
 import ModificationLangue from "./langue";
 
 // Typage de la table 'langues'
@@ -7,7 +7,7 @@ type TLangue = {
     langue: string;
     niveau: string;
 }
-const token = useContext(AuthContext).token;
+
 
 /** Foncton qui appelle:
  * * **CreateLangue : fonction qui va utiliser le front pour faire un 'POST'.
@@ -28,7 +28,7 @@ export default function Langue()
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODY5NzA5NiwiZXhwIjoxNjgzNjk3MDk2fQ.KuPHnEt0EiYAA9jEVxfR2Vvj95oWOYEvuuEqlRSKtGw'
             },
             body: JSON.stringify({
                 langue: langueInput,
@@ -54,7 +54,7 @@ export default function Langue()
             method: 'GET',
             headers: {
                 /* 'Content-Type': 'application/json', */
-                Authorization: `Bearer ${token}`
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODY5NzA5NiwiZXhwIjoxNjgzNjk3MDk2fQ.KuPHnEt0EiYAA9jEVxfR2Vvj95oWOYEvuuEqlRSKtGw'
             },
            /*  body: JSON.stringify(body) */
         };
@@ -114,9 +114,9 @@ export default function Langue()
 
 
                             <div className="input-group mb-3">
-                                <input type='text' className="form-control" value={langueInput} placeholder="Saisir votre compétence" onChange={(event) => setLangueInput(event.target.value)}aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                                <input type='text' className="form-control" value={langueInput} placeholder="Saisir votre langue" onChange={(event) => setLangueInput(event.target.value)}aria-label="Recipient's username" aria-describedby="button-addon2"></input>
 
-                                <input type='text' className="form-control" value={niveauInput} placeholder="Saisir votre compétence" onChange={(event) => setNiveauInput(event.target.value)}aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                                <input type='text' className="form-control" value={niveauInput} placeholder="Saisir votre niveau" onChange={(event) => setNiveauInput(event.target.value)}aria-label="Recipient's username" aria-describedby="button-addon2"></input>
 
                                 <button onClick={() => GetLangue()} type="button" className="btn btn-outline-info" data-mdb-ripple-color="dark">
                                     <i className="bi bi-plus"></i>
