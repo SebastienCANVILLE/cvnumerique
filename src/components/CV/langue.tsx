@@ -66,10 +66,12 @@ export default function ModificationLangue(props: any)
 
         console.log('success', responseJson);
 
-        if (responseJson.statusCode === 200){
+        if (responseJson.statusCode === 201){
+            
             props.del(props.item.id)
         }
-
+        console.log(responseJson.data);
+        
         setLangue(responseJson.data);
     };
 
