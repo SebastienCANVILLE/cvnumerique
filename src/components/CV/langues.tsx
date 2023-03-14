@@ -16,10 +16,9 @@ type TLangue = {
  * * **PatchLangue  : fonction qui va utiliser le front pour faire un 'PATCH'.
  * * **DeleteLangue : fonction qui va utiliser le front pour faire un 'DELETE'.
  */
-export default function Langue()
-{
-    const [ langue, setLangue ] = useState<TLangue | undefined>();
-    const [ langueInput, setLangueInput ] = useState("");
+export default function Langue() {
+    const [langue, setLangue] = useState<TLangue | undefined>();
+    const [langueInput, setLangueInput] = useState("");
 
     const body = {
         langue: langueInput,
@@ -29,8 +28,7 @@ export default function Langue()
 
 
     // Création d'une langue : avec le 'create' du front.
-    async function CreateLangue()
-    {
+    async function CreateLangue() {
         const requestOptions = {
             method: 'POST',
             headers: {
@@ -42,8 +40,7 @@ export default function Langue()
         const response = await fetch('http://localhost:8000/langues',/*{ method: "POST" }*/ requestOptions);
         const responseJson = await response.json();
 
-        if (!response.ok)
-        {
+        if (!response.ok) {
             // get error message from body or default to response status
             const error = (responseJson && responseJson.message) || response.status;
             return Promise.reject(error);
@@ -56,25 +53,24 @@ export default function Langue()
 
 
     // Récupération de toutes les langues: avec le 'get' du front.
-    async function GetLangue()
-    {
+    async function GetLangue() {
         const requestOptions = {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODExMzgwOSwiZXhwIjoxNjgzMTEzODA5fQ.SGeVdA_5QzUAfYmwy8dYn0MueTm6p6f7mVsbuGKReys'
             },
-           /*  body: JSON.stringify(body) */
+            /*  body: JSON.stringify(body) */
         };
         const response = await fetch('http://localhost:8000/langues',/*{ method: "GET" }*/ requestOptions);
         const responseJson = await response.json();
-/* 
-        if (!response.ok)
-        {
-            // get error message from body or default to response status
-            const error = (responseJson && responseJson.message) || response.status;
-            return Promise.reject(error);
-        } */
+        /* 
+                if (!response.ok)
+                {
+                    // get error message from body or default to response status
+                    const error = (responseJson && responseJson.message) || response.status;
+                    return Promise.reject(error);
+                } */
         console.log("Success", responseJson);
 
         setLangue(responseJson.langue);
@@ -83,8 +79,7 @@ export default function Langue()
 
 
     // Modification d'une langue : avec le 'patch' du front.
-    async function PatchLangue()
-    {
+    async function PatchLangue() {
 
         const requestOptions = {
             method: 'PATCH',
@@ -92,7 +87,7 @@ export default function Langue()
                 'Content-Type': 'application/json',
                 Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODExMzgwOSwiZXhwIjoxNjgzMTEzODA5fQ.SGeVdA_5QzUAfYmwy8dYn0MueTm6p6f7mVsbuGKReys'
             },
-            body: JSON.stringify(body) 
+            body: JSON.stringify(body)
         };
         const response = await fetch('http://localhost:8000/langues/',/*{ method: "PATCH" }*/ requestOptions)
         const responseJson = await response.json();
@@ -112,8 +107,7 @@ export default function Langue()
 
 
     // Suppression d'une langue : avec le 'delete' du front.
-    async function DeleteLangue()
-    {
+    async function DeleteLangue() {
 
         const requestOptions = {
             method: 'DELETE',
@@ -126,8 +120,7 @@ export default function Langue()
         const response = await fetch('http://localhost:8000/langues/',/*{ method: "DELETE" }*/ requestOptions);
         const responseJson = await response.json();
 
-        if (!response.ok)
-        {
+        if (!response.ok) {
             // get error message from body or default to response status
             const error = (responseJson && responseJson.message) || response
                 .status;
@@ -139,8 +132,7 @@ export default function Langue()
     };
 
 
-    useEffect(() =>
-    {
+    useEffect(() => {
         GetLangue();
     }, []);
 
@@ -160,8 +152,8 @@ export default function Langue()
                 <div className="accordion-item ms-4 me-4">
                     <h2 className="accordion-header" id="panelsStayOpen-headingEight">
                         <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseEight" aria-expanded="false" aria-controls="panelsStayOpen-collapseEight">
-                        <div className= "position-absolute top-50 start-50 translate-middle text-center"> LANGUES</div>
-                            </button>
+                            <div className="position-absolute top-50 start-50 translate-middle text-center"> LANGUES</div>
+                        </button>
                     </h2>
                     <div id="panelsStayOpen-collapseEight" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingEight">
                         <div className="accordion-body">
@@ -178,9 +170,10 @@ export default function Langue()
                                 <i className="bi bi-plus"></i>
                                 <h5 className="card-header">{langue?.langue}</h5>
                                 <h5 className="card-header">{langue?.niveau}</h5>
-                                <input type='text' onChange={(event) => setLangueInput(event.target.value)}></input>
-                                <button onClick={CreateLangue}>Valider</button>
                             </button>
+                            <input type='text' onChange={(event) => setLangueInput(event.target.value)}></input>
+                            <button onClick={CreateLangue}>Valider</button>
+
 
                             {/* <!-- Update button --> */}
                             <button type="button" className="btn btn-outline-warning btn-rounded-floating" data-mdb-ripple-color="dark" >
