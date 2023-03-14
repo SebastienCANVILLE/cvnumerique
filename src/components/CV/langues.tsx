@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ModificationLangue from "./langue";
 
 // Typage de la table 'langues'
@@ -7,8 +7,7 @@ type TLangue = {
     langue: string;
     niveau: string;
 }
-
-
+const token = useContext(AuthContext).token;
 
 /** Foncton qui appelle:
  * * **CreateLangue : fonction qui va utiliser le front pour faire un 'POST'.
@@ -29,7 +28,7 @@ export default function Langue()
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODY5NzA5NiwiZXhwIjoxNjgzNjk3MDk2fQ.KuPHnEt0EiYAA9jEVxfR2Vvj95oWOYEvuuEqlRSKtGw'
+                Authorization: `Bearer ${token}`
             },
             body: JSON.stringify({
                 langue: langueInput,
@@ -55,7 +54,7 @@ export default function Langue()
             method: 'GET',
             headers: {
                 /* 'Content-Type': 'application/json', */
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODY5NzA5NiwiZXhwIjoxNjgzNjk3MDk2fQ.KuPHnEt0EiYAA9jEVxfR2Vvj95oWOYEvuuEqlRSKtGw'
+                Authorization: `Bearer ${token}`
             },
            /*  body: JSON.stringify(body) */
         };
