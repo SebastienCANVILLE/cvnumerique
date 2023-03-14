@@ -121,16 +121,16 @@ export default function Langue()
 
 
                             {/* <!-- Update button --> */}
-                            <button type="button" className="btn btn-outline-warning btn-rounded-floating" data-mdb-ripple-color="dark" >
+                            {/* <button type="button" className="btn btn-outline-warning btn-rounded-floating" data-mdb-ripple-color="dark" >
                                 <i className="bi bi-pencil"></i>
-                            </button>
+                            </button> */}
 
 
 
                             {/* <!-- Delete button --> */}
-                            <button type="button" className="btn btn-outline-danger btn-rounded-floating" data-mdb-ripple-color="dark" >
+                            {/* <button type="button" className="btn btn-outline-danger btn-rounded-floating" data-mdb-ripple-color="dark" >
                                 <i className="bi bi-trash3"></i>
-                            </button>
+                            </button> */}
                         </div>
                     </div>
                 </div>

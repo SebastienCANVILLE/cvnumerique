@@ -74,20 +74,39 @@ export default function ModificationLangue(props: any)
         DeleteLangue();
     }, []);
 
-    
-    return (
-        <div>
-            <li className="grid-row">
-                {props.item.langue}
-                {props.item.niveau}
-            </li>
-            <button type="button" className="btn btn-outline-warning btn-rounded-floating" data-mdb-ripple-color="dark" >
-                <i className="bi bi-pencil"></i>
-            </button>
 
-            <button type="button" className="btn btn-outline-danger btn-rounded-floating" data-mdb-ripple-color="dark" >
-                <i className="bi bi-trash3"></i>
-            </button>
+    return (
+        <div className="container">
+
+            <div className="row">
+
+                {/* colone qui affiche la langue */}
+                <li className="col">
+                    {props.item.langue} {"  : "}
+                </li>
+
+                {/* colone qui affiche le niveau */}
+                <div className="col">
+                    {props.item.niveau}
+                </div>
+
+
+                {/* colone qui affiche les deux boutons  */}
+                <div className="col">
+
+                {/* bouton modifier */}
+                    <button type="button" className="btn btn-outline-warning btn-rounded-floating" data-mdb-ripple-color="dark" >
+                        <i className="bi bi-pencil"></i>
+                    </button>
+
+                {/* bouton supprimer */}
+                    <button type="button" className="btn btn-outline-danger btn-rounded-floating" data-mdb-ripple-color="dark" >
+                        <i className="bi bi-trash3"></i>
+                    </button>
+
+                </div>
+
+            </div>
 
         </div>
     );
