@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../../context/authContext';
 import Interet from './centreInteret';
 
 
@@ -12,14 +13,14 @@ export default function CentreInterets() {
     const [interet, setInteret] = useState<TCInt[]>([]);
     const [intInput, setIntInput] = useState("");
     //POST request fetch inside useEffect React hooks
-
+const token = useContext(AuthContext).token;
     async function createInteret() {
 
         const requestOptions = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvcGhpZUBnbWFpbC5mciIsInN1YiI6MSwiaWF0IjoxNjc3MjQ3NDg0LCJleHAiOjE2ODIyNDc0ODR9.XUDUNkBZiqT3fUmdn9IDW5K2kb2BegVxDZpMMNUQ_U4'
+                Authorization: `Bearer ${token}`
             },
             body: JSON.stringify({
                 intitule: intInput
