@@ -2,11 +2,11 @@ import Presentation from "./presentation";
 import ProfilCv from "./profil";
 import Experience from "./experiences";
 import CentreInterets from "./centresInterets";
-import Fonctionnelle from "./fonctionnelles";
-import Formation from "./formations";
+import Fonctionnelles from "./fonctionnelles";
+import Formations from "./formations";
 import Langue from "./langues";
 import Navbar from "./navbar";
-import Competence from "./competences";
+import Competences from "./competences";
 import Techniques from "./techniques";
 import './cv.css';
 
@@ -26,11 +26,11 @@ export default function CvAccueil() {
                 <ProfilCv></ProfilCv>
 
                 <Presentation></Presentation>
-                <Formation></Formation>
+                <Formations></Formations>
                 <Experience></Experience>
                 <Techniques></Techniques>
-                <Fonctionnelle></Fonctionnelle>
-                <Competence></Competence>
+                <Fonctionnelles></Fonctionnelles>
+                <Competences></Competences>
                 <Langue></Langue>
                 <CentreInterets></CentreInterets>
 

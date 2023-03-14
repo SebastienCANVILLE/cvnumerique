@@ -11,9 +11,9 @@ type TCInt = {
 export default function CentreInterets() {
 
     const [interet, setInteret] = useState<TCInt[]>([]);
-    const [intInput, setIntInput] = useState("");
+    const [intInput, setIntInput] = useState<string>("");
     //POST request fetch inside useEffect React hooks
-const token = useContext(AuthContext).token;
+    const token = useContext(AuthContext).token;
     async function createInteret() {
 
         const requestOptions = {
@@ -80,17 +80,13 @@ const token = useContext(AuthContext).token;
                                         {listInteret}
                                     </div>
                                 </div>
-                            </div>
-
-
                             <div className="input-group mb-3">
                                 <input type='text' className="form-control" value={intInput} placeholder="Centre d'intérêt" onChange={(event) => setIntInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
                                 <button onClick={() => createInteret()} type="button" className="btn btn-outline-info" data-mdb-ripple-color="dark">
                                     <i className="bi bi-plus"></i>
                                 </button>
-
                             </div>
-
+                            </div>
                         </div>
                     </div>
                 </div>

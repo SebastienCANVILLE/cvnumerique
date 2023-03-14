@@ -1,12 +1,17 @@
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/authContext';
 
+
+type TCInt = {
+    id: number,
+    intitule: string
+
+}
 export default function Interet(props: any) {
     /*   console.log(props); */
 
-
-
-    const [intInput, setIntInput] =  useState<string>("");
+    const [interet, setInteret] = useState<TCInt[]>([]);
+    const [intInput, setIntInput] = useState<string>("");
 
     const token = useContext(AuthContext).token;
 

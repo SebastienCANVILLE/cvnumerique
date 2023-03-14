@@ -1,16 +1,23 @@
-import { useContext, useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../context/authContext';
 
 
 
-export default function Technique(props: any) {
-    /*   console.log(props); */
 
-    const [techInput, setTechInput] = useState<string>("");
+type TFonc = {
+    id: number;
+    libelle: string;
+}
+
+export default function Fonctionnelle(props: any) {
+
+    const [fonctionnelle, setFonc] = useState<TFonc[]>([]);
+    const [foncInput, setFoncInput] = useState<string>("");
+    //POST request fetch inside useEffect React hooks
     const token = useContext(AuthContext).token;
 
 
-    async function patchTechnique() {
+    async function patchFonctionnelle() {
         const requestOptions = {
             method: 'PATCH',
             headers: {
@@ -18,24 +25,24 @@ export default function Technique(props: any) {
                 Authorization: `Bearer ${token}`
             },
             body: JSON.stringify({
-                libelle: techInput
+                libelle: foncInput
             })
         };
-        const response = await fetch(`http://localhost:8000/techniques/${props.item.id}`, requestOptions)
+        const response = await fetch(`http://localhost:8000/fonctionnelles/${props.item.id}`, requestOptions)
         const responseJson = await response.json();
         console.log("Success!", responseJson);
-        setTechInput(responseJson);
+        setFonc(responseJson);
     };
 
 
-    async function deleteTechnique() {
+    async function deleteFonctionnelle() {
         const requestOptions = {
             method: 'DELETE',
             headers: {
                 Authorization: `Bearer ${token}`
             }
         };
-        const response = await fetch(`http://localhost:8000/techniques/${props.item.id}`, requestOptions)
+        const response = await fetch(`http://localhost:8000/fonctionnelles/${props.item.id}`, requestOptions)
         const responseJson = await response.json()
         console.log("Success!", responseJson);
         if (responseJson.statusCode === 200) {
@@ -55,16 +62,16 @@ export default function Technique(props: any) {
                 <div className="col">
                     <div className="btn-group mb-2 mt-2 ms-5" role="group" aria-label="Third group">
                         {/* <!-- Update button --> */}
-                        <button onClick={() => patchTechnique()} type="button" className="btn btn-outline-warning btn-rounded-floating ms-1" data-mdb-ripple-color="dark" >
+                        <button onClick={() => patchFonctionnelle()} type="button" className="btn btn-outline-warning btn-rounded-floating ms-1" data-mdb-ripple-color="dark" >
                             <i className="bi bi-pencil"></i>
                         </button>
                         {/* <!-- Delete button --> */}
-                        <button onClick={deleteTechnique} type="button" className="btn btn-outline-danger btn-rounded-floating ms-1" data-mdb-ripple-color="dark" >
+                        <button onClick={deleteFonctionnelle} type="button" className="btn btn-outline-danger btn-rounded-floating ms-1" data-mdb-ripple-color="dark" >
                             <i className="bi bi-trash3"></i>
                         </button>
                     </div>
                 </div>
             </div>
         </div>
-    )
+    );
 }
