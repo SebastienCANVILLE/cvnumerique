@@ -81,7 +81,7 @@ export default function Fonctionnelles() {
 
                             {/* <!-- Add button --> */}
                             <div className="input-group mb-3">
-                                <input type='text' className="form-control" value={foncInput} placeholder="Compétence fonctionnelle" onChange={(event) => setFoncInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                                <input type='text' className="form-control" value={foncInput} placeholder="Votre Compétence fonctionnelle" onChange={(event) => setFoncInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
                                 <button onClick={() => fetchData()} type="button" className="btn btn-outline-info btn-rounded-floating" data-mdb-ripple-color="dark">
                                     <i className="bi bi-plus"></i>
                                 </button>

@@ -81,7 +81,7 @@ export default function CentreInterets() {
                                     </div>
                                 </div>
                             <div className="input-group mb-3">
-                                <input type='text' className="form-control" value={intInput} placeholder="Centre d'intérêt" onChange={(event) => setIntInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                                <input type='text' className="form-control" value={intInput} placeholder="Votre Centre d'intérêt" onChange={(event) => setIntInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
                                 <button onClick={() => createInteret()} type="button" className="btn btn-outline-info" data-mdb-ripple-color="dark">
                                     <i className="bi bi-plus"></i>
                                 </button>

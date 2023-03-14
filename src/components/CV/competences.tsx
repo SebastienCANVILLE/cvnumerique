@@ -78,7 +78,7 @@ export default function Competences() {
 
 
                             <div className="input-group mb-3">
-                                <input type='text' className="form-control" value={compInput} placeholder="Saisir votre compétence" onChange={(event) => setCompInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                                <input type='text' className="form-control" value={compInput} placeholder="Votre Soft Skill" onChange={(event) => setCompInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
                                 <button onClick={() => createCompetence()} type="button" className="btn btn-outline-info" data-mdb-ripple-color="dark">
                                     <i className="bi bi-plus"></i>
                                 </button>

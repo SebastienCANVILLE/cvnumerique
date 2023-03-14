@@ -81,7 +81,7 @@ export default function Techniques() {
 
                                 {/* <!-- Add Technique button --> */}
                                 <div className="input-group mb-3">
-                                    <input type='text' className="form-control" value={techInput} placeholder="Saisir votre compétence" onChange={(event) => setTechInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                                    <input type='text' className="form-control" value={techInput} placeholder="Votre Hard Skill" onChange={(event) => setTechInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
                                     <button onClick={() => createTechnique()} type="button" className="btn btn-outline-info" data-mdb-ripple-color="dark">
                                         <i className="bi bi-plus"></i>
                                     </button>
