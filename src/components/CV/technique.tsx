@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { AuthContext } from '../../context/authContext';
 
 
 
@@ -7,14 +8,15 @@ export default function Technique(props: any) {
 
 
     const [techInput, setTechInput] = useState<string>("");
-
+    
+    const token = useContext(AuthContext).token;
 
     async function patchTechnique() {
         const requestOptions = {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvcGhpZUBnbWFpbC5mciIsInN1YiI6MSwiaWF0IjoxNjc3MDA1MDc3LCJleHAiOjE2ODIwMDUwNzd9.zkOyUiBggcgOtdOdNzwI4orxX-gV5fMmEacWqZn4Zk4'
+                Authorization: `Bearer ${token}`
             },
             body: JSON.stringify({
 
@@ -33,7 +35,7 @@ export default function Technique(props: any) {
         const requestOptions = {
             method: 'DELETE',
             headers: {
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvcGhpZUBnbWFpbC5mciIsInN1YiI6MSwiaWF0IjoxNjc3MDA1MDc3LCJleHAiOjE2ODIwMDUwNzd9.zkOyUiBggcgOtdOdNzwI4orxX-gV5fMmEacWqZn4Zk4'
+                Authorization: `Bearer ${token}`
             }
         };
         const response = await fetch(`http://localhost:8000/techniques/${props.item.id}`, requestOptions)

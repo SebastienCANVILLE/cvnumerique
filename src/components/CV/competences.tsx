@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../../context/authContext';
 
 type TComp = {
     id: number;
@@ -11,6 +12,7 @@ export default function Competence() {
     const [compInput, setCompInput] = useState("")
     //POST request fetch inside useEffect React hooks
 
+    const token = useContext(AuthContext).token;
     async function fetchData() {
         const body = {
             competence_clé: compInput
@@ -20,7 +22,7 @@ export default function Competence() {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvcGhpZUBnbWFpbC5mciIsInN1YiI6MSwiaWF0IjoxNjc3MDA1MDc3LCJleHAiOjE2ODIwMDUwNzd9.zkOyUiBggcgOtdOdNzwI4orxX-gV5fMmEacWqZn4Zk4'
+                Authorization: `Bearer ${token}`
             },
             body: JSON.stringify(body)
         };

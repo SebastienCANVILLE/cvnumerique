@@ -1,4 +1,5 @@
-import {useEffect, useState } from 'react';
+import {useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../../context/authContext';
 
 // Typage de la table 'experiences'
 type TExperience = {
@@ -23,7 +24,7 @@ export default function Experience()
     const [ experience, setExperience ] = useState<TExperience | undefined>();
     const [ experienceInput, setExperienceInput ] = useState("");
 
-    
+    const token = useContext(AuthContext).token;
 
     const body = {
         intitulé_poste: experienceInput,
@@ -41,7 +42,7 @@ export default function Experience()
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODExMzgwOSwiZXhwIjoxNjgzMTEzODA5fQ.SGeVdA_5QzUAfYmwy8dYn0MueTm6p6f7mVsbuGKReys'
+                Authorization: `Bearer ${token}`
             },
             body: JSON.stringify(body)
         };
@@ -68,7 +69,7 @@ export default function Experience()
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODExMzgwOSwiZXhwIjoxNjgzMTEzODA5fQ.SGeVdA_5QzUAfYmwy8dYn0MueTm6p6f7mVsbuGKReys'
+                Authorization: `Bearer ${token}`
             },
             body: JSON.stringify(body)
         };
@@ -96,7 +97,7 @@ export default function Experience()
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODExMzgwOSwiZXhwIjoxNjgzMTEzODA5fQ.SGeVdA_5QzUAfYmwy8dYn0MueTm6p6f7mVsbuGKReys'
+                Authorization: `Bearer ${token}`
             },
             body: JSON.stringify(body)
         };

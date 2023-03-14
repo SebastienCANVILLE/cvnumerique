@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect, useContext } from "react";
+import { AuthContext } from '../../context/authContext';
+import ModificationLangue from "./langue";
 
 // Typage de la table 'langues'
 type TLangue = {
     id: number;
     langue: string;
     niveau: string;
-    user: {}
 }
 
 
@@ -13,177 +14,129 @@ type TLangue = {
 /** Foncton qui appelle:
  * * **CreateLangue : fonction qui va utiliser le front pour faire un 'POST'.
  * * **GetLangue    : fonction qui va utiloser le front pour faire un 'GET'.
- * * **PatchLangue  : fonction qui va utiliser le front pour faire un 'PATCH'.
- * * **DeleteLangue : fonction qui va utiliser le front pour faire un 'DELETE'.
  */
-export default function Langue() {
-    const [langue, setLangue] = useState<TLangue | undefined>();
-    const [langueInput, setLangueInput] = useState("");
+export default function Langue()
+{
+    const [ langue, setLangue ] = useState<TLangue[]>([]);
+    const [ langueInput, setLangueInput ] = useState("");
+    const [ niveauInput, setNiveauInput ] = useState("");
 
-    const body = {
-        langue: langueInput,
-        niveau: langueInput
-    }
+    const token = useContext(AuthContext).token;
 
-
-
-    // Création d'une langue : avec le 'create' du front.
-    async function CreateLangue() {
+    // Création d'une langue dans la BDD.
+    async function CreateLangue()
+    {
         const requestOptions = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODExMzgwOSwiZXhwIjoxNjgzMTEzODA5fQ.SGeVdA_5QzUAfYmwy8dYn0MueTm6p6f7mVsbuGKReys'
+                Authorization: `Bearer ${token}`
             },
-            body: JSON.stringify(body)
+            body: JSON.stringify({
+                langue: langueInput,
+                niveau: niveauInput
+            })
         };
-        const response = await fetch('http://localhost:8000/langues',/*{ method: "POST" }*/ requestOptions);
+        const response = await fetch('http://localhost:8000/langues', requestOptions);
         const responseJson = await response.json();
 
-        if (!response.ok) {
-            // get error message from body or default to response status
-            const error = (responseJson && responseJson.message) || response.status;
-            return Promise.reject(error);
-        }
-        console.log("Success", responseJson);
+        console.log("Success", responseJson.data);
 
-        setLangue(responseJson);
+        setLangue([...langue, responseJson.data]);
+        setLangueInput("");
+        setNiveauInput("");
     }
 
 
 
-    // Récupération de toutes les langues: avec le 'get' du front.
-    async function GetLangue() {
+    // Récupération de toutes les langues dans la BDD.
+    async function GetLangue()
+    {
         const requestOptions = {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODExMzgwOSwiZXhwIjoxNjgzMTEzODA5fQ.SGeVdA_5QzUAfYmwy8dYn0MueTm6p6f7mVsbuGKReys'
+                /* 'Content-Type': 'application/json', */
+                Authorization: `Bearer ${token}`
             },
-            /*  body: JSON.stringify(body) */
+           /*  body: JSON.stringify(body) */
         };
-        const response = await fetch('http://localhost:8000/langues',/*{ method: "GET" }*/ requestOptions);
+        const response = await fetch('http://localhost:8000/langues', requestOptions);
+
         const responseJson = await response.json();
-        /* 
-                if (!response.ok)
-                {
-                    // get error message from body or default to response status
-                    const error = (responseJson && responseJson.message) || response.status;
-                    return Promise.reject(error);
-                } */
+
         console.log("Success", responseJson);
 
-        setLangue(responseJson.langue);
+        setLangue(responseJson.data);
     }
-
-
-
-    // Modification d'une langue : avec le 'patch' du front.
-    async function PatchLangue() {
-
-        const requestOptions = {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODExMzgwOSwiZXhwIjoxNjgzMTEzODA5fQ.SGeVdA_5QzUAfYmwy8dYn0MueTm6p6f7mVsbuGKReys'
-            },
-            body: JSON.stringify(body)
-        };
-        const response = await fetch('http://localhost:8000/langues/',/*{ method: "PATCH" }*/ requestOptions)
-        const responseJson = await response.json();
-
-        /* if (!response.ok)
-        {
-            // get error message from body or default to response status
-            const error = (responseJson && responseJson.message) || response
-                .status;
-            return Promise.reject(error);
-        } */
-        console.log('success', responseJson);
-
-        setLangue(responseJson.langue);
-    };
-
-
-
-    // Suppression d'une langue : avec le 'delete' du front.
-    async function DeleteLangue() {
-
-        const requestOptions = {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-                Autorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODExMzgwOSwiZXhwIjoxNjgzMTEzODA5fQ.SGeVdA_5QzUAfYmwy8dYn0MueTm6p6f7mVsbuGKReys'
-            }
-        };
-
-        const response = await fetch('http://localhost:8000/langues/',/*{ method: "DELETE" }*/ requestOptions);
-        const responseJson = await response.json();
-
-        if (!response.ok) {
-            // get error message from body or default to response status
-            const error = (responseJson && responseJson.message) || response
-                .status;
-            return Promise.reject(error);
-        }
-        console.log('success', responseJson);
-
-        setLangue(responseJson.langue);
-    };
 
 
     useEffect(() => {
         GetLangue();
     }, []);
 
-    /*  <div className="card text-center m-3">
-                <h5 className="card-title">Connaissance d'une langue</h5>
-                <h5 className="card-header">{langues?.langue}</h5>
-                <input type='text' onChange={(event) => setLanguesInput(event.target.value)}></input>
-                
-                <h5 className="card-title">Mon niveau de connaissance de la langue:</h5>
-                <h5 className="card-header"> {langues?.niveau} </h5>
-                <input type='text' onChange={(event) => SetNiveauInput(event.target.value)}></input>
-                <button onClick={fetchData}>Valider</button>
-            </div>  */
+    function DeleteLangue(id:number){
+        const newLangue = langue.filter(item => item.id !==id)
+        setLangue(newLangue)
+    }
+    const listLangue = langue?.map(item => 
+        <ModificationLangue del={DeleteLangue} item={item} key={item.id}/>
+    )
+
+
     return (
         <div className='container mt-5'>
+
+            {/* Récupération de toutes les langues et niveaux */}
             <div className="accordion" id="accordionPanelsStayOpenExample">
                 <div className="accordion-item ms-4 me-4">
+
+                    {/*Titre dans l'entête accordéon */}
                     <h2 className="accordion-header" id="panelsStayOpen-headingEight">
                         <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseEight" aria-expanded="false" aria-controls="panelsStayOpen-collapseEight">
                             <div className="position-absolute top-50 start-50 translate-middle text-center"> LANGUES</div>
                         </button>
                     </h2>
+                    {/* Récupération de toutes les langues lors de l'effondrement */}
                     <div id="panelsStayOpen-collapseEight" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingEight">
-                        <div className="accordion-body">
-                            <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the
-                            appropriate classes that we use to style each element. These classes control the overall appearance, as well as the
-                            showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables.
-                            It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition
-                            does limit overflow.
+                        <div id="collapseEight" className="accordion-collapse collapse show" aria-labelledby="headingEight" data-bs-parent="#accordionExample">
+                            <div className="accordion-body">
+                                <div className="p-2">
+                                    <ul className="list-inline">
+                                        {listLangue}
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
+
                         <div className="btn-group mb-2 mt-2 ms-2" role="group" aria-label="Third group">
 
+
+
                             {/* <!-- Add button --> */}
-                            <button type="button" className="btn btn-outline-info btn-rounded-floating" data-mdb-ripple-color="dark">
+
+
+                            <div className="input-group mb-3">
+                                <input type='text' className="form-control" value={langueInput} placeholder="Saisir votre compétence" onChange={(event) => setLangueInput(event.target.value)}aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+
+                                <input type='text' className="form-control" value={niveauInput} placeholder="Saisir votre compétence" onChange={(event) => setNiveauInput(event.target.value)}aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+
+                                <button onClick={() => GetLangue()} type="button" className="btn btn-outline-info" data-mdb-ripple-color="dark">
+                                    <i className="bi bi-plus"></i>
+                                </button>
+                            </div>
+
+
+
+
+
+                            {/* <button type="button" className="btn btn-outline-info btn-rounded-floating" data-mdb-ripple-color="dark">
                                 <i className="bi bi-plus"></i>
                                 <h5 className="card-header">{langue?.langue}</h5>
                                 <h5 className="card-header">{langue?.niveau}</h5>
-                            </button>
-                            <input type='text' onChange={(event) => setLangueInput(event.target.value)}></input>
-                            <button onClick={CreateLangue}>Valider</button>
+                                <input type='text' onChange={(event) => setLangueInput(event.target.value)}></input>
+                                <button onClick={CreateLangue}>Valider</button>
+                            </button> */}
 
-
-                            {/* <!-- Update button --> */}
-                            <button type="button" className="btn btn-outline-warning btn-rounded-floating" data-mdb-ripple-color="dark" >
-                                <i className="bi bi-pencil"></i>
-                            </button>
-
-                            {/* <!-- Delete button --> */}
-                            <button type="button" className="btn btn-outline-danger btn-rounded-floating" data-mdb-ripple-color="dark" >
-                                <i className="bi bi-trash3"></i>
-                            </button>
                         </div>
                     </div>
                 </div>
