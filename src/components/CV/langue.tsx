@@ -1,5 +1,5 @@
-import { useState } from "react";
-
+import { useState, useEffect, useContext } from "react";
+import { AuthContext } from '../../context/authContext';
 // Typage de la table 'langues'
 type TLangue = {
     id: number;
@@ -21,6 +21,8 @@ export default function ModificationLangue(props: any)
     const [ langueInput, setLangueInput ] = useState("");
     const [ niveauInput, setNiveauInput ] = useState("");
 
+    const token = useContext(AuthContext).token;
+
     // Modification d'une langue : avec le 'patch' du front.
     async function PatchLangue()
     {
@@ -29,7 +31,7 @@ export default function ModificationLangue(props: any)
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODY5NzA5NiwiZXhwIjoxNjgzNjk3MDk2fQ.KuPHnEt0EiYAA9jEVxfR2Vvj95oWOYEvuuEqlRSKtGw'
+                Authorization: `Bearer ${token}`
             },
             body: JSON.stringify({
                 langue: langueInput,
@@ -56,7 +58,7 @@ export default function ModificationLangue(props: any)
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODY5NzA5NiwiZXhwIjoxNjgzNjk3MDk2fQ.KuPHnEt0EiYAA9jEVxfR2Vvj95oWOYEvuuEqlRSKtGw'
+                Authorization: `Bearer ${token}`
             }
         };
 

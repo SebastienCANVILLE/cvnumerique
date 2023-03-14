@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../../context/authContext';
 import './cv.css'
 
 type TFonc = {
@@ -12,6 +13,8 @@ export default function Fonctionnelle() {
     const [foncInput, setFoncInput] = useState("")
     //POST request fetch inside useEffect React hooks
 
+    const token = useContext(AuthContext).token;
+
     async function fetchData() {
         const body = {
             libelle: foncInput
@@ -21,7 +24,7 @@ export default function Fonctionnelle() {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvcGhpZUBnbWFpbC5mciIsInN1YiI6OCwiaWF0IjoxNjc2OTY4NTA5LCJleHAiOjE2ODE5Njg1MDl9.BwDYPpK0WHJYcviyhTb05rCmqI0I1wWXbiYjC_VZbiY'
+                Authorization: `Bearer ${token}`
             },
             body: JSON.stringify(body)
         };

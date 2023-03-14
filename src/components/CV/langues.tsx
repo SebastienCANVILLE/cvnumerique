@@ -1,4 +1,5 @@
-import {useEffect, useState } from "react";
+import { useState,useEffect, useContext } from "react";
+import { AuthContext } from '../../context/authContext';
 import ModificationLangue from "./langue";
 
 // Typage de la table 'langues'
@@ -19,7 +20,7 @@ export default function Langue()
     const [ langueInput, setLangueInput ] = useState("");
     const [ niveauInput, setNiveauInput ] = useState("");
 
-
+    const token = useContext(AuthContext).token;
 
     // Création d'une langue dans la BDD.
     async function CreateLangue()
@@ -28,7 +29,7 @@ export default function Langue()
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODY5NzA5NiwiZXhwIjoxNjgzNjk3MDk2fQ.KuPHnEt0EiYAA9jEVxfR2Vvj95oWOYEvuuEqlRSKtGw'
+                Authorization: `Bearer ${token}`
             },
             body: JSON.stringify({
                 langue: langueInput,
@@ -54,7 +55,7 @@ export default function Langue()
             method: 'GET',
             headers: {
                 /* 'Content-Type': 'application/json', */
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODY5NzA5NiwiZXhwIjoxNjgzNjk3MDk2fQ.KuPHnEt0EiYAA9jEVxfR2Vvj95oWOYEvuuEqlRSKtGw'
+                Authorization: `Bearer ${token}`
             },
            /*  body: JSON.stringify(body) */
         };

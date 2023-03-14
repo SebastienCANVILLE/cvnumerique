@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../../context/authContext';
 import Technique from './technique';
 
 type TTech = {
@@ -11,6 +12,7 @@ export default function Techniques() {
     const [technique, setTechnique] = useState<TTech[]>([]);//array qui contient des techniques
     const [techInput, setTechInput] = useState<string>("");
 
+    const token = useContext(AuthContext).token;
     /*  const body = {
  
          libelle: techInput
@@ -23,7 +25,7 @@ export default function Techniques() {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODY5NzA5NiwiZXhwIjoxNjgzNjk3MDk2fQ.KuPHnEt0EiYAA9jEVxfR2Vvj95oWOYEvuuEqlRSKtGw'
+                Authorization: `Bearer ${token}`
             },
             body: JSON.stringify({
                 libelle: techInput
@@ -43,7 +45,7 @@ export default function Techniques() {
         const requestOptions = {
             method: 'GET',
             headers: {
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODY5NzA5NiwiZXhwIjoxNjgzNjk3MDk2fQ.KuPHnEt0EiYAA9jEVxfR2Vvj95oWOYEvuuEqlRSKtGw'
+                Authorization: `Bearer ${token}`
             },
         };
         const response = await fetch('http://localhost:8000/techniques', requestOptions)
@@ -89,10 +91,10 @@ export default function Techniques() {
 
 
                             {/* <!-- Add Technique button --> */}
-                            
+
 
                             <div className="input-group mb-3">
-                                <input type='text' className="form-control" value={techInput} placeholder="Saisir votre compétence" onChange={(event) => setTechInput(event.target.value)}aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                                <input type='text' className="form-control" value={techInput} placeholder="Saisir votre compétence" onChange={(event) => setTechInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
                                 <button onClick={() => createTechnique()} type="button" className="btn btn-outline-info" data-mdb-ripple-color="dark">
                                     <i className="bi bi-plus"></i>
                                 </button>

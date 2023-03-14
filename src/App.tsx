@@ -1,21 +1,27 @@
-import React from 'react';
-import {Routes, Route} from "react-router-dom";
+import { useState } from 'react';
 import Accueil from './components/Accueil/accueil';
 import CvAccueil from './components/CV/cvAccueil';
+import { AuthContext } from './context/authContext';
 
 function App() {
+
+  const [token, setToken] = useState<string | null>(null);
+  
   return (
 
-<div>
+    <AuthContext.Provider value={{
+      token: token,
+      setToken: setToken
+      }}>
 
-    {/* <Accueil></Accueil> */}
-    <CvAccueil></CvAccueil>
+      {token === null && <Accueil></Accueil>}
+      {token !== null && <CvAccueil></CvAccueil>}
 
-</div>
-    );
-  }
-  
-  export default App;
-  
-  
-      
+    </AuthContext.Provider>
+
+  );
+}
+
+export default App;
+
+

@@ -1,8 +1,6 @@
 import Login from "./login";
 import Register from "./register";
 import './accueil.css'
-import 'bootstrap/dist/css/bootstrap.css';
-
 
 export default function Accueil() {
 
@@ -11,8 +9,8 @@ export default function Accueil() {
         <div className="fondaccueil">
 
             <div className="imageLog">
-                <img src="/photos/photoEcranLog.jpg" className="bg-img" /* img-fluid */></img>
-            </div>            
+                <img src="/photos/photoEcranLog.jpg" className="bg-img" ></img>
+            </div>
 
             <div className="text-center text-white">
                 <h1 className="display-3">Bienvenue sur l'appli CV Entreprise</h1>
@@ -20,10 +18,7 @@ export default function Accueil() {
 
             <Login></Login>
             <Register></Register>
-            
         </div>
-
-
 
     )
 }
