@@ -53,43 +53,6 @@ export default function Techniques() {
         setTechnique(responseJson);
 
     };
-<<<<<<< HEAD
-
-    async function patchTechnique() {
-        const requestOptions = {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODY5NzA5NiwiZXhwIjoxNjgzNjk3MDk2fQ.KuPHnEt0EiYAA9jEVxfR2Vvj95oWOYEvuuEqlRSKtGw'
-            },
-            body: JSON.stringify({
-
-                libelle: techInput
-            })
-        };
-        const response = await fetch('http://localhost:8000/techniques/', requestOptions)
-        const responseJson = await response.json();
-
-        console.log("Success!", responseJson);
-        setTechnique(responseJson);
-    };
-
-    async function deleteTechnique() {
-        const requestOptions = {
-            method: 'DELETE',
-            headers: {
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODY5NzA5NiwiZXhwIjoxNjgzNjk3MDk2fQ.KuPHnEt0EiYAA9jEVxfR2Vvj95oWOYEvuuEqlRSKtGw'
-            }
-        };
-
-        const response = await fetch('http://localhost:8000/techniques/', requestOptions)
-        const responseJson = await response.json()
-        console.log("Success!", responseJson);
-        setTechnique(responseJson);
-    }
-
-=======
->>>>>>> 7d51d2f02d6580875854804a4e0fd96cb5d21bb3
     useEffect(() => {
         getTechnique();
     }, []);

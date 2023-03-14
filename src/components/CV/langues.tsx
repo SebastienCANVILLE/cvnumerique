@@ -69,64 +69,6 @@ export default function Langue()
     }
 
 
-
-    // Modification d'une langue : avec le 'patch' du front.
-    async function PatchLangue()
-    {
-
-        const requestOptions = {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODExMzgwOSwiZXhwIjoxNjgzMTEzODA5fQ.SGeVdA_5QzUAfYmwy8dYn0MueTm6p6f7mVsbuGKReys'
-            },
-            body: JSON.stringify(body) 
-        };
-        const response = await fetch('http://localhost:8000/langues/',/*{ method: "PATCH" }*/ requestOptions)
-        const responseJson = await response.json();
-
-        /* if (!response.ok)
-        {
-            // get error message from body or default to response status
-            const error = (responseJson && responseJson.message) || response
-                .status;
-            return Promise.reject(error);
-        } */
-        console.log('success', responseJson);
-
-        setLangue(responseJson.langue);
-    };
-
-
-
-    // Suppression d'une langue : avec le 'delete' du front.
-    async function DeleteLangue()
-    {
-
-        const requestOptions = {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-                Autorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODExMzgwOSwiZXhwIjoxNjgzMTEzODA5fQ.SGeVdA_5QzUAfYmwy8dYn0MueTm6p6f7mVsbuGKReys'
-            }
-        };
-
-        const response = await fetch('http://localhost:8000/langues/',/*{ method: "DELETE" }*/ requestOptions);
-        const responseJson = await response.json();
-
-        if (!response.ok)
-        {
-            // get error message from body or default to response status
-            const error = (responseJson && responseJson.message) || response
-                .status;
-            return Promise.reject(error);
-        }
-        console.log('success', responseJson);
-
-        setLangue(responseJson.langue);
-    };
-
-
     useEffect(() => {
         GetLangue();
     }, []);
@@ -170,25 +112,30 @@ export default function Langue()
 
 
                             {/* <!-- Add button --> */}
-                            <button type="button" className="btn btn-outline-info btn-rounded-floating" data-mdb-ripple-color="dark">
+
+
+                            <div className="input-group mb-3">
+                                <input type='text' className="form-control" value={langueInput} placeholder="Saisir votre compétence" onChange={(event) => setLangueInput(event.target.value)}aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+
+                                <input type='text' className="form-control" value={niveauInput} placeholder="Saisir votre compétence" onChange={(event) => setNiveauInput(event.target.value)}aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+
+                                <button onClick={() => GetLangue()} type="button" className="btn btn-outline-info" data-mdb-ripple-color="dark">
+                                    <i className="bi bi-plus"></i>
+                                </button>
+                            </div>
+
+
+
+
+
+                            {/* <button type="button" className="btn btn-outline-info btn-rounded-floating" data-mdb-ripple-color="dark">
                                 <i className="bi bi-plus"></i>
                                 <h5 className="card-header">{langue?.langue}</h5>
                                 <h5 className="card-header">{langue?.niveau}</h5>
                                 <input type='text' onChange={(event) => setLangueInput(event.target.value)}></input>
                                 <button onClick={CreateLangue}>Valider</button>
-                            </button>
-
-                            {/* <!-- Update button --> */}
-                            {/* <button type="button" className="btn btn-outline-warning btn-rounded-floating" data-mdb-ripple-color="dark" >
-                                <i className="bi bi-pencil"></i>
                             </button> */}
 
-
-
-                            {/* <!-- Delete button --> */}
-                            {/* <button type="button" className="btn btn-outline-danger btn-rounded-floating" data-mdb-ripple-color="dark" >
-                                <i className="bi bi-trash3"></i>
-                            </button> */}
                         </div>
                     </div>
                 </div>
