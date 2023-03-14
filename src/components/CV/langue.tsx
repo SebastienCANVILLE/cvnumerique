@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import { AuthContext } from '../../context/authContext';
 // Typage de la table 'langues'
 type TLangue = {
@@ -49,7 +49,6 @@ export default function ModificationLangue(props: any)
 
 
 
-
     // Suppression d'une langue : avec le 'delete' du front.
     async function DeleteLangue()
     {
@@ -57,7 +56,7 @@ export default function ModificationLangue(props: any)
         const requestOptions = {
             method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json',
+                /* 'Content-Type': 'application/json', */
                 Authorization: `Bearer ${token}`
             }
         };
@@ -85,12 +84,12 @@ export default function ModificationLangue(props: any)
 
                 {/* colone qui affiche la langue */}
                 <li className="col">
-                    {props.item.langue} {"  : "}
+                    {props.item?.langue} {"  : "}
                 </li>
 
                 {/* colone qui affiche le niveau */}
                 <div className="col">
-                    {props.item.niveau}
+                    {props.item?.niveau}
                 </div>
 
 
@@ -103,7 +102,7 @@ export default function ModificationLangue(props: any)
                     </button>
 
                     {/* bouton supprimer */}
-                    <button type="button" className="btn btn-outline-danger btn-rounded-floating" data-mdb-ripple-color="dark" >
+                    <button onClick={DeleteLangue} type="button" className="btn btn-outline-danger btn-rounded-floating" data-mdb-ripple-color="dark" >
                         <i className="bi bi-trash3"></i>
                     </button>
 
