@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ModificationLangue from "./langue";
 
 // Typage de la table 'langues'
 type TLangue = {
@@ -15,7 +16,7 @@ type TLangue = {
  */
 export default function Langue()
 {
-    const [ langue, setLangue ] = useState<TLangue[] | undefined>([]);
+    const [ langue, setLangue ] = useState<TLangue[]>([]);
     const [ langueInput, setLangueInput ] = useState("");
     const [ niveauInput, setNiveauInput ] = useState("");
 
@@ -28,7 +29,7 @@ export default function Langue()
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODExMzgwOSwiZXhwIjoxNjgzMTEzODA5fQ.SGeVdA_5QzUAfYmwy8dYn0MueTm6p6f7mVsbuGKReys'
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODY5NzA5NiwiZXhwIjoxNjgzNjk3MDk2fQ.KuPHnEt0EiYAA9jEVxfR2Vvj95oWOYEvuuEqlRSKtGw'
             },
             body: JSON.stringify({
                 langue: langueInput,
@@ -38,9 +39,11 @@ export default function Langue()
         const response = await fetch('http://localhost:8000/langues', requestOptions);
         const responseJson = await response.json();
 
-        console.log("Success", responseJson);
+        console.log("Success", responseJson.data);
 
-        setLangue(responseJson);
+        setLangue([...langue, responseJson.data]);
+        setLangueInput("");
+        setNiveauInput("");
     }
 
 
@@ -51,9 +54,9 @@ export default function Langue()
         const requestOptions = {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODExMzgwOSwiZXhwIjoxNjgzMTEzODA5fQ.SGeVdA_5QzUAfYmwy8dYn0MueTm6p6f7mVsbuGKReys'
-            }
+                /* 'Content-Type': 'application/json', */
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODY5NzA5NiwiZXhwIjoxNjgzNjk3MDk2fQ.KuPHnEt0EiYAA9jEVxfR2Vvj95oWOYEvuuEqlRSKtGw'
+            },
         };
         const response = await fetch('http://localhost:8000/langues', requestOptions);
 
@@ -61,7 +64,7 @@ export default function Langue()
 
         console.log("Success", responseJson);
 
-        setLangue(responseJson);
+        setLangue(responseJson.data);
     }
 
 
@@ -70,13 +73,9 @@ export default function Langue()
         GetLangue();
     }, []);
 
-    const listLangue = langue?.map((item) => (
-        <li>
-            <p> {item.langue} </p>
-            <p> {item.niveau} </p>
-        </li>
-    ))
-
+    const listLangue = langue?.map(item => 
+        <ModificationLangue item={item} key={item.id}/>
+    )
 
 
     return (
@@ -98,7 +97,7 @@ export default function Langue()
                             <div className="accordion-body">
                                 <div className="p-2">
                                     <ul>
-                                        <tbody> {listLangue} </tbody>
+                                        {listLangue}
                                     </ul>
                                 </div>
                             </div>
