@@ -47,7 +47,7 @@ export default function Technique() {
         const requestOptions = {
             method: 'GET',
             headers: {
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvcGhpZUBnbWFpbC5mciIsInN1YiI6MSwiaWF0IjoxNjc3MDA1MDc3LCJleHAiOjE2ODIwMDUwNzd9.zkOyUiBggcgOtdOdNzwI4orxX-gV5fMmEacWqZn4Zk4'
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNlYkBzZWIuZnIiLCJzdWIiOjEyLCJpYXQiOjE2NzgyODkxNTAsImV4cCI6MTY4MzI4OTE1MH0.FDzoDlgfo-9RvGzEeWGgNKOIMgbhBaJUA6ElZ5xnSf8'
             },
         };
         const response = await fetch('http://localhost:8000/techniques', requestOptions)

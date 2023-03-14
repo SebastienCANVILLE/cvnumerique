@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import {useEffect, useState } from 'react';
 
 // Typage de la table 'experiences'
 type TExperience = {
@@ -22,6 +22,8 @@ export default function Experience()
 {
     const [ experience, setExperience ] = useState<TExperience | undefined>();
     const [ experienceInput, setExperienceInput ] = useState("");
+
+    
 
     const body = {
         intitulé_poste: experienceInput,
