@@ -1,15 +1,14 @@
 import { useState } from 'react';
 
-
-
-export default function Technique(props: any) {
+export default function Interet(props: any) {
     /*   console.log(props); */
 
 
-    const [techInput, setTechInput] = useState<string>("");
+
+    const [intInput, setIntInput] =  useState<string>("");
 
 
-    async function patchTechnique() {
+    async function patchInteret() {
         const requestOptions = {
             method: 'PATCH',
             headers: {
@@ -18,17 +17,17 @@ export default function Technique(props: any) {
             },
             body: JSON.stringify({
 
-                libelle: techInput
+                intitule: intInput
             })
         };
-        const response = await fetch(`http://localhost:8000/techniques/${props.item.id}`, requestOptions)
+        const response = await fetch(`http://localhost:8000/interets/${props.item.id}`, requestOptions)
         const responseJson = await response.json();
 
         console.log("Success!", responseJson);
-        setTechInput(responseJson);
+        setIntInput(responseJson);
     };
 
-    async function deleteTechnique() {
+    async function deleteInteret() {
 
         const requestOptions = {
             method: 'DELETE',
@@ -36,7 +35,7 @@ export default function Technique(props: any) {
                 Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvcGhpZUBnbWFpbC5mciIsInN1YiI6MSwiaWF0IjoxNjc3MDA1MDc3LCJleHAiOjE2ODIwMDUwNzd9.zkOyUiBggcgOtdOdNzwI4orxX-gV5fMmEacWqZn4Zk4'
             }
         };
-        const response = await fetch(`http://localhost:8000/techniques/${props.item.id}`, requestOptions)
+        const response = await fetch(`http://localhost:8000/interets/${props.item.id}`, requestOptions)
         const responseJson = await response.json()
         console.log("Success!", responseJson);
         if (responseJson.statusCode === 200) {
@@ -50,7 +49,7 @@ export default function Technique(props: any) {
             <div className="row">
                 <div className="col">
                     <li className="hardSkills">
-                        {props.item?.libelle}
+                        {props.item?.intitule}
                     </li >
                 </div>
 
