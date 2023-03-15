@@ -2,7 +2,7 @@ import { createContext } from "react";
 
 export interface IAuthContext {
     token: string | null;
-    setToken: (token: string) => void;
+    setToken: (token: string | null) => void;
 }
 
 // Pour créer du contexte, vous devez importer createContext et l’initialiser :
