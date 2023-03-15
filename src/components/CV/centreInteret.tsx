@@ -13,7 +13,7 @@ export default function Interet(props: any) {
     const [interet, setInteret] = useState<TCInt[]>([]);
     const [intInput, setIntInput] = useState<string>("");
 
-    const token = useContext(AuthContext).token;
+    const token = useContext(AuthContext).user?.access_token;
 
     async function patchInteret() {
         const requestOptions = {

@@ -24,7 +24,7 @@ export default function Experience()
     const [ experience, setExperience ] = useState<TExperience | undefined>();
     const [ experienceInput, setExperienceInput ] = useState("");
 
-    const token = useContext(AuthContext).token;
+    const token = useContext(AuthContext).user?.access_token;
 
     const body = {
         intitulé_poste: experienceInput,

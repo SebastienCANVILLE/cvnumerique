@@ -1,5 +1,10 @@
+import { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../../context/authContext';
+
+
 export default function ProfilCv() {
 
+    const token = useContext(AuthContext).user?.access_token;
     return (
         <div className="container mt-5">
             <div className="accordion" id="accordionPanelsStayOpenExample">

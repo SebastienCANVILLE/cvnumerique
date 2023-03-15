@@ -32,7 +32,7 @@ export default function Login() {
         console.log(responseJson);
 
         if (responseJson.access_token) {
-            auth.setToken(responseJson.access_token);
+            auth.setUser({...responseJson});
             resetInputLog()
         }
 

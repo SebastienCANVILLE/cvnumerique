@@ -21,7 +21,7 @@ export default function ModificationLangue(props: any)
     const [ langueInput, setLangueInput ] = useState("");
     const [ niveauInput, setNiveauInput ] = useState("");
 
-    const token = useContext(AuthContext).token;
+    const token = useContext(AuthContext).user?.access_token;
 
     // Modification d'une langue : avec le 'patch' du front.
     async function PatchLangue()

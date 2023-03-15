@@ -1,14 +1,14 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { AuthContext } from '../../context/authContext';
 
 
-export default function Formation(props:any) {
+export default function Formation(props: any) {
 
     const [formInput, setFormInput] = useState<string>("");
     const [diplomeInput, setDiplomeInput] = useState<string>("");
     const [dateInput, setDateInput] = useState<string>("");
 
-    const token = useContext(AuthContext).token;
+    const token = useContext(AuthContext).user?.access_token;
     async function patchFormation() {
         const requestOptions = {
             method: 'PATCH',
@@ -27,15 +27,12 @@ export default function Formation(props:any) {
         const responseJson = await response.json();
 
         console.log("Success!", responseJson);
-        setFormInput(responseJson);
-        setDiplomeInput(responseJson);
-        setDateInput(responseJson);
+        setFormInput(responseJson.data);
+        setDiplomeInput(responseJson.data);
+        setDateInput(responseJson.data);
     };
 
     async function deleteFormation() {
-        /* const listTechnique = technique?.map((item) => {
-            { item?.libelle }
-        }); */
 
         const requestOptions = {
             method: 'DELETE',
@@ -46,24 +43,24 @@ export default function Formation(props:any) {
         const response = await fetch(`http://localhost:8000/formations/${props.item.id}`, requestOptions)
         const responseJson = await response.json()
         console.log("Success!", responseJson);
-        setFormInput(responseJson);
-        setDiplomeInput(responseJson);
-        setDateInput(responseJson);
-    }
-    useEffect(()=>{
-        deleteFormation();
-}, []);
+
+        if (responseJson.statusCode === 200) {
+
+            props.del(props.item.id)
+        }
+        console.log(responseJson);
+    };
 
     return (
 
         <li className="hardSkills">
 
             <div className='grid_item'>
-                <h5 className='grid_specialite'>{props.item.specialite}</h5>
+                <h5 className='grid_specialite'>{props.item?.specialite}</h5>
             </div>
             <div className="grid text-left" >
-                <div className="g-col-6">{props.item.date_obtention}</div>
-                <div className="g-col-4">{props.item.diplôme}</div>
+                <div className="g-col-6">{props.item?.date_obtention}</div>
+                <div className="g-col-4">{props.item?.diplôme}</div>
             </div>
 
             <div className="btn-group mb-2 mt-2 ms-2" role="group" aria-label="Third group">

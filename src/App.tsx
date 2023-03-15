@@ -1,21 +1,21 @@
 import { useState } from 'react';
 import Accueil from './components/Accueil/accueil';
 import CvAccueil from './components/CV/cvAccueil';
-import { AuthContext } from './context/authContext';
+import { AuthContext, Tuser } from './context/authContext';
 
 function App() {
 
-  const [token, setToken] = useState<string | null>(null);
+  const [user, setUser] = useState<Tuser | null>(null);
   
   return (
 
     <AuthContext.Provider value={{
-      token: token,
-      setToken: setToken
+      user: user,
+      setUser: setUser
       }}>
 
-      {token === null && <Accueil></Accueil>}
-      {token !== null && <CvAccueil></CvAccueil>}
+      {user === null && <Accueil></Accueil>}
+      {user !== null && <CvAccueil></CvAccueil>}
 
     </AuthContext.Provider>
 
