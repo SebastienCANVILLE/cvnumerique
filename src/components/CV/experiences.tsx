@@ -1,5 +1,6 @@
-import {useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/authContext';
+import ModificationExperience from './experience';
 
 // Typage de la table 'experiences'
 type TExperience = {
@@ -10,7 +11,6 @@ type TExperience = {
     date_début: Date;
     date_fin: Date;
     descriptif: string;
-    user: {}
 }
 
 /** Foncton qui appelle:
@@ -21,19 +21,23 @@ type TExperience = {
  */
 export default function Experience()
 {
-    const [ experience, setExperience ] = useState<TExperience | undefined>();
+    const [ experience, setExperience ] = useState<TExperience[]>([]);
     const [ experienceInput, setExperienceInput ] = useState("");
+    const [ intituleInput, setIntituleInput ] = useState("");
+    const [ entrepriseInput, setEntrepriseInput ] = useState("");
+    const [ lieuInput, setLieuInput ] = useState("");
+    const [ startDateInput, setStartDateInput ] = useState("");
+    const [ endDateInput, setEndDateInput ] = useState("");
+    const [ descriptifInput, setDescriptifInput ] = useState("");
 
     const token = useContext(AuthContext).user?.access_token;
+    const user = useContext(AuthContext).user?.user;
+    console.log(user);
 
-    const body = {
-        intitulé_poste: experienceInput,
-        entreprise: experienceInput,
-        lieu: experienceInput,
-        date_début: experienceInput,
-        date_fin: experienceInput,
-        descriptif: experienceInput
-    }
+    const test = useContext(AuthContext).user;
+    const setUser = useContext(AuthContext).setUser;
+
+
 
     // Création d'une expérience : avec le 'create' du front.
     async function CreateExperience()
@@ -44,26 +48,39 @@ export default function Experience()
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${token}`
             },
-            body: JSON.stringify(body)
+            body: JSON.stringify({
+                intitulé_poste: intituleInput,
+                entreprise: entrepriseInput,
+                lieu: lieuInput,
+                date_début: startDateInput,
+                date_fin: endDateInput,
+                descriptif: descriptifInput
+            })
         };
-        const response = await fetch('http://localhost:8000/langues',/*{ method: "POST" }*/ requestOptions);
+        const response = await fetch('http://localhost:8000/experiences', requestOptions);
         const responseJson = await response.json();
 
-        if (!response.ok)
+        // get error message from body or default to response status
+        /* if (!response.ok)
         {
-            // get error message from body or default to response status
             const error = (responseJson && responseJson.message) || response.status;
             return Promise.reject(error);
-        }
-        console.log("Success", responseJson);
+        } */
+        console.log("Success", responseJson.data);
 
-        setExperience(responseJson);
+        test!.user.experiences = [ ...test!.user.experiences, responseJson.data ]
+        setIntituleInput("");
+        setEntrepriseInput("");
+        setLieuInput("");
+        setStartDateInput("");
+        setEndDateInput("");
+        setDescriptifInput("");
     }
 
 
 
     // Récupération de toutes les expériences: avec le 'get' du front.
-    async function GetExperience()
+    /* async function GetExperience()
     {
         const requestOptions = {
             method: 'GET',
@@ -73,106 +90,106 @@ export default function Experience()
             },
             body: JSON.stringify(body)
         };
-        const response = await fetch('http://localhost:8000/langues',/*{ method: "GET" }*/ requestOptions);
-        const responseJson = await response.json();
+        const response = await fetch('http://localhost:8000/experiences', requestOptions);
+        const responseJson = await response.json(); */
 
-        if (!response.ok)
-        {
-            // get error message from body or default to response status
-            const error = (responseJson && responseJson.message) || response.status;
-            return Promise.reject(error);
-        }
-        console.log("Success", responseJson);
-
-        setExperience(responseJson.experience);
-    };
-
-
-
-    // Modification d'une expérience : avec le 'patch' du front.
-    async function PatchExperience()
+    // get error message from body or default to response status
+    /* if (!response.ok)
     {
+        const error = (responseJson && responseJson.message) || response.status;
+        return Promise.reject(error);
+    }
+    console.log("Success", responseJson);
 
-        const requestOptions = {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`
-            },
-            body: JSON.stringify(body)
-        };
-        const response = await fetch('http://localhost:8000/langues/',/*{ method: "PATCH" }*/ requestOptions)
-        const responseJson = await response.json();
-
-        if (!response.ok)
-        {
-            // get error message from body or default to response status
-            const error = (responseJson && responseJson.message) || response
-                .status;
-            return Promise.reject(error);
-        }
-        console.log('success', responseJson);
-
-        setExperience(responseJson.experience);
-    };
+    setExperience(responseJson.experience);
+}; */
 
 
-
-    // Suppression d'une expérience : avec le 'delete' du front.
-    async function DeleteExperience()
+    function PatchExperience(id: number)
     {
+        const experience = test!.user.experiences.map(item => item.id)
+        test!.user.experiences = experience;
+        console.log(test);
 
-        const requestOptions = {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-                Autorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNhbmR5QkBnbWFpbC5mciIsInN1YiI6MTgsImlhdCI6MTY3ODExMzgwOSwiZXhwIjoxNjgzMTEzODA5fQ.SGeVdA_5QzUAfYmwy8dYn0MueTm6p6f7mVsbuGKReys'
-            }
-        };
+        setUser({ ...test! });
 
-        const response = await fetch('http://localhost:8000/langues/',/*{ method: "DELETE" }*/ requestOptions);
-        const responseJson = await response.json();
+    }
 
-        if (!response.ok)
-        {
-            // get error message from body or default to response status
-            const error = (responseJson && responseJson.message) || response
-                .status;
-            return Promise.reject(error);
-        }
-        console.log('success', responseJson);
+    function DeleteExperience(id: number)
+    {
+        const experience = test!.user.experiences.filter(item => item.id !== id);
+        test!.user.experiences = experience;
+        console.log(test);
 
-        setExperience(responseJson.experience);
-    };
+        setUser({ ...test! });
+    }
+
+    const listExperience = user?.experiences.map(item => <ModificationExperience del={DeleteExperience} pat={PatchExperience} item={item} key={item.id} />);
+    console.log(listExperience);
+    console.log(user);
+
 
 
 
     return (
         <div className='container mt-5'>
+
+            {/* Récupération de toutes les informations des expériences */}
             <div className="accordion" id="accordionPanelsStayOpenExample">
                 <div className="accordion-item ms-4 me-4">
+
+                    {/*Titre dans l'entête accordéon */}
                     <h2 className="accordion-header" id="panelsStayOpen-headingFour">
                         <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
-                        <div className= "position-absolute top-50 start-50 translate-middle text-center">EXPÉRIENCES PROFESSIONNELLES</div>
+                            <div className="position-absolute top-50 start-50 translate-middle text-center">EXPÉRIENCES PROFESSIONNELLES</div>
                         </button>
                     </h2>
+                    {/* Récupération de toutes les expériences lors de l'effondrement */}
                     <div id="panelsStayOpen-collapseFour" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFour">
-                        <div className="accordion-body">
-                            <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                        </div>
-                        <div className="btn-group mb-2 mt-2 ms-2" role="group" aria-label="Third group">
+                        <div id="collapseFour" className="accordion-collapse collapse show" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                            <div className="accordion-body">
+                                <div className="p-2">
+                                    <ul className="list-inline">
+                                        {listExperience}
+                                    </ul>
+                                </div>
+                            </div>
+
+                            {/* <div className="btn-group mb-2 mt-2 ms-2" role="group" aria-label="Third group"> */}
+
                             {/* <!-- Add button --> */}
-                            <button type="button" className="btn btn-outline-info btn-rounded-floating" data-mdb-ripple-color="dark">
-                                <i className="bi bi-plus"></i>
-                            </button>
-                            {/* <!-- Update button --> */}
-                            <button type="button" className="btn btn-outline-warning btn-rounded-floating" data-mdb-ripple-color="dark" >
+
+                            <div className="input-group mb-3">
+
+                                <input type='text' className="form-control" value={intituleInput} placeholder="Intitulé-poste" onChange={(event) => setIntituleInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2">
+                                </input>
+
+                                <input type='text' className="form-control" value={entrepriseInput} placeholder="Entreprise" onChange={(event) => setEntrepriseInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2">
+                                </input>
+
+                                <input type='text' className="form-control" value={lieuInput} placeholder="Lieu" onChange={(event) => setLieuInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2">
+                                </input>
+
+                                <input type='text' className="form-control" value={startDateInput} placeholder="Date-début" onChange={(event) => setStartDateInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2">
+                                </input>
+
+                                <input type='text' className="form-control" value={endDateInput} placeholder="Date-fin" onChange={(event) => setEndDateInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2">
+                                </input>
+
+                                <input type='text' className="form-control" value={descriptifInput} placeholder="Descriptif" onChange={(event) => setDescriptifInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2">
+                                </input>
+
+                                <button onClick={() => CreateExperience()} type="button" className="btn btn-outline-info btn-rounded-floating" data-mdb-ripple-color="dark">
+                                    <i className="bi bi-plus"></i>
+                                </button>
+                            </div>
+
+                            {/* <button type="button" className="btn btn-outline-warning btn-rounded-floating" data-mdb-ripple-color="dark" >
                                 <i className="bi bi-pencil"></i>
                             </button>
-                            {/* <!-- Delete button --> */}
                             <button type="button" className="btn btn-outline-danger btn-rounded-floating" data-mdb-ripple-color="dark" >
                                 <i className="bi bi-trash3"></i>
-                            </button>
+                            </button> */}
                         </div>
                     </div>
                 </div>
