@@ -101,6 +101,7 @@ export default function ModificationLangue(props: any)
 
                 {showInput&&<li>
                     <input type='text' className="form-control" value={langueInput} placeholder="Saisir votre langue" onChange={(event) => setLangueInput(event.target.value)}aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                    <input type='text' className="form-control" value={niveauInput} placeholder="Saisir votre niveau" onChange={(event) => setNiveauInput(event.target.value)}aria-label="Recipient's username" aria-describedby="button-addon2"></input>
                     <button onClick={PatchLangue}>Valider</button>
                 </li>}
 

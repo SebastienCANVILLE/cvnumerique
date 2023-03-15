@@ -21,6 +21,11 @@ export default function Langue()
     const [ niveauInput, setNiveauInput ] = useState("");
 
     const token = useContext(AuthContext).user?.access_token;
+    const user = useContext(AuthContext).user?.user;
+    console.log(user);
+
+    const test = useContext(AuthContext).user;
+    const setUser = useContext(AuthContext).setUser;
 
     // Création d'une langue dans la BDD.
     async function CreateLangue()
@@ -41,7 +46,8 @@ export default function Langue()
 
         console.log("Success", responseJson.data);
 
-        setLangue([...langue, responseJson.data]);
+        /* setLangue([...langue, responseJson.data]); */
+        test!.user.langues = [...test!.user.langues, responseJson.data]
         setLangueInput("");
         setNiveauInput("");
     }
@@ -49,15 +55,13 @@ export default function Langue()
 
 
     // Récupération de toutes les langues dans la BDD.
-    async function GetLangue()
+  /*   async function GetLangue()
     {
         const requestOptions = {
             method: 'GET',
             headers: {
-                /* 'Content-Type': 'application/json', */
                 Authorization: `Bearer ${token}`
             },
-           /*  body: JSON.stringify(body) */
         };
         const response = await fetch('http://localhost:8000/langues', requestOptions);
 
@@ -66,21 +70,37 @@ export default function Langue()
         console.log("Success", responseJson);
 
         setLangue(responseJson.data);
-    }
+    } */
 
 
-    useEffect(() => {
+   /*  useEffect(() => {
         GetLangue();
-    }, []);
+    }, []); */
 
-    function DeleteLangue(id:number){
-        const newLangue = langue.filter(item => item.id !==id)
-        setLangue(newLangue)
+    function PatchLangue(id:number){
+        const langue = test!.user.langues.map(item => item.id) 
+        test!.user.langues = langue;
+        console.log(test);
+
+        setUser({...test!});
     }
-    const listLangue = langue?.map(item => 
-        <ModificationLangue del={DeleteLangue} item={item} key={item.id}/>
-    )
+    function DeleteLangue(id:number){
+        /* const newLangue = langue.filter(item => item.id !==id)
+        setLangue(newLangue) */
+        const langue = test!.user.langues.filter(item => item.id !== id) 
+        test!.user.langues = langue;
+        console.log(test);
 
+        setUser({...test!});
+
+    }
+    /* const listLangue = langue?.map(item => 
+        <ModificationLangue del={DeleteLangue} pat={PatchLangue} item={item} key={item.id}/>
+    )
+ */
+    const listLangue = user?.langues?.map(item => <ModificationLangue del={DeleteLangue} pat={PatchLangue} item={item} key={item.id} />)
+    console.log(listLangue);
+    console.log(user);
 
     return (
         <div className='container mt-5'>

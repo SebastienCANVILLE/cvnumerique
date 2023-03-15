@@ -38,7 +38,7 @@ export default function Techniques() {
 
         test!.user.techniques = [...test!.user.techniques, responseJson]
         console.log(test);
-        setUser(test!);
+        setUser({...test!});
         setTechInput("");
     };
 
