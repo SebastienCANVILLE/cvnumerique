@@ -36,7 +36,7 @@ export type Tuser = {
 
 export interface IAuthContext {
     user: Tuser | null;
-    setUser: (user:Tuser) => void;
+    setUser: (user:Tuser|null) => void;
 }
 
 // Pour créer du contexte, vous devez importer createContext et l’initialiser :
