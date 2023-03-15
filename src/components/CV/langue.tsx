@@ -20,7 +20,7 @@ export default function ModificationLangue(props: any)
     const [ langue, setLangue ] = useState<TLangue[]>([]);
     const [ langueInput, setLangueInput ] = useState("");
     const [ niveauInput, setNiveauInput ] = useState("");
-    const [showInput, setShowInput] = useState(false)
+    const [ showInput, setShowInput ] = useState(false)
 
     const token = useContext(AuthContext).user?.access_token;
 
@@ -81,10 +81,11 @@ export default function ModificationLangue(props: any)
         setLangue(responseJson.data);
     };
 
-    function update(){
+    function update()
+    {
         setShowInput(true)
     }
-    
+
 
 
 
@@ -99,10 +100,12 @@ export default function ModificationLangue(props: any)
                     {props.item?.langue} {"  : "}
                 </li>
 
-                {showInput&&<li>
-                    <input type='text' className="form-control" value={langueInput} placeholder="Saisir votre langue" onChange={(event) => setLangueInput(event.target.value)}aria-label="Recipient's username" aria-describedby="button-addon2"></input>
-                    <input type='text' className="form-control" value={niveauInput} placeholder="Saisir votre niveau" onChange={(event) => setNiveauInput(event.target.value)}aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                {showInput && <li>
+                    <input type='text' className="form-control" value={langueInput} placeholder="Saisir votre langue" onChange={(event) => setLangueInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                    <input type='text' className="form-control" value={niveauInput} placeholder="Saisir votre niveau" onChange={(event) => setNiveauInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+
                     <button onClick={PatchLangue}>Valider</button>
+
                 </li>}
 
                 {/* colone qui affiche le niveau */}
@@ -113,16 +116,20 @@ export default function ModificationLangue(props: any)
 
                 {/* colone qui affiche les deux boutons  */}
                 <div className="col">
+                    
+                    <div className="btn-group mb-2 mt-2 ms-5" role="group" aria-label="Third group">
 
-                    {/* bouton modifier */}
-                    <button onClick={update} type="button" className="btn btn-outline-warning btn-rounded-floating" data-mdb-ripple-color="dark" >
-                        <i className="bi bi-pencil"></i>                        
-                    </button>
+                        {/* bouton modifier */}
+                        <button onClick={update} type="button" className="btn btn-outline-warning btn-rounded-floating ms-1" data-mdb-ripple-color="dark" >
+                            <i className="bi bi-pencil"></i>
+                        </button>
 
-                    {/* bouton supprimer */}
-                    <button onClick={DeleteLangue} type="button" className="btn btn-outline-danger btn-rounded-floating" data-mdb-ripple-color="dark" >
-                        <i className="bi bi-trash3"></i>
-                    </button>
+                        {/* bouton supprimer */}
+                        <button onClick={DeleteLangue} type="button" className="btn btn-outline-danger btn-rounded-floating ms-1" data-mdb-ripple-color="dark" >
+                            <i className="bi bi-trash3"></i>
+                        </button>
+
+                    </div>
 
                 </div>
 

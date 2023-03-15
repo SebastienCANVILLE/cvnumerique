@@ -1,4 +1,4 @@
-import { useState,useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import { AuthContext } from '../../context/authContext';
 import ModificationLangue from "./langue";
 
@@ -78,7 +78,7 @@ export default function Langue()
     }, []); */
 
     function PatchLangue(id:number){
-        const langue = test!.user.langues.map(item => item.id) 
+        const langue = test!.user.langues.map(item => item.id);
         test!.user.langues = langue;
         console.log(test);
 
@@ -87,17 +87,13 @@ export default function Langue()
     function DeleteLangue(id:number){
         /* const newLangue = langue.filter(item => item.id !==id)
         setLangue(newLangue) */
-        const langue = test!.user.langues.filter(item => item.id !== id) 
+        const langue = test!.user.langues.filter(item => item.id !== id);
         test!.user.langues = langue;
         console.log(test);
 
         setUser({...test!});
-
     }
-    /* const listLangue = langue?.map(item => 
-        <ModificationLangue del={DeleteLangue} pat={PatchLangue} item={item} key={item.id}/>
-    )
- */
+
     const listLangue = user?.langues?.map(item => <ModificationLangue del={DeleteLangue} pat={PatchLangue} item={item} key={item.id} />)
     console.log(listLangue);
     console.log(user);
@@ -127,12 +123,9 @@ export default function Langue()
                             </div>
                         </div>
 
-                        <div className="btn-group mb-2 mt-2 ms-2" role="group" aria-label="Third group">
-
-
+                        {/* <div className="btn-group mb-2 mt-2 ms-2" role="group" aria-label="Third group"> */}
 
                             {/* <!-- Add button --> */}
-
 
                             <div className="input-group mb-3">
                                 <input type='text' className="form-control" value={langueInput} placeholder="Saisir votre langue" onChange={(event) => setLangueInput(event.target.value)}aria-label="Recipient's username" aria-describedby="button-addon2"></input>
@@ -143,24 +136,9 @@ export default function Langue()
                                     <i className="bi bi-plus"></i>
                                 </button>
                             </div>
-
-
-
-
-
-                            {/* <button type="button" className="btn btn-outline-info btn-rounded-floating" data-mdb-ripple-color="dark">
-                                <i className="bi bi-plus"></i>
-                                <h5 className="card-header">{langue?.langue}</h5>
-                                <h5 className="card-header">{langue?.niveau}</h5>
-                                <input type='text' onChange={(event) => setLangueInput(event.target.value)}></input>
-                                <button onClick={CreateLangue}>Valider</button>
-                            </button> */}
-
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
     );
 }
-export { Langue }
