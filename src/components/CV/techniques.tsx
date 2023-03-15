@@ -13,14 +13,9 @@ export default function Techniques() {
     const [techInput, setTechInput] = useState<string>("");
 
     const token = useContext(AuthContext).token;
-    /*  const body = {
- 
-         libelle: techInput
-     } */
 
-    //useEffect(async() => {
+
     async function createTechnique() {
-
         const requestOptions = {
             method: 'POST',
             headers: {
@@ -31,16 +26,14 @@ export default function Techniques() {
                 libelle: techInput
             })
         };
-
         const response = await fetch('http://localhost:8000/techniques', /*{ method: "POST" }*/requestOptions);
-
         const responseJson = await response.json();
-
         console.log("Success!", responseJson);
-
         setTechnique([...technique, responseJson]);
         setTechInput("");
     };
+
+
     async function getTechnique() {
         const requestOptions = {
             method: 'GET',
@@ -53,17 +46,19 @@ export default function Techniques() {
         console.log(responseJson);
         console.log("Success!", responseJson);
         setTechnique(responseJson);
-
     };
+
     useEffect(() => {
         getTechnique();
     }, []);
+
 
     function deleteTechnique(id: number) {
         const newTechnique = technique.filter(item => item.id !== id)
         setTechnique(newTechnique);
     }
     const listTechnique = technique?.map(item => <Technique del={deleteTechnique} item={item} key={item.id} />)
+
 
     return (
         <div className='container mt-5'>
@@ -74,8 +69,6 @@ export default function Techniques() {
                             <div className="position-absolute top-50 start-50 translate-middle text-center">  COMPÉTENCES TECHNIQUES</div>
                         </button>
                     </h2>
-
-
                     {/* <!-- Get All Compétences Techniques --> */}
                     <div id="panelsStayOpen-collapseFive" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFive">
                         <div id="collapseFive" className="accordion-collapse collapse show" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
@@ -85,28 +78,20 @@ export default function Techniques() {
                                         {listTechnique}
                                     </div>
                                 </div>
-                            </div>
 
-
-
-
-                            {/* <!-- Add Technique button --> */}
-
-
-                            <div className="input-group mb-3">
-                                <input type='text' className="form-control" value={techInput} placeholder="Saisir votre compétence" onChange={(event) => setTechInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
-                                <button onClick={() => createTechnique()} type="button" className="btn btn-outline-info" data-mdb-ripple-color="dark">
-                                    <i className="bi bi-plus"></i>
-                                </button>
+                                {/* <!-- Add Technique button --> */}
+                                <div className="input-group mb-3">
+                                    <input type='text' className="form-control" value={techInput} placeholder="Votre Hard Skill" onChange={(event) => setTechInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                                    <button onClick={() => createTechnique()} type="button" className="btn btn-outline-info" data-mdb-ripple-color="dark">
+                                        <i className="bi bi-plus"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     );
-
-
 }
 

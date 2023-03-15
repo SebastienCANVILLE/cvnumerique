@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState,useEffect, useContext } from "react";
 import { AuthContext } from '../../context/authContext';
 import ModificationLangue from "./langue";
 
@@ -8,7 +8,6 @@ type TLangue = {
     langue: string;
     niveau: string;
 }
-
 
 
 /** Foncton qui appelle:
@@ -79,7 +78,7 @@ export default function Langue()
         setLangue(newLangue)
     }
     const listLangue = langue?.map(item => 
-        <ModificationLangue del={DeleteLangue} item={item} key={item.id}/>
+        <ModificationLangue del={DeleteLangue} item={item}/>
     )
 
 
@@ -116,11 +115,11 @@ export default function Langue()
 
 
                             <div className="input-group mb-3">
-                                <input type='text' className="form-control" value={langueInput} placeholder="Saisir votre compétence" onChange={(event) => setLangueInput(event.target.value)}aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                                <input type='text' className="form-control" value={langueInput} placeholder="Saisir votre langue" onChange={(event) => setLangueInput(event.target.value)}aria-label="Recipient's username" aria-describedby="button-addon2"></input>
 
-                                <input type='text' className="form-control" value={niveauInput} placeholder="Saisir votre compétence" onChange={(event) => setNiveauInput(event.target.value)}aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                                <input type='text' className="form-control" value={niveauInput} placeholder="Saisir votre niveau" onChange={(event) => setNiveauInput(event.target.value)}aria-label="Recipient's username" aria-describedby="button-addon2"></input>
 
-                                <button onClick={() => GetLangue()} type="button" className="btn btn-outline-info" data-mdb-ripple-color="dark">
+                                <button onClick={() => CreateLangue()} type="button" className="btn btn-outline-info" data-mdb-ripple-color="dark">
                                     <i className="bi bi-plus"></i>
                                 </button>
                             </div>
