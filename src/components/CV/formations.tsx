@@ -75,7 +75,7 @@ export default function Formations() {
             return Promise.reject(error);
         } */
         console.log("Success!", responseJson);
-        setFormation(responseJson);
+        setFormation(responseJson.data);
 
     };
     useEffect(() => {

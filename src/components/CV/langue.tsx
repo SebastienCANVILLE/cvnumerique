@@ -20,6 +20,7 @@ export default function ModificationLangue(props: any)
     const [ langue, setLangue ] = useState<TLangue[]>([]);
     const [ langueInput, setLangueInput ] = useState("");
     const [ niveauInput, setNiveauInput ] = useState("");
+    const [showInput, setShowInput] = useState(false)
 
     const token = useContext(AuthContext).token;
 
@@ -80,6 +81,10 @@ export default function ModificationLangue(props: any)
         setLangue(responseJson.data);
     };
 
+    function update(){
+        setShowInput(true)
+    }
+    
 
 
 
@@ -94,6 +99,11 @@ export default function ModificationLangue(props: any)
                     {props.item?.langue} {"  : "}
                 </li>
 
+                {showInput&&<li>
+                    <input type='text' className="form-control" value={langueInput} placeholder="Saisir votre langue" onChange={(event) => setLangueInput(event.target.value)}aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                    <button onClick={PatchLangue}>Valider</button>
+                </li>}
+
                 {/* colone qui affiche le niveau */}
                 <div className="col">
                     {props.item?.niveau}
@@ -104,7 +114,7 @@ export default function ModificationLangue(props: any)
                 <div className="col">
 
                     {/* bouton modifier */}
-                    <button type="button" className="btn btn-outline-warning btn-rounded-floating" data-mdb-ripple-color="dark" >
+                    <button onClick={update} type="button" className="btn btn-outline-warning btn-rounded-floating" data-mdb-ripple-color="dark" >
                         <i className="bi bi-pencil"></i>                        
                     </button>
 

@@ -46,7 +46,7 @@ export default function Fonctionnelles() {
         const responseJson = await response.json();
         console.log(responseJson);
         console.log("Success!", responseJson);
-        setFonc(responseJson);
+        setFonc(responseJson.data);
     };
 
     useEffect(() => {
