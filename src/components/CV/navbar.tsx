@@ -10,6 +10,7 @@ export default function Navbar() {
     const logOut = () => {
         setToken(null);
     };
+    
 
     return (
         <nav className="navbar navbar-dark bg-dark fixed-top ">
