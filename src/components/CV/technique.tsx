@@ -7,7 +7,11 @@ export default function Technique(props: any) {
     /*   console.log(props); */
 
     const [techInput, setTechInput] = useState<string>("");
-    const token = useContext(AuthContext).token;
+    
+    
+const token = useContext(AuthContext).user?.access_token;
+    console.log("test ", token);
+    
 
 
     async function patchTechnique() {

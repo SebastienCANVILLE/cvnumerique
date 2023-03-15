@@ -1,9 +1,10 @@
-
-
+import { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../../context/authContext';
 
 export default function Presentation() {
 
 
+    const token = useContext(AuthContext).user?.access_token;
 
 
 

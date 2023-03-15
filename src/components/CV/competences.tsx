@@ -12,7 +12,7 @@ export default function Competences() {
     const [compInput, setCompInput] = useState<string>("");
     //POST request fetch inside useEffect React hooks
 
-    const token = useContext(AuthContext).token;
+    const token = useContext(AuthContext).user?.access_token;
     async function createCompetence() {
         const requestOptions = {
             method: 'POST',

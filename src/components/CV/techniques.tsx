@@ -9,13 +9,19 @@ type TTech = {
 
 export default function Techniques() {
 
-    const [technique, setTechnique] = useState<TTech[]>([]);//array qui contient des techniques
+    /* const [technique, setTechnique] = useState<TTech[]>([]); *///array qui contient des techniques
     const [techInput, setTechInput] = useState<string>("");
 
-    const token = useContext(AuthContext).token;
+    const token = useContext(AuthContext).user?.access_token;
+    const user = useContext(AuthContext).user?.user;
+    console.log(user);
+
+    const test = useContext(AuthContext).user;
+    const setUser = useContext(AuthContext).setUser;
 
 
     async function createTechnique() {
+
         const requestOptions = {
             method: 'POST',
             headers: {
@@ -29,12 +35,15 @@ export default function Techniques() {
         const response = await fetch('http://localhost:8000/techniques', /*{ method: "POST" }*/requestOptions);
         const responseJson = await response.json();
         console.log("Success!", responseJson);
-        setTechnique([...technique, responseJson]);
+
+        test!.user.techniques = [...test!.user.techniques, responseJson]
+        console.log(test);
+        setUser(test!);
         setTechInput("");
     };
 
 
-    async function getTechnique() {
+   /*  async function getTechnique() {
         const requestOptions = {
             method: 'GET',
             headers: {
@@ -44,20 +53,30 @@ export default function Techniques() {
         const response = await fetch('http://localhost:8000/techniques', requestOptions)
         const responseJson = await response.json();
         console.log(responseJson);
-        console.log("Success!", responseJson);
-        setTechnique(responseJson);
-    };
+        console.log("Success!", responseJson); */
+        /*   setTechnique(responseJson); */
+    /* };
 
-    useEffect(() => {
-        getTechnique();
-    }, []);
+    useEffect(() => { */
+        // getTechnique();
+  /*   }, []); */
 
 
     function deleteTechnique(id: number) {
-        const newTechnique = technique.filter(item => item.id !== id)
-        setTechnique(newTechnique);
+        /* const newTechnique = technique.filter(item => item.id !== id)
+        setTechnique(newTechnique); */
+        const tech = test!.user.techniques.filter(item => item.id !== id) 
+        test!.user.techniques = tech;
+        console.log(test);
+
+        setUser({...test!});
+
     }
-    const listTechnique = technique?.map(item => <Technique del={deleteTechnique} item={item} key={item.id} />)
+    const listTechnique = user?.techniques?.map(item => <Technique del={deleteTechnique} item={item} key={item.id} />)
+    console.log(listTechnique);
+    console.log(user);
+
+
 
 
     return (

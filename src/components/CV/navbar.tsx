@@ -5,10 +5,10 @@ import { AuthContext } from "../../context/authContext";
 export default function Navbar() {
     const navigate = useNavigate()
 
-    const { setToken } = useContext(AuthContext);
+    const { setUser } = useContext(AuthContext);
 
     const logOut = () => {
-        setToken(null);
+        setUser(null);
     };
     
 

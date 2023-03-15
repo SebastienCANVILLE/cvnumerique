@@ -21,7 +21,7 @@ export default function ModificationLangue(props: any)
     const [ langueInput, setLangueInput ] = useState("");
     const [ niveauInput, setNiveauInput ] = useState("");
 
-    const token = useContext(AuthContext).token;
+    const token = useContext(AuthContext).user?.access_token;
 
     // Modification d'une langue : avec le 'patch' du front.
     async function PatchLangue()
@@ -43,6 +43,11 @@ export default function ModificationLangue(props: any)
 
         console.log('success', responseJson);
 
+        if (responseJson.statusCode === 200)
+        {
+            props.pat(props.item.id)
+        }
+
         setLangue(responseJson.data);
     };
 
@@ -56,7 +61,7 @@ export default function ModificationLangue(props: any)
         const requestOptions = {
             method: 'DELETE',
             headers: {
-                /* 'Content-Type': 'application/json', */
+                'Content-Type': 'application/json',
                 Authorization: `Bearer ${token}`
             }
         };
@@ -66,12 +71,12 @@ export default function ModificationLangue(props: any)
 
         console.log('success', responseJson);
 
-        if (responseJson.statusCode === 201){
-            
+        if (responseJson.statusCode === 200)
+        {
+
             props.del(props.item.id)
-        }
-        console.log(responseJson.data);
-        
+        };
+
         setLangue(responseJson.data);
     };
 
@@ -100,7 +105,7 @@ export default function ModificationLangue(props: any)
 
                     {/* bouton modifier */}
                     <button type="button" className="btn btn-outline-warning btn-rounded-floating" data-mdb-ripple-color="dark" >
-                        <i className="bi bi-pencil"></i>
+                        <i className="bi bi-pencil"></i>                        
                     </button>
 
                     {/* bouton supprimer */}

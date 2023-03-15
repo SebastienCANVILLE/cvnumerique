@@ -20,7 +20,7 @@ export default function Langue()
     const [ langueInput, setLangueInput ] = useState("");
     const [ niveauInput, setNiveauInput ] = useState("");
 
-    const token = useContext(AuthContext).token;
+    const token = useContext(AuthContext).user?.access_token;
 
     // Création d'une langue dans la BDD.
     async function CreateLangue()
@@ -78,7 +78,7 @@ export default function Langue()
         setLangue(newLangue)
     }
     const listLangue = langue?.map(item => 
-        <ModificationLangue del={DeleteLangue} item={item}/>
+        <ModificationLangue del={DeleteLangue} item={item} key={item.id}/>
     )
 
 
