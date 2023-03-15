@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-
-
-
-
+import { AuthContext } from "../../context/authContext";
 
 export default function Navbar() {
     const navigate = useNavigate()
 
+    const { setToken } = useContext(AuthContext);
+
+    const logOut = () => {
+        setToken(null);
+    };
 
     return (
         <nav className="navbar navbar-dark bg-dark fixed-top ">
@@ -35,7 +36,7 @@ export default function Navbar() {
                                     Profil
                                 </a>
                                 <ul className="dropdown-menu dropdown-menu-dark">
-                                    <li><a className="dropdown-item">Admin</a></li>   
+                                    <li><a className="dropdown-item">Admin</a></li>
                                     <li>
                                         <hr className="dropdown-divider" />
                                     </li>
@@ -43,8 +44,8 @@ export default function Navbar() {
                                 </ul>
                             </li>
                         </ul>
-                        <button type = "button" className="btn btn-outline-danger mt-4">Déconnexion</button>
-                    </div> 
+                        <button type="button" className="btn btn-outline-danger mt-4" onClick={logOut}>Déconnexion</button>
+                    </div>
                 </div>
             </div>
         </nav>

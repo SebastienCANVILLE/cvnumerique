@@ -78,7 +78,7 @@ export default function Langue()
         setLangue(newLangue)
     }
     const listLangue = langue?.map(item => 
-        <ModificationLangue del={DeleteLangue} item={item}/>
+        <ModificationLangue del={DeleteLangue} item={item} key={item.id}/>
     )
 
 
