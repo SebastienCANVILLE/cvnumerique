@@ -1,20 +1,20 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { AuthContext } from '../../context/authContext';
 
 
 
 
-type TFonc = {
-    id: number;
-    libelle: string;
-}
+/* type TFonc = {
+    id: number,
+    libelle: string
+} */
 
 export default function Fonctionnelle(props: any) {
 
-    const [fonctionnelle, setFonc] = useState<TFonc[]>([]);
+    /* const [fonctionnelle, setFonc] = useState<TFonc[]>([]); */
     const [foncInput, setFoncInput] = useState<string>("");
     //POST request fetch inside useEffect React hooks
-    const token = useContext(AuthContext).token;
+    const token = useContext(AuthContext).user?.access_token;
 
 
     async function patchFonctionnelle() {
@@ -31,7 +31,7 @@ export default function Fonctionnelle(props: any) {
         const response = await fetch(`http://localhost:8000/fonctionnelles/${props.item.id}`, requestOptions)
         const responseJson = await response.json();
         console.log("Success!", responseJson);
-        setFonc(responseJson);
+        setFoncInput(responseJson.data);
     };
 
 
@@ -48,6 +48,7 @@ export default function Fonctionnelle(props: any) {
         if (responseJson.statusCode === 200) {
             props.del(props.item.id)
         }
+      
     };
 
 

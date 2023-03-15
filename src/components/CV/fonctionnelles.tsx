@@ -4,20 +4,20 @@ import Fonctionnelle from './fonctionnelle';
 import './cv.css'
 
 type TFonc = {
-    id: number;
-    libelle: string;
+    id: number,
+    libelle: string
 }
 export default function Fonctionnelles() {
 
-    const [fonctionnelle, setFonc] = useState<TFonc[]>([]);
+    const [fonctionnelle, setFonctionnelle] = useState<TFonc[]>([]);
     const [foncInput, setFoncInput] = useState<string>("");
 
     //POST request fetch inside useEffect React hooks
 
-    const token = useContext(AuthContext).token;
+    const token = useContext(AuthContext).user?.access_token;
 
 
-    async function fetchData() {
+    async function createFonctionnelle() {
         const requestOptions = {
             method: 'POST',
             headers: {
@@ -30,7 +30,11 @@ export default function Fonctionnelles() {
         };
         const response = await fetch('http://localhost:8000/fonctionnelles', requestOptions)
         const responseJson = await response.json();
-        setFonc([...fonctionnelle, responseJson]);
+        console.log("Success", responseJson);
+        const newFonc= [...fonctionnelle, responseJson.data];
+        console.log(newFonc);
+        
+        setFonctionnelle([...fonctionnelle, responseJson.data]);
         setFoncInput("");
     };
 
@@ -46,7 +50,7 @@ export default function Fonctionnelles() {
         const responseJson = await response.json();
         console.log(responseJson);
         console.log("Success!", responseJson);
-        setFonc(responseJson.data);
+        setFonctionnelle(responseJson.data);
     };
 
     useEffect(() => {
@@ -54,12 +58,11 @@ export default function Fonctionnelles() {
     }, []);
 
     function deleteFonctionnelle(id: number) {
-        const newFonctionnelle = fonctionnelle.filter(item => item.id !== id);
-        setFonc(newFonctionnelle);
+        const newFonctionnelle = fonctionnelle.filter(item => item.id !== id)
+        setFonctionnelle(newFonctionnelle);
     }
     const listFonctionnelle = fonctionnelle?.map(item =>
-        <Fonctionnelle del={deleteFonctionnelle} key={item.id}
-            item={item} />)
+        <Fonctionnelle del={deleteFonctionnelle} item={item} key={item.id}/>)
 
 
     return (
@@ -72,6 +75,7 @@ export default function Fonctionnelles() {
                         </button>
                     </h2>
                     <div id="panelsStayOpen-collapseSix" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingSix">
+                    <div id="collapseSix" className="accordion-collapse collapse show" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
                         <div className="accordion-body">
                             <div className="p-2">
                                 <div className="col">
@@ -82,7 +86,7 @@ export default function Fonctionnelles() {
                             {/* <!-- Add button --> */}
                             <div className="input-group mb-3">
                                 <input type='text' className="form-control" value={foncInput} placeholder="Votre Compétence fonctionnelle" onChange={(event) => setFoncInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
-                                <button onClick={() => fetchData()} type="button" className="btn btn-outline-info btn-rounded-floating" data-mdb-ripple-color="dark">
+                                <button onClick={() => createFonctionnelle()} type="button" className="btn btn-outline-info btn-rounded-floating" data-mdb-ripple-color="dark">
                                     <i className="bi bi-plus"></i>
                                 </button>
                             </div>
@@ -91,6 +95,7 @@ export default function Fonctionnelles() {
                 </div>
             </div>
         </div>
+       </div> 
     );
 };
 

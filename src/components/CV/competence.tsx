@@ -12,7 +12,7 @@ export default function Competence(props: any) {
     const [competence, setCompetence] = useState<TComp []>([]);
     const [compInput, setCompInput] = useState("")
 
-    const token = useContext(AuthContext).token;
+    const token = useContext(AuthContext).user?.access_token;
 
 
     async function patchCompetence() {

@@ -19,7 +19,7 @@ export default function Formations() {
     const [diplomeInput, setDiplomeInput] = useState<string>("");
     const [dateInput, setDateInput] = useState<string>("");
 
-    const token = useContext(AuthContext).token;
+    const token = useContext(AuthContext).user?.access_token;
     /*  const body = {
          specialite: formInput,
          diplôme: formInput,
@@ -50,7 +50,7 @@ export default function Formations() {
          } */
         console.log("Success!", responseJson);
 
-        setFormation([...formation, responseJson]);
+        setFormation([...formation, responseJson.data]);
         setFormInput("");
         setDiplomeInput("");
         setDateInput("");

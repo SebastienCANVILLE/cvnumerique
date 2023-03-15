@@ -13,7 +13,7 @@ export default function CentreInterets() {
     const [interet, setInteret] = useState<TCInt[]>([]);
     const [intInput, setIntInput] = useState<string>("");
     //POST request fetch inside useEffect React hooks
-    const token = useContext(AuthContext).token;
+    const token = useContext(AuthContext).user?.access_token;
     async function createInteret() {
 
         const requestOptions = {

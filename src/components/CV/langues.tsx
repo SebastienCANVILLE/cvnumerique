@@ -20,7 +20,7 @@ export default function Langue()
     const [ langueInput, setLangueInput ] = useState("");
     const [ niveauInput, setNiveauInput ] = useState("");
 
-    const token = useContext(AuthContext).token;
+    const token = useContext(AuthContext).user?.access_token;
 
     // Création d'une langue dans la BDD.
     async function CreateLangue()
