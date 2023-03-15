@@ -10,6 +10,7 @@ export default function Navbar() {
     const logOut = () => {
         setUser(null);
     };
+    
 
     return (
         <nav className="navbar navbar-dark bg-dark fixed-top ">

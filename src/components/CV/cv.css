@@ -1,8 +1,7 @@
-
-#containerAccueil{
+#containerAccueil {
     padding-top: 50px;
     padding-bottom: 50px;
-    
+
 }
 
 /* .Items{
@@ -17,9 +16,21 @@ span {
 
 }
 
-.hardSkills{
+.hardSkills {
 
     list-style-type: circle;
 
 
+}
+
+/* .imageBg{
+    width: 100%;
+    height: auto;
+    position: auto;
+    background-size: auto;
+}  */
+
+#image-accueil {
+    width: 469px;
+    height: 150px;
 }

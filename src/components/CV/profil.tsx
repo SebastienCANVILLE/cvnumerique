@@ -1,34 +1,58 @@
 import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../context/authContext';
+import './cv.css'
 
 
 export default function ProfilCv() {
 
     const token = useContext(AuthContext).user?.access_token;
+
+
+
+    
     return (
-        <div className="container mt-5">
-            <div className="accordion" id="accordionPanelsStayOpenExample">
-                <div className="accordion-item">
+        <div className="container mt-5 ">
 
-                    {/* <!-- Bouton de défilement --> */}
-                    <h2 className="accordion-header" id="panelsStayOpen-headingOne">
-                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            PROFIL
-                        </button>
-                    </h2>
+            <div className="bg-body rounded-4 text-center" >
 
-                    {/* <!-- Bouton + add --> */}
-                    <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div className="row" id="image-accueil">
 
-                        <div className="btn-group mb-1 mt-2" role="group" aria-label="Third group">
-                            <button type="button" className="btn btn-outline-dark mb-2">+</button>
-                        </div>
+                    <img className="img-fluid rounded-4" src="/photos/photoEcranLog.jpg" ></img>
+                </div>
 
-                        <div id="panelsStayOpen-collapseOne" className="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-                            <div className="accordion-body">
-                                <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                            </div>
-                        </div>
+                <div className="row border border-dark" id=" image-profil">
+                    <div className="col">
+                        IMAGE PROFIL
+                    </div>
+                </div>
+
+                <div className="row border border-dark" id="profil-name">
+                    <div className="col">
+                        Aliénor JSON
+                    </div>
+                </div>
+
+                <div className="row border border-dark" id="profil-social">
+                    <div className="col">
+                        CHEF DE PROJET
+                    </div>
+                </div>
+
+                <div className="row border border-dark" id="profil-job">
+                    <div className="col">
+                        Développeur Web et Web Mobile
+                    </div>
+                </div>
+
+                <div className="row border border-dark" id="profil-cityRegion">
+                    <div className="col">
+                        Bordeaux, Nouvelle-Aquitaine
+                    </div>
+                </div>
+
+                <div className="row border border-dark" id="profil-emailAndPhone">
+                    <div className="col">
+                        alienor.json@seb.fr / 06.66.66.66.66
                     </div>
                 </div>
             </div>
