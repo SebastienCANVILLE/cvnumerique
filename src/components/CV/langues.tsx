@@ -1,4 +1,4 @@
-import { useState,useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import { AuthContext } from '../../context/authContext';
 import ModificationLangue from "./langue";
 
@@ -21,6 +21,11 @@ export default function Langue()
     const [ niveauInput, setNiveauInput ] = useState("");
 
     const token = useContext(AuthContext).user?.access_token;
+    const user = useContext(AuthContext).user?.user;
+    console.log(user);
+
+    const test = useContext(AuthContext).user;
+    const setUser = useContext(AuthContext).setUser;
 
     // Création d'une langue dans la BDD.
     async function CreateLangue()
@@ -41,7 +46,8 @@ export default function Langue()
 
         console.log("Success", responseJson.data);
 
-        setLangue([...langue, responseJson.data]);
+        /* setLangue([...langue, responseJson.data]); */
+        test!.user.langues = [...test!.user.langues, responseJson.data]
         setLangueInput("");
         setNiveauInput("");
     }
@@ -49,15 +55,13 @@ export default function Langue()
 
 
     // Récupération de toutes les langues dans la BDD.
-    async function GetLangue()
+  /*   async function GetLangue()
     {
         const requestOptions = {
             method: 'GET',
             headers: {
-                /* 'Content-Type': 'application/json', */
                 Authorization: `Bearer ${token}`
             },
-           /*  body: JSON.stringify(body) */
         };
         const response = await fetch('http://localhost:8000/langues', requestOptions);
 
@@ -66,21 +70,33 @@ export default function Langue()
         console.log("Success", responseJson);
 
         setLangue(responseJson.data);
-    }
+    } */
 
 
-    useEffect(() => {
+   /*  useEffect(() => {
         GetLangue();
-    }, []);
+    }, []); */
 
-    function DeleteLangue(id:number){
-        const newLangue = langue.filter(item => item.id !==id)
-        setLangue(newLangue)
+    function PatchLangue(id:number){
+        const langue = test!.user.langues.map(item => item.id);
+        test!.user.langues = langue;
+        console.log(test);
+
+        setUser({...test!});
     }
-    const listLangue = langue?.map(item => 
-        <ModificationLangue del={DeleteLangue} item={item} key={item.id}/>
-    )
+    function DeleteLangue(id:number){
+        /* const newLangue = langue.filter(item => item.id !==id)
+        setLangue(newLangue) */
+        const langue = test!.user.langues.filter(item => item.id !== id);
+        test!.user.langues = langue;
+        console.log(test);
 
+        setUser({...test!});
+    }
+
+    const listLangue = user?.langues?.map(item => <ModificationLangue del={DeleteLangue} pat={PatchLangue} item={item} key={item.id} />)
+    console.log(listLangue);
+    console.log(user);
 
     return (
         <div className='container mt-5'>
@@ -107,12 +123,9 @@ export default function Langue()
                             </div>
                         </div>
 
-                        <div className="btn-group mb-2 mt-2 ms-2" role="group" aria-label="Third group">
-
-
+                        {/* <div className="btn-group mb-2 mt-2 ms-2" role="group" aria-label="Third group"> */}
 
                             {/* <!-- Add button --> */}
-
 
                             <div className="input-group mb-3">
                                 <input type='text' className="form-control" value={langueInput} placeholder="Saisir votre langue" onChange={(event) => setLangueInput(event.target.value)}aria-label="Recipient's username" aria-describedby="button-addon2"></input>
@@ -123,24 +136,9 @@ export default function Langue()
                                     <i className="bi bi-plus"></i>
                                 </button>
                             </div>
-
-
-
-
-
-                            {/* <button type="button" className="btn btn-outline-info btn-rounded-floating" data-mdb-ripple-color="dark">
-                                <i className="bi bi-plus"></i>
-                                <h5 className="card-header">{langue?.langue}</h5>
-                                <h5 className="card-header">{langue?.niveau}</h5>
-                                <input type='text' onChange={(event) => setLangueInput(event.target.value)}></input>
-                                <button onClick={CreateLangue}>Valider</button>
-                            </button> */}
-
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
     );
 }
-export { Langue }
