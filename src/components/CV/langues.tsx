@@ -14,11 +14,10 @@ type TLangue = {
  * * **CreateLangue : fonction qui va utiliser le front pour faire un 'POST'.
  * * **GetLangue    : fonction qui va utiloser le front pour faire un 'GET'.
  */
-export default function Langue()
-{
-    const [ langue, setLangue ] = useState<TLangue[]>([]);
-    const [ langueInput, setLangueInput ] = useState("");
-    const [ niveauInput, setNiveauInput ] = useState("");
+export default function Langue() {
+    const [langue, setLangue] = useState<TLangue[]>([]);
+    const [langueInput, setLangueInput] = useState("");
+    const [niveauInput, setNiveauInput] = useState("");
 
     const token = useContext(AuthContext).user?.access_token;
     const user = useContext(AuthContext).user?.user;
@@ -28,8 +27,7 @@ export default function Langue()
     const setUser = useContext(AuthContext).setUser;
 
     // Création d'une langue dans la BDD.
-    async function CreateLangue()
-    {
+    async function CreateLangue() {
         const requestOptions = {
             method: 'POST',
             headers: {
@@ -48,6 +46,7 @@ export default function Langue()
 
         /* setLangue([...langue, responseJson.data]); */
         test!.user.langues = [...test!.user.langues, responseJson.data]
+        setUser({ ...test! });
         setLangueInput("");
         setNiveauInput("");
     }
@@ -55,46 +54,54 @@ export default function Langue()
 
 
     // Récupération de toutes les langues dans la BDD.
-  /*   async function GetLangue()
-    {
-        const requestOptions = {
-            method: 'GET',
-            headers: {
-                Authorization: `Bearer ${token}`
-            },
-        };
-        const response = await fetch('http://localhost:8000/langues', requestOptions);
+    /*   async function GetLangue()
+      {
+          const requestOptions = {
+              method: 'GET',
+              headers: {
+                  Authorization: `Bearer ${token}`
+              },
+          };
+          const response = await fetch('http://localhost:8000/langues', requestOptions);
+  
+          const responseJson = await response.json();
+  
+          console.log("Success", responseJson);
+  
+          setLangue(responseJson.data);
+      } */
 
-        const responseJson = await response.json();
 
-        console.log("Success", responseJson);
+    /*  useEffect(() => {
+         GetLangue();
+     }, []); */
 
-        setLangue(responseJson.data);
-    } */
+    function patchLangue(item:TLangue) {
+       /*  const langue = test!.user.langues.filter((elm)=> elm.id !== item.id);
+        console.log(langue);
+        
+        const newLangue = [...langue, item];
+        console.log(newLangue); */
+        
+     /*    test!.user.langues = newLangue; */
+     const index= test!.user.langues.findIndex(elm=>elm.id===item.id);
+     test!.user.langues[index] = item;
+        setUser({ ...test! });
+    
+       
 
-
-   /*  useEffect(() => {
-        GetLangue();
-    }, []); */
-
-    function PatchLangue(id:number){
-        const langue = test!.user.langues.map(item => item.id);
-        test!.user.langues = langue;
-        console.log(test);
-
-        setUser({...test!});
     }
-    function DeleteLangue(id:number){
+    function deleteLangue(id: number) {
         /* const newLangue = langue.filter(item => item.id !==id)
         setLangue(newLangue) */
         const langue = test!.user.langues.filter(item => item.id !== id);
         test!.user.langues = langue;
         console.log(test);
 
-        setUser({...test!});
+        setUser({ ...test! });
     }
 
-    const listLangue = user?.langues?.map(item => <ModificationLangue del={DeleteLangue} pat={PatchLangue} item={item} key={item.id} />)
+    const listLangue = user?.langues?.map((item: { id: any; }) => <ModificationLangue del={deleteLangue} pat={patchLangue} item={item} key={item.id} />)
     console.log(listLangue);
     console.log(user);
 
@@ -125,20 +132,20 @@ export default function Langue()
 
                         {/* <div className="btn-group mb-2 mt-2 ms-2" role="group" aria-label="Third group"> */}
 
-                            {/* <!-- Add button --> */}
+                        {/* <!-- Add button --> */}
 
-                            <div className="input-group mb-3">
-                                <input type='text' className="form-control" value={langueInput} placeholder="Saisir votre langue" onChange={(event) => setLangueInput(event.target.value)}aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                        <div className="input-group mb-3">
+                            <input type='text' className="form-control" value={langueInput} placeholder="Saisir votre langue" onChange={(event) => setLangueInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
 
-                                <input type='text' className="form-control" value={niveauInput} placeholder="Saisir votre niveau" onChange={(event) => setNiveauInput(event.target.value)}aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                            <input type='text' className="form-control" value={niveauInput} placeholder="Saisir votre niveau" onChange={(event) => setNiveauInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
 
-                                <button onClick={() => CreateLangue()} type="button" className="btn btn-outline-info" data-mdb-ripple-color="dark">
-                                    <i className="bi bi-plus"></i>
-                                </button>
-                            </div>
+                            <button onClick={() => CreateLangue()} type="button" className="btn btn-outline-info" data-mdb-ripple-color="dark">
+                                <i className="bi bi-plus"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
     );
 }

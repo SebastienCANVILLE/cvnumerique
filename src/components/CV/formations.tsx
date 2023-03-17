@@ -13,18 +13,19 @@ type TForm = {
 
 export default function Formations() {
 
-    const [formation, setFormation] = useState<TForm[]>([]);
+    /*   const [formation, setFormation] = useState<TForm[]>([]); */
 
     const [formInput, setFormInput] = useState<string>("");
     const [diplomeInput, setDiplomeInput] = useState<string>("");
     const [dateInput, setDateInput] = useState<string>("");
 
     const token = useContext(AuthContext).user?.access_token;
-    /*  const body = {
-         specialite: formInput,
-         diplôme: formInput,
-         date_obtention: formInput
-     } */
+    const user = useContext(AuthContext).user?.user;
+
+    const test = useContext(AuthContext).user;
+    const setUser = useContext(AuthContext).setUser;
+
+
     async function createFormation() {
 
         const requestOptions = {
@@ -49,53 +50,56 @@ export default function Formations() {
              return Promise.reject(error);
          } */
         console.log("Success!", responseJson);
-
-        setFormation([...formation, responseJson.data]);
+        test!.user.formations = [...test!.user.formations, responseJson.data]
+        /*  setFormation([...formation, responseJson.data]); */
+        setUser({ ...test! });
         setFormInput("");
         setDiplomeInput("");
         setDateInput("");
-    };
-
-    async function getFormations() {
-
-        const requestOptions = {
-            method: 'GET',
-            headers: {
-                Authorization: `Bearer ${token}`
-            },
-        };
-
-
-        const response = await fetch('http://localhost:8000/formations', requestOptions)
-        const responseJson = await response.json();
-
-        /* if (!response.ok) {
-            // get error message from body or default to response status
-            const error = (responseJson && responseJson.message) || response.status;
-            return Promise.reject(error);
-        } */
-        console.log("Success!", responseJson);
-        setFormation(responseJson.data);
 
     };
-    useEffect(() => {
-        getFormations();
-    }, []);
-    const listFormation = formation?.map(item => <Formation item={item} key={item.id} />)
 
-    /* const listFormation = formation?.map((item) => (
-        <div className='grid-row' key={item.id}>
-            <div className='grid_item'>
-                <h5 className='grid_specialite'>{item.specialite}</h5>
-            </div>
-            <div className="grid text-left" >
-                <div className="g-col-6">{item.date_obtention}</div>
-                <div className="g-col-4">{item.diplôme}</div>
-            </div>
-    
-        </div>
-     
-    ))*/
+    /*  async function getFormations() {
+ 
+         const requestOptions = {
+             method: 'GET',
+             headers: {
+                 Authorization: `Bearer ${token}`
+             },
+         };
+ 
+ 
+         const response = await fetch('http://localhost:8000/formations', requestOptions)
+         const responseJson = await response.json();
+ 
+         /* if (!response.ok) {
+             // get error message from body or default to response status
+             const error = (responseJson && responseJson.message) || response.status;
+             return Promise.reject(error);
+         } */
+    /*    console.log("Success!", responseJson);
+       setFormation(responseJson.data);
+
+   };
+   useEffect(() => {
+       getFormations();
+   }, []);  */
+    function deleteFormation(id: number) {
+        /* const newTechnique = technique.filter(item => item.id !== id)
+        setTechnique(newTechnique); */
+        const form = test!.user.formations.filter(item => item.id !== id)
+        test!.user.formations = form;
+        console.log(test);
+
+        setUser({ ...test! });
+
+    }
+    const listFormation = user?.formations?.map(item => <Formation del={deleteFormation} item={item} key={item.id} />)
+    console.log(listFormation);
+    console.log(user);
+
+
+
     return (
 
 

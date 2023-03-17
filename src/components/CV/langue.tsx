@@ -1,32 +1,33 @@
 import { useState, useContext } from "react";
 import { AuthContext } from '../../context/authContext';
 // Typage de la table 'langues'
-type TLangue = {
+/* type TLangue = {
     id: number;
     langue: string;
     niveau: string;
-}
-
+} */
 
 
 /** Foncton qui appelle:
  * * **PatchLangue  : fonction qui va utiliser le front pour faire un 'PATCH'.
  * * **DeleteLangue : fonction qui va utiliser le front pour faire un 'DELETE'.
  */
-export default function ModificationLangue(props: any)
-{
-    console.log(props);
+export default function ModificationLangue(props: any) {
+    console.log(props, "phase 1");
 
-    const [ langue, setLangue ] = useState<TLangue[]>([]);
-    const [ langueInput, setLangueInput ] = useState("");
-    const [ niveauInput, setNiveauInput ] = useState("");
-    const [ showInput, setShowInput ] = useState(false)
+    const test = useContext(AuthContext).user;
+    const setUser = useContext(AuthContext).setUser;
+
+
+    /*  const [ langue, setLangue ] = useState<TLangue[]>([]); */
+    const [langueInput, setLangueInput] = useState("");
+    const [niveauInput, setNiveauInput] = useState("");
+    const [showInput, setShowInput] = useState(false)
 
     const token = useContext(AuthContext).user?.access_token;
 
     // Modification d'une langue : avec le 'patch' du front.
-    async function PatchLangue()
-    {
+    async function PatchLangue() {
 
         const requestOptions = {
             method: 'PATCH',
@@ -41,23 +42,23 @@ export default function ModificationLangue(props: any)
         };
         const response = await fetch(`http://localhost:8000/langues/${props.item.id}`, requestOptions)
         const responseJson = await response.json();
-
         console.log('success', responseJson);
 
-        if (responseJson.statusCode === 200)
-        {
-            props.pat(props.item.id)
+        if (responseJson.statusCode === 200) {
+            props.pat(responseJson.data)
+            console.log(props.pat);
+            setShowInput(false);
+            
         }
 
-        setLangue(responseJson.data);
+        /* setUser({ ...test! }); */
     };
 
 
 
 
     // Suppression d'une langue : avec le 'delete' du front.
-    async function DeleteLangue()
-    {
+    async function DeleteLangue() {
 
         const requestOptions = {
             method: 'DELETE',
@@ -72,18 +73,16 @@ export default function ModificationLangue(props: any)
 
         console.log('success', responseJson);
 
-        if (responseJson.statusCode === 200)
-        {
+        if (responseJson.statusCode === 200) {
 
             props.del(props.item.id)
         };
-
-        setLangue(responseJson.data);
     };
 
-    function update()
-    {
+    function update() {//déclenche ouverture de l'input
         setShowInput(true)
+        console.log(update,"genial");
+        
     }
 
 
@@ -116,7 +115,7 @@ export default function ModificationLangue(props: any)
 
                 {/* colone qui affiche les deux boutons  */}
                 <div className="col">
-                    
+
                     <div className="btn-group mb-2 mt-2 ms-5" role="group" aria-label="Third group">
 
                         {/* bouton modifier */}

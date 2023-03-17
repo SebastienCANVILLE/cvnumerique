@@ -14,7 +14,7 @@ export default function Techniques() {
 
     const token = useContext(AuthContext).user?.access_token;
     const user = useContext(AuthContext).user?.user;
-    console.log(user);
+    /* console.log(user); */
 
     const test = useContext(AuthContext).user;
     const setUser = useContext(AuthContext).setUser;
@@ -37,7 +37,7 @@ export default function Techniques() {
         console.log("Success!", responseJson);
 
         test!.user.techniques = [...test!.user.techniques, responseJson]
-        console.log(test);
+        /* console.log(test); */
         setUser({...test!});
         setTechInput("");
     };
@@ -67,14 +67,14 @@ export default function Techniques() {
         setTechnique(newTechnique); */
         const tech = test!.user.techniques.filter(item => item.id !== id) 
         test!.user.techniques = tech;
-        console.log(test);
+        /* console.log(test); */
 
         setUser({...test!});
 
     }
     const listTechnique = user?.techniques?.map(item => <Technique del={deleteTechnique} item={item} key={item.id} />)
-    console.log(listTechnique);
-    console.log(user);
+    /* console.log(listTechnique);
+    console.log(user); */
 
 
 

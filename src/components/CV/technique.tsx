@@ -1,17 +1,20 @@
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/authContext';
+import { Trash as TrashIcon } from 'react-bootstrap-icons';
+import { Pencil as PencilIcon } from 'react-bootstrap-icons';
 
 
 
 export default function Technique(props: any) {
+    const [isTrashHovered, setIsTrashHovered] = useState(false);
     /*   console.log(props); */
 
     const [techInput, setTechInput] = useState<string>("");
-    
-    
-const token = useContext(AuthContext).user?.access_token;
-    console.log("test ", token);
-    
+
+
+    const token = useContext(AuthContext).user?.access_token;
+    /*  console.log("test ", token); */
+
 
 
     async function patchTechnique() {
@@ -27,7 +30,7 @@ const token = useContext(AuthContext).user?.access_token;
         };
         const response = await fetch(`http://localhost:8000/techniques/${props.item.id}`, requestOptions)
         const responseJson = await response.json();
-        console.log("Success!", responseJson);
+        /* console.log("Success!", responseJson); */
         setTechInput(responseJson);
     };
 
@@ -41,7 +44,7 @@ const token = useContext(AuthContext).user?.access_token;
         };
         const response = await fetch(`http://localhost:8000/techniques/${props.item.id}`, requestOptions)
         const responseJson = await response.json()
-        console.log("Success!", responseJson);
+        /* console.log("Success!", responseJson); */
         if (responseJson.statusCode === 200) {
             props.del(props.item.id)
         }
@@ -59,15 +62,29 @@ const token = useContext(AuthContext).user?.access_token;
                 <div className="col">
                     <div className="btn-group mb-2 mt-2 ms-5" role="group" aria-label="Third group">
                         {/* <!-- Update button --> */}
-                        <button onClick={() => patchTechnique()} type="button" className="btn btn-outline-warning btn-rounded-floating ms-1" data-mdb-ripple-color="dark" >
+                         {/* <button onClick={() => patchTechnique()} type="button" className="btn" data-mdb-ripple-color="dark" >
+                        <PencilIcon size ={20}
+                            onMouseEnter = {()=>setIsTrashHovered(true)}
+                            onMouseLeave = {()=> setIsTrashHovered(false)}
+                            style = {{color:isTrashHovered? "#e9c131": "#b8b8b8"}}/>
+                        </button> */}
+                         {/* <!-- Delete button -->  */}
+                         {/*  <button onClick={deleteTechnique} type="button" className="btn" data-mdb-ripple-color="dark" >
+                            <TrashIcon size ={20}
+                            onMouseEnter = {()=>setIsTrashHovered(true)}
+                            onMouseLeave = {()=> setIsTrashHovered(false)}
+                            style = {{color:isTrashHovered? "#be0808": "#b8b8b8"}}/>
+                        </button>   */}
+                         <button onClick={patchTechnique} type="button" className="btn btn-outline-warning btn-rounded-floating ms-1" data-mdb-ripple-color="dark" >
                             <i className="bi bi-pencil"></i>
                         </button>
-                        {/* <!-- Delete button --> */}
+
+                        {/* bouton supprimer */}
                         <button onClick={deleteTechnique} type="button" className="btn btn-outline-danger btn-rounded-floating ms-1" data-mdb-ripple-color="dark" >
                             <i className="bi bi-trash3"></i>
-                        </button>
+                        </button> 
                     </div>
-                </div>
+                </div> {/* btn-outline-danger btn-rounded-floating  */}
             </div>
         </div>
     )

@@ -9,13 +9,17 @@ type TFonc = {
 }
 export default function Fonctionnelles() {
 
-    const [fonctionnelle, setFonctionnelle] = useState<TFonc[]>([]);
+    /*  const [fonctionnelle, setFonctionnelle] = useState<TFonc[]>([]); */
     const [foncInput, setFoncInput] = useState<string>("");
 
     //POST request fetch inside useEffect React hooks
 
     const token = useContext(AuthContext).user?.access_token;
+    const user = useContext(AuthContext).user?.user;
+    /* console.log(user); */
 
+    const test = useContext(AuthContext).user;
+    const setUser = useContext(AuthContext).setUser;
 
     async function createFonctionnelle() {
         const requestOptions = {
@@ -31,15 +35,18 @@ export default function Fonctionnelles() {
         const response = await fetch('http://localhost:8000/fonctionnelles', requestOptions)
         const responseJson = await response.json();
         console.log("Success", responseJson);
-        const newFonc= [...fonctionnelle, responseJson.data];
+        test!.user.fonctionnelles = [...test!.user.fonctionnelles, responseJson.data]
+
+        /* const newFonc= [...fonctionnelle, responseJson.data];
         console.log(newFonc);
         
-        setFonctionnelle([...fonctionnelle, responseJson.data]);
+        setFonctionnelle([...fonctionnelle, responseJson.data]); */
+        setUser({ ...test! });
         setFoncInput("");
     };
 
 
-    async function getFonctionnelle() {
+    /* async function getFonctionnelle() {
         const requestOptions = {
             method: 'GET',
             headers: {
@@ -55,14 +62,15 @@ export default function Fonctionnelles() {
 
     useEffect(() => {
         getFonctionnelle();
-    }, []);
+    }, []); */
 
     function deleteFonctionnelle(id: number) {
-        const newFonctionnelle = fonctionnelle.filter(item => item.id !== id)
-        setFonctionnelle(newFonctionnelle);
+        const newFonctionnelle = test!.user.fonctionnelles.filter(item => item.id !== id)
+        /* setFonctionnelle */test!.user.fonctionnelles = newFonctionnelle;
+        setUser({ ...test! });
     }
-    const listFonctionnelle = fonctionnelle?.map(item =>
-        <Fonctionnelle del={deleteFonctionnelle} item={item} key={item.id}/>)
+    const listFonctionnelle = user?.fonctionnelles?.map(item =>
+        <Fonctionnelle del={deleteFonctionnelle} item={item} key={item.id} />)
 
 
     return (
@@ -75,27 +83,27 @@ export default function Fonctionnelles() {
                         </button>
                     </h2>
                     <div id="panelsStayOpen-collapseSix" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingSix">
-                    <div id="collapseSix" className="accordion-collapse collapse show" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
-                        <div className="accordion-body">
-                            <div className="p-2">
-                                <div className="col">
-                                    {listFonctionnelle}
+                        <div id="collapseSix" className="accordion-collapse collapse show" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+                            <div className="accordion-body">
+                                <div className="p-2">
+                                    <div className="col">
+                                        {listFonctionnelle}
+                                    </div>
                                 </div>
-                            </div>
 
-                            {/* <!-- Add button --> */}
-                            <div className="input-group mb-3">
-                                <input type='text' className="form-control" value={foncInput} placeholder="Votre Compétence fonctionnelle" onChange={(event) => setFoncInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
-                                <button onClick={() => createFonctionnelle()} type="button" className="btn btn-outline-info btn-rounded-floating" data-mdb-ripple-color="dark">
-                                    <i className="bi bi-plus"></i>
-                                </button>
+                                {/* <!-- Add button --> */}
+                                <div className="input-group mb-3">
+                                    <input type='text' className="form-control" value={foncInput} placeholder="Votre Compétence fonctionnelle" onChange={(event) => setFoncInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                                    <button onClick={() => createFonctionnelle()} type="button" className="btn btn-outline-info btn-rounded-floating" data-mdb-ripple-color="dark">
+                                        <i className="bi bi-plus"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-       </div> 
     );
 };
 

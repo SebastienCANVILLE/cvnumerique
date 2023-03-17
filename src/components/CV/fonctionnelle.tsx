@@ -3,12 +3,6 @@ import { AuthContext } from '../../context/authContext';
 
 
 
-
-/* type TFonc = {
-    id: number,
-    libelle: string
-} */
-
 export default function Fonctionnelle(props: any) {
 
     /* const [fonctionnelle, setFonc] = useState<TFonc[]>([]); */

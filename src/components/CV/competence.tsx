@@ -1,17 +1,16 @@
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/authContext';
 
-type TComp = {
+/* type TComp = {
     id: number;
     competence_clé: string;
-}
+} */
 
 export default function Competence(props: any) {
     /*   console.log(props); */
 
-    const [competence, setCompetence] = useState<TComp []>([]);
-    const [compInput, setCompInput] = useState("")
-
+   /*  const [competence, setCompetence] = useState<TComp []>([]); */
+    const [compInput, setCompInput] = useState<string>("");
     const token = useContext(AuthContext).user?.access_token;
 
 
@@ -29,7 +28,9 @@ export default function Competence(props: any) {
         const response = await fetch(`http://localhost:8000/competences/${props.item.id}`, requestOptions)
         const responseJson = await response.json();
         console.log("Success!", responseJson);
-        setCompInput(responseJson);
+        setCompInput(responseJson.data);
+        
+        
     };
 
 
@@ -42,7 +43,7 @@ export default function Competence(props: any) {
         };
         const response = await fetch(`http://localhost:8000/competences/${props.item.id}`, requestOptions)
         const responseJson = await response.json()
-        console.log("Success!", responseJson);
+        console.log("Success!test2", responseJson);
         if (responseJson.statusCode === 200) {
             props.del(props.item.id)
         }

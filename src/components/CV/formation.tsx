@@ -9,6 +9,8 @@ export default function Formation(props: any) {
     const [dateInput, setDateInput] = useState<string>("");
 
     const token = useContext(AuthContext).user?.access_token;
+
+    
     async function patchFormation() {
         const requestOptions = {
             method: 'PATCH',
@@ -53,29 +55,33 @@ export default function Formation(props: any) {
 
     return (
 
-        <li className="hardSkills">
 
-            <div className='grid_item'>
-                <h5 className='grid_specialite'>{props.item?.specialite}</h5>
+        <div className="Formations">
+
+            <div className="container text-center">
+                <div className="row row-cols-1">
+                    <h5 className="col mt-5 ">{props.item?.date_obtention}</h5>
+                    <div className="col ">{props.item?.specialite}</div>
+                    <div className="col ">{props.item?.diplôme}</div>
+
+                </div>
+
+
+                <div className="col">
+                    <div className="btn-group mb-2 mt-2 ms-2" role="group" aria-label="Third group">
+
+                        {/* <!-- Update button --> */}
+                        <button onClick={() => patchFormation()} type="button" className="btn btn-outline-warning btn-rounded-floating" data-mdb-ripple-color="dark" >
+                            <i className="bi bi-pencil"></i>
+                        </button>
+                        {/* <!-- Delete button --> */}
+                        <button onClick={() => deleteFormation()} type="button" className="btn btn-outline-danger btn-rounded-floating" data-mdb-ripple-color="dark" >
+                            <i className="bi bi-trash3"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div className="grid text-left" >
-                <div className="g-col-6">{props.item?.date_obtention}</div>
-                <div className="g-col-4">{props.item?.diplôme}</div>
-            </div>
-
-            <div className="btn-group mb-2 mt-2 ms-2" role="group" aria-label="Third group">
-
-                {/* <!-- Update button --> */}
-                <button onClick={() => patchFormation()} type="button" className="btn btn-outline-warning btn-rounded-floating" data-mdb-ripple-color="dark" >
-                    <i className="bi bi-pencil"></i>
-                </button>
-                {/* <!-- Delete button --> */}
-                <button onClick={() => deleteFormation()} type="button" className="btn btn-outline-danger btn-rounded-floating" data-mdb-ripple-color="dark" >
-                    <i className="bi bi-trash3"></i>
-                </button>
-            </div>
-        </li>
-
+        </div>
 
     )
 }
