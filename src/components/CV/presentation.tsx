@@ -16,7 +16,7 @@ export default function Presentation() {
             <div className="accordion" id="accordionPanelsStayOpenExample">
                 <div className="accordion-item ms-4 me-4">
                     <h2 className="accordion-header" id="panelsStayOpen-headingTwo">
-                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                        <button className="accordion-button collapsed shadow p-3  bg-body-tertiary rounded " type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
                             <span className="position-absolute top-50 start-50 translate-middle text-center">PRÉSENTATION</span>
                         </button>
                     </h2>

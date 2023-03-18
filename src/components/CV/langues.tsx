@@ -76,19 +76,19 @@ export default function Langue() {
          GetLangue();
      }, []); */
 
-    function patchLangue(item:TLangue) {
-       /*  const langue = test!.user.langues.filter((elm)=> elm.id !== item.id);
-        console.log(langue);
-        
-        const newLangue = [...langue, item];
-        console.log(newLangue); */
-        
-     /*    test!.user.langues = newLangue; */
-     const index= test!.user.langues.findIndex(elm=>elm.id===item.id);
-     test!.user.langues[index] = item;
+    function patchLangue(item: TLangue) {
+        /*  const langue = test!.user.langues.filter((elm)=> elm.id !== item.id);
+         console.log(langue);
+         
+         const newLangue = [...langue, item];
+         console.log(newLangue); */
+
+        /*    test!.user.langues = newLangue; */
+        const index = test!.user.langues.findIndex(elm => elm.id === item.id);
+        test!.user.langues[index] = item;
         setUser({ ...test! });
-    
-       
+
+
 
     }
     function deleteLangue(id: number) {
@@ -101,7 +101,7 @@ export default function Langue() {
         setUser({ ...test! });
     }
 
-    const listLangue = user?.langues?.map((item: { id: any; }) => <ModificationLangue del={deleteLangue} pat={patchLangue} item={item} key={item.id} />)
+    const listLangue = user?.langues?.map((item: { id: any }) => <ModificationLangue del={deleteLangue} pat={patchLangue} item={item} key={item.id} />)
     console.log(listLangue);
     console.log(user);
 
@@ -114,7 +114,7 @@ export default function Langue() {
 
                     {/*Titre dans l'entête accordéon */}
                     <h2 className="accordion-header" id="panelsStayOpen-headingEight">
-                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseEight" aria-expanded="false" aria-controls="panelsStayOpen-collapseEight">
+                        <button className="accordion-button collapsed shadow p-3  bg-body-tertiary rounded" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseEight" aria-expanded="false" aria-controls="panelsStayOpen-collapseEight">
                             <div className="position-absolute top-50 start-50 translate-middle text-center"> LANGUES</div>
                         </button>
                     </h2>
