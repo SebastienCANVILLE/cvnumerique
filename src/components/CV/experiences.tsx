@@ -19,16 +19,15 @@ type TExperience = {
  * * **PatchExperience  : fonction qui va utiliser le front pour faire un 'PATCH'.
  * * **DeleteExperience : fonction qui va utiliser le front pour faire un 'DELETE'.
  */
-export default function Experience()
-{
-    const [ experience, setExperience ] = useState<TExperience[]>([]);
-    const [ experienceInput, setExperienceInput ] = useState("");
-    const [ intituleInput, setIntituleInput ] = useState("");
-    const [ entrepriseInput, setEntrepriseInput ] = useState("");
-    const [ lieuInput, setLieuInput ] = useState("");
-    const [ startDateInput, setStartDateInput ] = useState("");
-    const [ endDateInput, setEndDateInput ] = useState("");
-    const [ descriptifInput, setDescriptifInput ] = useState("");
+export default function Experience() {
+    const [experience, setExperience] = useState<TExperience[]>([]);
+    const [experienceInput, setExperienceInput] = useState("");
+    const [intituleInput, setIntituleInput] = useState("");
+    const [entrepriseInput, setEntrepriseInput] = useState("");
+    const [lieuInput, setLieuInput] = useState("");
+    const [startDateInput, setStartDateInput] = useState("");
+    const [endDateInput, setEndDateInput] = useState("");
+    const [descriptifInput, setDescriptifInput] = useState("");
 
     const token = useContext(AuthContext).user?.access_token;
     const user = useContext(AuthContext).user?.user;
@@ -40,8 +39,7 @@ export default function Experience()
 
 
     // Création d'une expérience : avec le 'create' du front.
-    async function CreateExperience()
-    {
+    async function CreateExperience() {
         const requestOptions = {
             method: 'POST',
             headers: {
@@ -68,7 +66,7 @@ export default function Experience()
         } */
         console.log("Success", responseJson.data);
 
-        test!.user.experiences = [ ...test!.user.experiences, responseJson.data ]
+        test!.user.experiences = [...test!.user.experiences, responseJson.data]
         setIntituleInput("");
         setEntrepriseInput("");
         setLieuInput("");
@@ -105,18 +103,14 @@ export default function Experience()
 }; */
 
 
-    function PatchExperience(id: number)
-    {
-        const experience = test!.user.experiences.map(item => item.id)
-        test!.user.experiences = experience;
-        console.log(test);
-
+    function patchExperience(item: TExperience) {
+        const index = test!.user.experiences.findIndex(elm => elm.id === item.id);
+        test!.user.experiences[index] = item;
         setUser({ ...test! });
 
     }
 
-    function DeleteExperience(id: number)
-    {
+    function deleteExperience(id: number) {
         const experience = test!.user.experiences.filter(item => item.id !== id);
         test!.user.experiences = experience;
         console.log(test);
@@ -124,7 +118,7 @@ export default function Experience()
         setUser({ ...test! });
     }
 
-    const listExperience = user?.experiences.map(item => <ModificationExperience del={DeleteExperience} pat={PatchExperience} item={item} key={item.id} />);
+    const listExperience = user?.experiences.map(item => <ModificationExperience del={deleteExperience} pat={patchExperience} item={item} key={item.id} />);
     console.log(listExperience);
     console.log(user);
 
@@ -140,7 +134,7 @@ export default function Experience()
 
                     {/*Titre dans l'entête accordéon */}
                     <h2 className="accordion-header" id="panelsStayOpen-headingFour">
-                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
+                        <button className="accordion-button collapsed shadow p-3 shadow bg-body-tertiary rounded " type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
                             <div className="position-absolute top-50 start-50 translate-middle text-center">EXPÉRIENCES PROFESSIONNELLES</div>
                         </button>
                     </h2>

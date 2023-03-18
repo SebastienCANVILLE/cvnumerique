@@ -15,28 +15,26 @@ type TExperience = {
 /**Foncton qui appelle:
  * * **PatchExperience  : fonction qui va utiliser le front pour faire un 'PATCH'.
  * * **DeleteExperience : fonction qui va utiliser le front pour faire un 'DELETE'. */
-export default function ModificationExperience(props: any)
-{
+export default function ModificationExperience(props: any) {
     console.log(props);
 
-    const [ experience, setExperience ] = useState<TExperience[]>([]);
+    const [experience, setExperience] = useState<TExperience[]>([]);
     /* const [ experienceInput, setExperienceInput ] = useState(""); */
-    const [ intituleInput, setIntituleInput ] = useState("");
-    const [ entrepriseInput, setEntrepriseInput ] = useState("");
-    const [ lieuInput, setLieuInput ] = useState("");
-    const [ startDateInput, setStartDateInput ] = useState("");
-    const [ endDateInput, setEndDateInput ] = useState("");
-    const [ descriptifInput, setDescriptifInput ] = useState("");
+    const [intituleInput, setIntituleInput] = useState("");
+    const [entrepriseInput, setEntrepriseInput] = useState("");
+    const [lieuInput, setLieuInput] = useState("");
+    const [startDateInput, setStartDateInput] = useState("");
+    const [endDateInput, setEndDateInput] = useState("");
+    const [descriptifInput, setDescriptifInput] = useState("");
 
-    const [ showInput, setShowInput ] = useState(false)
+    const [showInput, setShowInput] = useState(false)
 
     const token = useContext(AuthContext).user?.access_token;
 
 
 
     // Modification d'une expérience : avec le 'patch' du front.
-    async function PatchExperience()
-    {
+    async function patchExperience() {
 
         const requestOptions = {
             method: 'PATCH',
@@ -58,19 +56,18 @@ export default function ModificationExperience(props: any)
 
         console.log('success', responseJson);
 
-        if (responseJson.statusCode === 200)
-        {
-            props.pat(props.item.id)
+        if (responseJson.statusCode === 200) {
+            props.pat(responseJson.data);
+            setShowInput(false);
         }
 
-        setExperience(responseJson.data);
+
     };
 
 
 
     // Suppression d'une expérience : avec le 'delete' du front.
-    async function DeleteExperience()
-    {
+    async function deleteExperience() {
 
         const requestOptions = {
             method: 'DELETE',
@@ -85,8 +82,7 @@ export default function ModificationExperience(props: any)
 
         console.log('success', responseJson);
 
-        if (responseJson.statusCode === 200)
-        {
+        if (responseJson.statusCode === 200) {
 
             props.del(props.item.id)
         };
@@ -94,8 +90,7 @@ export default function ModificationExperience(props: any)
         setExperience(responseJson.data);
     };
 
-    function update()
-    {
+    function update() {
         setShowInput(true)
     }
 
@@ -145,7 +140,7 @@ export default function ModificationExperience(props: any)
                     <input type='text' className="form-control" value={descriptifInput} placeholder="Descriptif" onChange={(event) => setDescriptifInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2">
                     </input>
 
-                    <button onClick={PatchExperience}>Valider</button>
+                    <button onClick={patchExperience}>Valider</button>
                 </li>}
 
 
@@ -153,7 +148,7 @@ export default function ModificationExperience(props: any)
 
                 {/* colone qui affiche les deux boutons  */}
                 <div className="col">
-                    
+
                     <div className="btn-group mb-2 mt-2 ms-5" role="group" aria-label="Third group">
 
                         {/* bouton modifier */}
@@ -162,7 +157,7 @@ export default function ModificationExperience(props: any)
                         </button>
 
                         {/* bouton supprimer */}
-                        <button onClick={DeleteExperience} type="button" className="btn btn-outline-danger btn-rounded-floating ms-1" data-mdb-ripple-color="dark" >
+                        <button onClick={deleteExperience} type="button" className="btn btn-outline-danger btn-rounded-floating ms-1" data-mdb-ripple-color="dark" >
                             <i className="bi bi-trash3"></i>
                         </button>
 
