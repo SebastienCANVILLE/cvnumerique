@@ -7,6 +7,8 @@ export default function Fonctionnelle(props: any) {
 
     /* const [fonctionnelle, setFonc] = useState<TFonc[]>([]); */
     const [foncInput, setFoncInput] = useState<string>("");
+    const [showInput, setShowInput] = useState(false);
+
     //POST request fetch inside useEffect React hooks
     const token = useContext(AuthContext).user?.access_token;
 
@@ -25,7 +27,11 @@ export default function Fonctionnelle(props: any) {
         const response = await fetch(`http://localhost:8000/fonctionnelles/${props.item.id}`, requestOptions)
         const responseJson = await response.json();
         console.log("Success!", responseJson);
-        setFoncInput(responseJson.data);
+
+        if (responseJson.statusCode === 200) {
+            props.patch(responseJson.data)
+            setShowInput(false);
+        }
     };
 
 
@@ -42,9 +48,11 @@ export default function Fonctionnelle(props: any) {
         if (responseJson.statusCode === 200) {
             props.del(props.item.id)
         }
-      
-    };
 
+    };
+    function update() {
+        setShowInput(true)
+    }
 
     return (
         <div className="container">
@@ -53,11 +61,19 @@ export default function Fonctionnelle(props: any) {
                     <li className="hardSkills">
                         {props.item?.libelle}
                     </li >
+                    {showInput && <div>
+                        <hr />
+                        <input type='text' className="form-control" value={foncInput} placeholder="Modifiez votre compétence ici" onChange={(event) => setFoncInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                        <button onClick={patchFonctionnelle} type="button" className="btn btn-outline-success btn-sm" data-mdb-ripple-color="dark" >
+                            <i className="bi bi-check-circle-fill"></i>
+                        </button>
+                    </div>}
                 </div>
+
                 <div className="col">
                     <div className="btn-group mb-2 mt-2 ms-5" role="group" aria-label="Third group">
                         {/* <!-- Update button --> */}
-                        <button onClick={() => patchFonctionnelle()} type="button" className="btn btn-outline-warning btn-rounded-floating ms-1" data-mdb-ripple-color="dark" >
+                        <button onClick={update} type="button" className="btn btn-outline-warning btn-rounded-floating ms-1" data-mdb-ripple-color="dark" >
                             <i className="bi bi-pencil"></i>
                         </button>
                         {/* <!-- Delete button --> */}

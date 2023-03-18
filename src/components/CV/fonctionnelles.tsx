@@ -63,14 +63,23 @@ export default function Fonctionnelles() {
     useEffect(() => {
         getFonctionnelle();
     }, []); */
+    function patchFonctionnelle(item: TFonc){
+        const fonctionnelle = test!.user.fonctionnelles.filter((elm) => elm.id !== item.id);
+        console.log(fonctionnelle);
 
+        const newFonc = [...fonctionnelle, item];
+        console.log(newFonc);
+        test!.user.fonctionnelles = newFonc;
+        setUser({ ...test! }); 
+       
+    }
     function deleteFonctionnelle(id: number) {
         const newFonctionnelle = test!.user.fonctionnelles.filter(item => item.id !== id)
         /* setFonctionnelle */test!.user.fonctionnelles = newFonctionnelle;
         setUser({ ...test! });
     }
     const listFonctionnelle = user?.fonctionnelles?.map(item =>
-        <Fonctionnelle del={deleteFonctionnelle} item={item} key={item.id} />)
+        <Fonctionnelle del={deleteFonctionnelle} patch ={patchFonctionnelle} item={item} key={item.id} />)
 
 
     return (
@@ -78,10 +87,11 @@ export default function Fonctionnelles() {
             <div className="accordion" id="accordionPanelsStayOpenExample">
                 <div className="accordion-item ms-4 me-4">
                     <h2 className="accordion-header" id="panelsStayOpen-headingSix">
-                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSix" aria-expanded="false" aria-controls="panelsStayOpen-collapseSix">
+                        <button className="accordion-button collapsed shadow p-3  bg-body-tertiary rounded" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSix" aria-expanded="false" aria-controls="panelsStayOpen-collapseSix">
                             <div className="position-absolute top-50 start-50 translate-middle text-center">COMPÉTENCES FONCTIONNELLES</div>
                         </button>
                     </h2>
+
                     <div id="panelsStayOpen-collapseSix" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingSix">
                         <div id="collapseSix" className="accordion-collapse collapse show" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
                             <div className="accordion-body">
