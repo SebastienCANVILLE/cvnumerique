@@ -60,13 +60,23 @@ export default function Competences() {
          const newCompetence = test!.user.competences?.map(item =>item.id)
          const CompetenceList = newCompetence;
      } */
+     function patchCompetence(item:TComp) {
+        const comp = test!.user.competences.filter(elm => elm.id !== item.id);
+        const newComp =[...comp, item];
+        test!.user.competences= newComp;
+        setUser({...test!});
+     }
+
+
     function deleteCompetence(id: number) {
         const newCompetence = test!.user.competences.filter(item => item.id !== id)
         test!.user.competences = newCompetence;
         setUser({ ...test! });
     }
-    const competenceList = user?.competences?.map(item =>
-        <Competence del={deleteCompetence} item={item} key={item.id} />)
+
+
+    const competenceList = user?.competences?.map((item :({id : any}))=>
+        <Competence del={deleteCompetence} patch = {patchCompetence} item={item} key={item.id} />)
 
 
 
@@ -75,7 +85,7 @@ export default function Competences() {
             <div className="accordion" id="accordionPanelsStayOpenExample">
                 <div className="accordion-item ms-4 me-4">
                     <h2 className="accordion-header" id="panelsStayOpen-headingSeven">
-                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSeven" aria-expanded="false" aria-controls="panelsStayOpen-collapseSeven">
+                        <button className="accordion-button collapsed shadow p-3  bg-body-tertiary rounded" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSeven" aria-expanded="false" aria-controls="panelsStayOpen-collapseSeven">
                             <div className="position-absolute top-50 start-50 translate-middle text-center"> SAVOIR ÊTRE</div>
                         </button>
                     </h2>
