@@ -16,7 +16,7 @@ export type Tuser = {
         presentation: string,
         experiences: { id: number, intitulé_poste: string, entreprise: string, lieu: string, date_début: Date, date_fin: Date, descriptif: string }[],
         competences: { id: number, competence_clé: string }[],
-        formations: { id: number, specialite: string, diplôme: string, date_obtention: Date }[],
+        formations: { id: number, lieu_formation: string, diplôme: string, date_obtention: Date }[],
         langues: { id: number, langue: string, niveau: string }[],
         centres_interets: { id: number, intitule: string }[],
         fonctionnelles: { id: number, libelle: string }[],
