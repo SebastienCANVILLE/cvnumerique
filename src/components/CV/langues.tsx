@@ -51,8 +51,6 @@ export default function Langue() {
         setNiveauInput("");
     }
 
-
-
     // Récupération de toutes les langues dans la BDD.
     /*   async function GetLangue()
       {
@@ -78,9 +76,9 @@ export default function Langue() {
 
     function patchLangue(item: TLangue) {
         /*  const langue = test!.user.langues.filter((elm)=> elm.id !== item.id);
-         console.log(langue);
-         
-         const newLangue = [...langue, item];
+        console.log(langue);
+        
+        const newLangue = [...langue, item];
          console.log(newLangue); */
 
         /*    test!.user.langues = newLangue; */
