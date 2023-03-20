@@ -38,7 +38,7 @@ export default function Techniques() {
 
         test!.user.techniques = [...test!.user.techniques, responseJson]
         console.log(test);
-        setUser(test!);
+        setUser({...test!});
         setTechInput("");
     };
 
@@ -75,9 +75,6 @@ export default function Techniques() {
     const listTechnique = user?.techniques?.map(item => <Technique del={deleteTechnique} item={item} key={item.id} />)
     console.log(listTechnique);
     console.log(user);
-
-
-
 
     return (
         <div className='container mt-5'>
