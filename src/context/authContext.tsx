@@ -14,19 +14,11 @@ export type Tuser = {
         photo: string,
         role: string,
         presentation: string,
-        experiences: [],
+        experiences: { id: number, intitulé_poste: string, entreprise: string, lieu: string, date_début: Date, date_fin: Date, descriptif: string }[],
         competences: { id: number, competence_clé: string }[],
-        formations: { id: number, specialite: string, diplôme: string, date_obtention: Date }[],
-        langues: {
-            id: number,
-            langue: string,
-            niveau: string
-        }[],
-
-        centres_interets: {
-            id: number,
-            intitule: string
-        }[],
+        formations: { id: number, lieu_formation: string, diplôme: string, date_obtention: Date }[],
+        langues: { id: number, langue: string, niveau: string }[],
+        centres_interets: { id: number, intitule: string }[],
         fonctionnelles: { id: number, libelle: string }[],
         techniques: { id: number, libelle: string }[],
     },
@@ -36,7 +28,7 @@ export type Tuser = {
 
 export interface IAuthContext {
     user: Tuser | null;
-    setUser: (user:Tuser | null) => void;
+    setUser: (user:Tuser|null) => void;
 }
 
 // Pour créer du contexte, vous devez importer createContext et l’initialiser :

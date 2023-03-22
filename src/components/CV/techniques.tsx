@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { AuthContext } from '../../context/authContext';
 import Technique from './technique';
 
@@ -14,7 +14,7 @@ export default function Techniques() {
 
     const token = useContext(AuthContext).user?.access_token;
     const user = useContext(AuthContext).user?.user;
-    console.log(user);
+    /* console.log(user); */
 
     const test = useContext(AuthContext).user;
     const setUser = useContext(AuthContext).setUser;
@@ -36,52 +36,60 @@ export default function Techniques() {
         const responseJson = await response.json();
         console.log("Success!", responseJson);
 
-        test!.user.techniques = [...test!.user.techniques, responseJson]
-        console.log(test);
-        setUser({...test!});
+        test!.user.techniques = [...test!.user.techniques, responseJson.data]
+        /* console.log(test); */
+        setUser({ ...test! });
         setTechInput("");
     };
 
 
-   /*  async function getTechnique() {
-        const requestOptions = {
-            method: 'GET',
-            headers: {
-                Authorization: `Bearer ${token}`
-            },
-        };
-        const response = await fetch('http://localhost:8000/techniques', requestOptions)
-        const responseJson = await response.json();
-        console.log(responseJson);
-        console.log("Success!", responseJson); */
-        /*   setTechnique(responseJson); */
+    /*  async function getTechnique() {
+         const requestOptions = {
+             method: 'GET',
+             headers: {
+                 Authorization: `Bearer ${token}`
+             },
+         };
+         const response = await fetch('http://localhost:8000/techniques', requestOptions)
+         const responseJson = await response.json();
+         console.log(responseJson);
+         console.log("Success!", responseJson); */
+    /*   setTechnique(responseJson); */
     /* };
 
     useEffect(() => { */
-        // getTechnique();
-  /*   }, []); */
+    // getTechnique();
+    /*   }, []); */
+    function patchTechnique(item: TTech) {
+         const technique = test!.user.techniques.filter((elm) => elm.id !== item.id);
+        console.log(technique);
 
+        const newTech = [...technique, item];
+        console.log(newTech);
+        test!.user.techniques = newTech;
+        setUser({ ...test! });
+        
+    }
 
     function deleteTechnique(id: number) {
         /* const newTechnique = technique.filter(item => item.id !== id)
         setTechnique(newTechnique); */
-        const tech = test!.user.techniques.filter(item => item.id !== id) 
+        const tech = test!.user.techniques.filter(item => item.id !== id)
         test!.user.techniques = tech;
-        console.log(test);
-
-        setUser({...test!});
+        /* console.log(test); */
+        setUser({ ...test! });
 
     }
-    const listTechnique = user?.techniques?.map(item => <Technique del={deleteTechnique} item={item} key={item.id} />)
-    console.log(listTechnique);
-    console.log(user);
+    const listTechnique = user?.techniques?.map(item => <Technique del={deleteTechnique} patch={patchTechnique} item={item} key={item.id} />)
+    /* console.log(listTechnique);
+    console.log(user); */
 
     return (
         <div className='container mt-5'>
             <div className="accordion" id="accordionPanelsStayOpenExample">
                 <div className="accordion-item ms-4 me-4">
-                    <h2 className="accordion-header" id="panelsStayOpen-headingFive">
-                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
+                    <h2 className="accordion-header " id="panelsStayOpen-headingFive">
+                        <button className="accordion-button collapsed shadow p-3  bg-body-tertiary rounded" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
                             <div className="position-absolute top-50 start-50 translate-middle text-center">  COMPÉTENCES TECHNIQUES</div>
                         </button>
                     </h2>

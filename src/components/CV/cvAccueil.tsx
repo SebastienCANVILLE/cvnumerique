@@ -4,7 +4,7 @@ import Experience from "./experiences";
 import CentreInterets from "./centresInterets";
 import Fonctionnelles from "./fonctionnelles";
 import Formations from "./formations";
-import Langue from "./langues";
+import Langues from "./langues";
 import Navbar from "./navbar";
 import Competences from "./competences";
 import Techniques from "./techniques";
@@ -31,7 +31,7 @@ export default function CvAccueil() {
                 <Techniques></Techniques>
                 <Fonctionnelles></Fonctionnelles>
                 <Competences></Competences>
-                <Langue></Langue>
+                <Langues></Langues>
                 <CentreInterets></CentreInterets>
 
 

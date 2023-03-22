@@ -2,16 +2,13 @@ import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/authContext';
 
 
-type TCInt = {
-    id: number,
-    intitule: string
 
-}
-export default function Interet(props: any) {
+export default function CentreInteret(props: any) {
     /*   console.log(props); */
 
-    const [interet, setInteret] = useState<TCInt[]>([]);
+    /*  const [interet, setInteret] = useState<TCInt[]>([]); */
     const [intInput, setIntInput] = useState<string>("");
+    const [showInput, setShowInput] = useState(false);
 
     const token = useContext(AuthContext).user?.access_token;
 
@@ -31,9 +28,12 @@ export default function Interet(props: any) {
         const responseJson = await response.json();
 
         console.log("Success!", responseJson);
-        setIntInput(responseJson);
-    };
 
+        if (responseJson.statusCode === 200) {
+            props.patch(responseJson.data)
+            setShowInput(false);
+        };
+    };
     async function deleteInteret() {
 
         const requestOptions = {
@@ -49,7 +49,9 @@ export default function Interet(props: any) {
             props.del(props.item.id)
         }
     }
-
+    function update() {
+        setShowInput(true)
+    }
 
     return (
         <div className="container">
@@ -58,14 +60,19 @@ export default function Interet(props: any) {
                     <li className="hardSkills">
                         {props.item?.intitule}
                     </li >
+                    {showInput && <div>
+                        <hr />
+                        <input type='text' className="form-control" value={intInput} placeholder="Modifier votre centre d'intérêt ici" onChange={(event) => setIntInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                        <button onClick={patchInteret} type="button" className="btn btn-outline-success btn-sm" data-mdb-ripple-color="dark" >
+                            <i className="bi bi-check-circle-fill"></i>
+                        </button>
+                    </div>}
                 </div>
 
                 <div className="col">
-
                     <div className="btn-group mb-2 mt-2 ms-5" role="group" aria-label="Third group">
-
                         {/* <!-- Update button --> */}
-                        <button onClick={() => patchInteret()} type="button" className="btn btn-outline-warning btn-rounded-floating ms-1" data-mdb-ripple-color="dark" >
+                        <button onClick={update} type="button" className="btn btn-outline-warning btn-rounded-floating ms-1" data-mdb-ripple-color="dark" >
                             <i className="bi bi-pencil"></i>
                         </button>
                         {/* <!-- Delete button --> */}
