@@ -78,7 +78,7 @@ export default function Technique(props: any) {
                 </div>
 
                 <div className="col">
-                    <div className="btn-group mb-2 mt-2 float-md-end" role="group" aria-label="Third group">
+                    <div className="btn-group mb-2 ms-5 float-md-end " role="group" aria-label="Third group">
                         {/* <!-- Update button --> */}
                         {/* <button onClick={() => patchTechnique()} type="button" className="btn" data-mdb-ripple-color="dark" >
                         <PencilIcon size ={20}

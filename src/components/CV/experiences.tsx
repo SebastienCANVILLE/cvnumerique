@@ -123,11 +123,11 @@ export default function Experience() {
 
 
     return (
-        <div className='container mt-5'>
+        <div className='container px-0 mt-5'>
 
             {/* Récupération de toutes les informations des expériences */}
             <div className="accordion" id="accordionPanelsStayOpenExample">
-                <div className="accordion-item ms-4 me-4">
+                <div className="accordion-item ms-1 me-1">
 
                     {/*Titre dans l'entête accordéon */}
                     <h2 className="accordion-header" id="panelsStayOpen-headingFour">

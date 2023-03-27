@@ -115,7 +115,7 @@ export default function ModificationLangue(props: any)
                     </li>}
                 </div>
                     <div className="col">
-                        <div className="btn-group mb-2 mt-2 ms-5" role="group" aria-label="Third group">
+                        <div className="btn-group mb-2 mt-2 ms-5 float-md-end" role="group" aria-label="Third group">
                             <button onClick={update} type="button" className="btn btn-outline-warning btn-rounded-floating ms-1" data-mdb-ripple-color="dark" >
                                 <i className="bi bi-pencil"></i>
                             </button>

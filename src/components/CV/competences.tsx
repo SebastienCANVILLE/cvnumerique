@@ -81,9 +81,9 @@ export default function Competences() {
 
 
     return (
-        <div className='container mt-5'>
+        <div className='container px-0 mt-5'>
             <div className="accordion" id="accordionPanelsStayOpenExample">
-                <div className="accordion-item ms-4 me-4">
+                <div className="accordion-item ms-1 me-1">
                     <h2 className="accordion-header" id="panelsStayOpen-headingSeven">
                         <button className="accordion-button collapsed shadow p-3  bg-body-tertiary rounded" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSeven" aria-expanded="false" aria-controls="panelsStayOpen-collapseSeven">
                             <div className="position-absolute top-50 start-50 translate-middle text-center"> SAVOIR ÊTRE</div>

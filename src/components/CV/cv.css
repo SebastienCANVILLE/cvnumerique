@@ -1,14 +1,7 @@
 #containerAccueil {
     padding-top: 50px;
     padding-bottom: 50px;
-
 }
-
-/* .Items{
-
-    justify-content: center;
-    align-items: center;
-} */
 
 span {
     font-size: 20px;
@@ -17,33 +10,21 @@ span {
 }
 
 .hardSkills {
-
     list-style-type: circle;
-
-
 }
-
-/* .imageBg{
-    width: 100%;
-    height: auto;
-    position: auto;
-    background-size: auto;
-}  */
 
 #image-accueil {
     width: 469px;
     height: 150px;
 }
 
-
 .container-profil{
     position: relative;
 }
 
-
 .imgcvprofil {
     position: absolute;
-    top: 52%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
