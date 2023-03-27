@@ -147,7 +147,7 @@ export default function ModificationExperience(props: any) {
                 {/* colone qui affiche les deux boutons  */}
                 <div className="col">
 
-                    <div className="btn-group mb-2 mt-2 ms-5" role="group" aria-label="Third group">
+                    <div className="btn-group mb-2 mt-2 ms-5 float-md-end" role="group" aria-label="Third group">
                         {/* bouton modifier */}
                         <button onClick={update} type="button" className="btn btn-outline-warning btn-rounded-floating ms-1" data-mdb-ripple-color="dark" >
                             <i className="bi bi-pencil"></i>

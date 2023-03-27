@@ -85,9 +85,9 @@ export default function Techniques() {
     console.log(user); */
 
     return (
-        <div className='container mt-5'>
+        <div className='container px-0 mt-5'>
             <div className="accordion" id="accordionPanelsStayOpenExample">
-                <div className="accordion-item ms-4 me-4">
+                <div className="accordion-item ms-1 me-1">
                     <h2 className="accordion-header " id="panelsStayOpen-headingFive">
                         <button className="accordion-button collapsed shadow p-3  bg-body-tertiary rounded" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
                             <div className="position-absolute top-50 start-50 translate-middle text-center">  COMPÉTENCES TECHNIQUES</div>
@@ -97,11 +97,9 @@ export default function Techniques() {
                     <div id="panelsStayOpen-collapseFive" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFive">
                         <div id="collapseFive" className="accordion-collapse collapse show" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
                             <div className="accordion-body">
-                                <div className="p-2">
-                                    <div className="col">
+                                
                                         {listTechnique}
-                                    </div>
-                                </div>
+                                
 
                                 {/* <!-- Add Technique button --> */}
                                 <div className="input-group mb-3">

@@ -112,7 +112,7 @@ export default function Register() {
 
     return (<div>
 
-        {/* <!-- Modal --> show useRef*/}
+        {/* <!-- Modal -->*/}
         <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex={-1} aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div className="position-fixed top-0 vw-100 vh-100">
                 <div className=" w-100 h-100 bg-dark bg-opacity-10">

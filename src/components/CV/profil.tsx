@@ -22,13 +22,13 @@ export default function ProfilCv() {
     return (
         <div className="container-profil mt-5 ">
 
-            <div className="bg-body rounded-4 text-center ms-4 me-4" >
+            <div className="bg-body rounded-4 text-center ms-1 me-1" >
 
                 <div className="row">
                     <div className="col-12 imgcvbgprofil">
                         <img className="img-fluid rounded-4 w-100 " src="/photos/photoEcranLog.jpg" style={{ height: "50vh" }}></img>
                     </div>
-                    <div className="col-12 imgcvprofil position-absolute">
+                    <div className="col-12 imgcvprofil">
                         <img className="photo_profil col-12 img-thumbnail rounded-circle" src="/photos/Photo_profil.jpg" style={{ width: "170px", height: "170px" }} />
                     </div>
                 </div>

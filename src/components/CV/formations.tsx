@@ -110,9 +110,9 @@ export default function Formations() {
     return (
 
 
-        <div className='container mt-5'>
+        <div className='container px-0 mt-5'>
             <div className="accordion" id="accordionPanelsStayOpenExample">
-                <div className="accordion-item ms-4 me-4">
+                <div className="accordion-item ms-1 me-1">
                     <h2 className="accordion-header " id="panelsStayOpen-headingThree">
                         <button className="accordion-button collapsed shadow p-3  bg-body-tertiary rounded" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
                             <div className="position-absolute top-50 start-50 translate-middle text-center">  FORMATIONS</div>
@@ -123,11 +123,11 @@ export default function Formations() {
                     <div id="panelsStayOpen-collapseThree" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
                         <div id="collapseThree" className="accordion-collapse collapse show" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                             <div className="accordion-body">
-                                <div className="p-2">
-                                    <div className="col">
+                                
+                                    
                                         {listFormation}
-                                    </div>
-                                </div>
+                                  
+                                
 
 
                                 {/* <!-- Add Formations button --> */}

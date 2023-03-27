@@ -83,9 +83,9 @@ export default function Fonctionnelles() {
 
 
     return (
-        <div className='container mt-5'>
+        <div className='container px-0 mt-5'>
             <div className="accordion" id="accordionPanelsStayOpenExample">
-                <div className="accordion-item ms-4 me-4">
+                <div className="accordion-item ms-1 me-1">
                     <h2 className="accordion-header" id="panelsStayOpen-headingSix">
                         <button className="accordion-button collapsed shadow p-3  bg-body-tertiary rounded" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSix" aria-expanded="false" aria-controls="panelsStayOpen-collapseSix">
                             <div className="position-absolute top-50 start-50 translate-middle text-center">COMPÉTENCES FONCTIONNELLES</div>
@@ -95,14 +95,13 @@ export default function Fonctionnelles() {
                     <div id="panelsStayOpen-collapseSix" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingSix">
                         <div id="collapseSix" className="accordion-collapse collapse show" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
                             <div className="accordion-body">
-                                <div className="p-2">
-                                    <div className="col">
+                               
                                         {listFonctionnelle}
-                                    </div>
-                                </div>
+                                
+                               
 
                                 {/* <!-- Add button --> */}
-                                <div className="input-group mb-3">
+                                <div className="input-group mb-3 mt-2">
                                     <input type='text' className="form-control" value={foncInput} placeholder="Votre Compétence fonctionnelle" onChange={(event) => setFoncInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
                                     <button onClick={() => createFonctionnelle()} type="button" className="btn btn-outline-info btn-rounded-floating" data-mdb-ripple-color="dark">
                                         <i className="bi bi-plus"></i>

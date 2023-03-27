@@ -21,7 +21,7 @@ export default function CvAccueil() {
         <div className="CvAccueil">
 
             <Navbar></Navbar>
-            <div className="container" id="containerAccueil">
+            <div className="container px-0" id="containerAccueil">
 
                 <ProfilCv></ProfilCv>
 
