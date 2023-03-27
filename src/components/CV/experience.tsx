@@ -1,16 +1,7 @@
 import { useState, useContext } from "react";
 import { AuthContext } from '../../context/authContext';
 
-// Typage de la table 'experiences'
-type TExperience = {
-    id: number;
-    intitulé_poste: string;
-    entreprise: string;
-    lieu: string;
-    date_début: Date;
-    date_fin: Date;
-    descriptif: string;
-}
+
 
 /**Foncton qui appelle:
  * * **PatchExperience  : fonction qui va utiliser le front pour faire un 'PATCH'.
@@ -51,9 +42,8 @@ export default function ModificationExperience(props: any) {
                 descriptif: descriptifInput
             })
         };
-        const response = await fetch(`http://localhost:8000/experiences/${props.item.id}`, requestOptions)
+        const response = await fetch(`http://localhost:8000/experiences/${props.item.id}`, requestOptions);
         const responseJson = await response.json();
-
         console.log('success', responseJson);
 
         if (responseJson.statusCode === 200) {
@@ -79,35 +69,44 @@ export default function ModificationExperience(props: any) {
 
         const response = await fetch(`http://localhost:8000/experiences/${props.item.id}`, requestOptions);
         const responseJson = await response.json();
-
         console.log('success', responseJson);
 
         if (responseJson.statusCode === 200) {
 
             props.del(props.item.id)
         };
-
-        setExperience(responseJson.data);
     };
 
     function update() {
         setShowInput(true)
     }
 
+    function resetInput()
+    { // remet l'input à zéro.
+        setIntituleInput("")
+        setEntrepriseInput("")
+        setLieuInput("")
+        setStartDateInput("")
+        setEndDateInput("")
+        setDescriptifInput("")
+        document.getElementById('close-btn')?.click()
+    }
+
+    function handleCancel()
+    { // annul l'opération
+        setIntituleInput(intituleInput)
+        setEntrepriseInput(entrepriseInput)
+        setLieuInput(lieuInput)
+        setStartDateInput(startDateInput)
+        setEndDateInput(endDateInput)
+        setDescriptifInput(descriptifInput)
+        setShowInput(false)
+        resetInput()
+    }
 
     return (
         <div className="container">
-
             <div className="row">
-
-                <li className="col">
-                    {props.item?.intitulé_poste}
-                </li>
-
-                <li className="col">
-                    {props.item?.date_début} {" / "} {props.item?.date_fin}
-                </li>
-
                 <div className="col">
                     {props.item?.entreprise}
                 </div>
@@ -150,23 +149,17 @@ export default function ModificationExperience(props: any) {
                 <div className="col">
 
                     <div className="btn-group mb-2 mt-2 ms-5" role="group" aria-label="Third group">
-
                         {/* bouton modifier */}
                         <button onClick={update} type="button" className="btn btn-outline-warning btn-rounded-floating ms-1" data-mdb-ripple-color="dark" >
                             <i className="bi bi-pencil"></i>
                         </button>
-
                         {/* bouton supprimer */}
                         <button onClick={deleteExperience} type="button" className="btn btn-outline-danger btn-rounded-floating ms-1" data-mdb-ripple-color="dark" >
                             <i className="bi bi-trash3"></i>
                         </button>
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
     );
 

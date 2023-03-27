@@ -1,6 +1,6 @@
 import Presentation from "./presentation";
 import ProfilCv from "./profil";
-import Experience from "./experiences";
+import Experiences from "./experiences";
 import CentreInterets from "./centresInterets";
 import Fonctionnelles from "./fonctionnelles";
 import Formations from "./formations";
@@ -27,7 +27,7 @@ export default function CvAccueil() {
 
                 <Presentation></Presentation>
                 <Formations></Formations>
-                <Experience></Experience>
+                <Experiences></Experiences>
                 <Techniques></Techniques>
                 <Fonctionnelles></Fonctionnelles>
                 <Competences></Competences>

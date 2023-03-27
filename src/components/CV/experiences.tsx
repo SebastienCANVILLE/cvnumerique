@@ -57,14 +57,7 @@ export default function Experience() {
         };
         const response = await fetch('http://localhost:8000/experiences', requestOptions);
         const responseJson = await response.json();
-
-        // get error message from body or default to response status
-        /* if (!response.ok)
-        {
-            const error = (responseJson && responseJson.message) || response.status;
-            return Promise.reject(error);
-        } */
-        console.log("Success", responseJson.data);
+        console.log("Success", responseJson);
 
         test!.user.experiences = [...test!.user.experiences, responseJson.data]
         setIntituleInput("");
@@ -75,6 +68,17 @@ export default function Experience() {
         setDescriptifInput("");
     }
 
+    
+    function resetInput()
+    { // remet l'input à zéro.
+        setIntituleInput("")
+        setEntrepriseInput("")
+        setLieuInput("")
+        setStartDateInput("")
+        setEndDateInput("")
+        setDescriptifInput("")
+        document.getElementById('close-btn')?.click()
+    }
 
 
     // Récupération de toutes les expériences: avec le 'get' du front.
@@ -107,7 +111,6 @@ export default function Experience() {
         const index = test!.user.experiences.findIndex(elm => elm.id === item.id);
         test!.user.experiences[index] = item;
         setUser({ ...test! });
-
     }
 
     function deleteExperience(id: number) {
@@ -143,7 +146,7 @@ export default function Experience() {
                         <div id="collapseFour" className="accordion-collapse collapse show" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
                             <div className="accordion-body">
                                 <div className="p-2">
-                                    <ul className="list-inline">
+                                    <ul className="col">
                                         {listExperience}
                                     </ul>
                                 </div>
@@ -173,17 +176,10 @@ export default function Experience() {
                                 <input type='text' className="form-control" value={descriptifInput} placeholder="Descriptif" onChange={(event) => setDescriptifInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2">
                                 </input>
 
-                                <button onClick={() => CreateExperience()} type="button" className="btn btn-outline-info btn-rounded-floating" data-mdb-ripple-color="dark">
+                                <button onClick={() => createExperience()} type="button" className="btn btn-outline-info btn-rounded-floating" data-mdb-ripple-color="dark">
                                     <i className="bi bi-plus"></i>
                                 </button>
                             </div>
-
-                            {/* <button type="button" className="btn btn-outline-warning btn-rounded-floating" data-mdb-ripple-color="dark" >
-                                <i className="bi bi-pencil"></i>
-                            </button>
-                            <button type="button" className="btn btn-outline-danger btn-rounded-floating" data-mdb-ripple-color="dark" >
-                                <i className="bi bi-trash3"></i>
-                            </button> */}
                         </div>
                     </div>
                 </div>

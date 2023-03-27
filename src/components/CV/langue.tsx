@@ -1,12 +1,13 @@
 import { useState, useContext } from "react";
 import { AuthContext } from '../../context/authContext';
 import Langue from "./langues";
+
 // Typage de la table 'langues'
-/* type TLangue = {
+type TLangue = {
     id: number;
     langue: string;
     niveau: string;
-} */
+}
 
 
 /** Foncton qui appelle:
@@ -44,16 +45,16 @@ export default function ModificationLangue(props: any)
                 niveau: niveauInput
             })
         };
+
         const response = await fetch(`http://localhost:8000/langues/${props.item.id}`, requestOptions)
         const responseJson = await response.json();
         console.log('success', responseJson);
 
         if (responseJson.statusCode === 200)
         {
-            props.pat(responseJson.data)
-            console.log(props.pat);
-            setShowInput(false);
+            props.patch(responseJson.data)
             resetInput();
+            setShowInput(false);
 
         }
 
@@ -84,19 +85,21 @@ export default function ModificationLangue(props: any)
         };
     };
 
-    function update() { //déclenche ouverture de l'input
+    function update()
+    { //déclenche l'ouverture de l'input.
         setShowInput(true)
-        console.log(update, "genial");
     }
 
 
-    async function resetInput() { //remet l'input à zéro
+    async function resetInput()
+    { //remet l'input à zéro
         setLangueInput("")
         setNiveauInput("")
         document.getElementById('close-btn')?.click()
     }
 
-    function handleCancel() { //annul l'opération
+    function handleCancel()
+    { //annul l'opération
         setLangueInput(langueInput)
         setNiveauInput(niveauInput)
         setShowInput(false);
@@ -106,47 +109,33 @@ export default function ModificationLangue(props: any)
 
     return (
         <div className="container">
-
             <div className="row">
-
-                <li className="col">
-                    {props.item?.langue}
-                </li>
                 <div className="col">
-                    {props.item?.niveau}
-                </div>
-
-
-                {showInput && <li>
-                    <input type='text' className="form-control" value={langueInput} placeholder="Saisir votre langue" onChange={(event) => setLangueInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
-                    <input type='text' className="form-control" value={niveauInput} placeholder="Saisir votre niveau" onChange={(event) => setNiveauInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
-
-                    {/* <div className="btn-group mb-2 mt-2 ms-5" role="group" aria-label="Third group"> */}
+                    <li className="hardSkills fw-bold">
+                        {props.item?.langue}
+                    </li>
+                    <p className="col">
+                        {props.item?.niveau}
+                    </p>
+                    {showInput && <li>
+                        <hr/>
+                        <input type='text' className="form-control" value={langueInput} placeholder="Saisir votre langue" onChange={(event) => setLangueInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                        <input type='text' className="form-control" value={niveauInput} placeholder="Saisir votre niveau" onChange={(event) => setNiveauInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
                         <button onClick={PatchLangue} type="button" className="btn btn-outline-primary btn-rounded-floating ms-1" data-mdb-ripple-color="dark"><i className="bi bi-check"></i></button>
                         <button onClick={handleCancel} type="button" className="btn btn-outline-secondary btn-rounded-floating ms-1" data-mdb-ripple-color="dark"><i className="bi bi-x"></i></button>
-                    {/* </div> */}
-
-                </li>}
-
-
-                <div className="col">
-
-                    <div className="btn-group mb-2 mt-2 ms-5" role="group" aria-label="Third group">
-
-                        <button onClick={update} type="button" className="btn btn-outline-warning btn-rounded-floating ms-1" data-mdb-ripple-color="dark" >
-                            <i className="bi bi-pencil"></i>
-                        </button>
-
-                        <button onClick={DeleteLangue} type="button" className="btn btn-outline-danger btn-rounded-floating ms-1" data-mdb-ripple-color="dark" >
-                            <i className="bi bi-trash3"></i>
-                        </button>
-
-                    </div>
-
+                    </li>}
                 </div>
-
+                    <div className="col">
+                        <div className="btn-group mb-2 mt-2 ms-5" role="group" aria-label="Third group">
+                            <button onClick={update} type="button" className="btn btn-outline-warning btn-rounded-floating ms-1" data-mdb-ripple-color="dark" >
+                                <i className="bi bi-pencil"></i>
+                            </button>
+                            <button onClick={DeleteLangue} type="button" className="btn btn-outline-danger btn-rounded-floating ms-1" data-mdb-ripple-color="dark" >
+                                <i className="bi bi-trash3"></i>
+                            </button>
+                        </div>
+                    </div>
             </div>
-
         </div>
     );
 }
