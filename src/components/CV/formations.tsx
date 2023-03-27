@@ -84,13 +84,13 @@ export default function Formations() {
    useEffect(() => {
        getFormations();
    }, []);  */
-   function patchFormation(item: TForm) {
-    const index = test!.user.formations.findIndex(elm => elm.id === item.id);
-    test!.user.formations[index] = item;
-    setUser({ ...test! });
+    function patchFormation(item: TForm) {
+        const index = test!.user.formations.findIndex(elm => elm.id === item.id);
+        test!.user.formations[index] = item;
+        setUser({ ...test! });
 
 
-   }
+    }
     function deleteFormation(id: number) {
         /* const newTechnique = technique.filter(item => item.id !== id)
         setTechnique(newTechnique); */
@@ -123,21 +123,33 @@ export default function Formations() {
                     <div id="panelsStayOpen-collapseThree" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
                         <div id="collapseThree" className="accordion-collapse collapse show" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                             <div className="accordion-body">
-                                
-                                    
-                                        {listFormation}
-                                  
-                                
+
+
+                                {listFormation}
+
+
 
 
                                 {/* <!-- Add Formations button --> */}
-                                <div className="input-group mb-3">
-                                    <input type='text' className="form-control" value={formInput} placeholder="Lieu de formation" onChange={(event) => setFormInput(event.target.value)}aria-label="Recipient's username" aria-describedby="button-addon2"></input>
-                                    <input type='text' className="form-control" value={diplomeInput} placeholder="Diplôme obtenu" onChange={(event) => setDiplomeInput(event.target.value)}aria-label="Recipient's username" aria-describedby="button-addon2"></input>
-                                    <input type='text' className="form-control" value={dateInput} placeholder="Date d'obtention" onChange={(event) => setDateInput(event.target.value)}aria-label="Recipient's username" aria-describedby="button-addon2"></input>
-                                    <button onClick={() => createFormation()} type="button" className="btn btn-outline-info btn-rounded-floating" data-mdb-ripple-color="dark">
-                                        <i className="bi bi-plus"></i>
-                                    </button>
+                                <div className="row-fluid input-group mb-3 px-1">
+
+                                    <div className="col-12 col-md-3 px-1 mt-1">
+                                        <input type='text' className="form-control" value={formInput} placeholder="Lieu de formation" onChange={(event) => setFormInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                                    </div>
+
+                                    <div className="col-12 col-md-3 px-1 mt-1">
+                                        <input type='text' className="form-control" value={diplomeInput} placeholder="Diplôme obtenu" onChange={(event) => setDiplomeInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                                    </div>
+
+                                    <div className="col-12 col-md-3 px-1 mt-1">
+                                        <input type='text' className="form-control" value={dateInput} placeholder="Date d'obtention" onChange={(event) => setDateInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                                    </div>
+
+                                    <div className="col-12 col-md-3 px-1 mt-1">
+                                        <button onClick={() => createFormation()} type="button" className="btn btn-outline-info btn-rounded-floating" data-mdb-ripple-color="dark">
+                                            <i className="bi bi-plus"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -62,9 +62,8 @@ export default function Experience() {
         resetInput();
     }
 
-    
-    function resetInput()
-    { // remet l'input à zéro.
+
+    function resetInput() { // remet l'input à zéro.
         setIntituleInput("")
         setEntrepriseInput("")
         setLieuInput("")
@@ -150,34 +149,49 @@ export default function Experience() {
 
                             {/* <!-- Add button --> */}
 
-                            <div className="input-group mb-3">
+                            <div className=" row-fluid input-group mb-3 px-1">
 
-                                <input type='text' className="form-control" value={intituleInput} placeholder="Intitulé-poste" onChange={(event) => setIntituleInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2">
-                                </input>
+                                <div className="col-12 col-md-3 px-1 mt-1">
+                                    <input type='text' className="form-control" value={intituleInput} placeholder="Intitulé-poste" onChange={(event) => setIntituleInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2">
+                                    </input>
+                                </div>
 
-                                <input type='text' className="form-control" value={entrepriseInput} placeholder="Entreprise" onChange={(event) => setEntrepriseInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2">
-                                </input>
+                                <div className="col-12 col-md-3 px-1 mt-1">
+                                    <input type='text' className="form-control" value={entrepriseInput} placeholder="Entreprise" onChange={(event) => setEntrepriseInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2">
+                                    </input>
+                                </div>
 
-                                <input type='text' className="form-control" value={lieuInput} placeholder="Lieu" onChange={(event) => setLieuInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2">
-                                </input>
+                                <div className="col-12 col-md-3 px-1 mt-1">
+                                    <input type='text' className="form-control" value={lieuInput} placeholder="Lieu" onChange={(event) => setLieuInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2">
+                                    </input>
+                                </div>
 
-                                <input type='text' className="form-control" value={startDateInput} placeholder="Date-début" onChange={(event) => setStartDateInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2">
-                                </input>
+                                <div className="col-12 col-md-3 px-1 mt-1">
+                                    <input type='text' className="form-control" value={startDateInput} placeholder="Date-début" onChange={(event) => setStartDateInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2">
+                                    </input>
+                                </div>
 
-                                <input type='text' className="form-control" value={endDateInput} placeholder="Date-fin" onChange={(event) => setEndDateInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2">
-                                </input>
+                                <div className="col-12 col-md-3 px-1 mt-1">
+                                    <input type='text' className="form-control" value={endDateInput} placeholder="Date-fin" onChange={(event) => setEndDateInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2">
+                                    </input>
+                                </div>
 
-                                <input type='text' className="form-control" value={descriptifInput} placeholder="Descriptif" onChange={(event) => setDescriptifInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2">
-                                </input>
+                                <div className="col-12 col-md-3 px-1 mt-1">
+                                    <input type='text' className="form-control" value={descriptifInput} placeholder="Descriptif" onChange={(event) => setDescriptifInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2">
+                                    </input>
+                                </div>
 
-                                <button onClick={() => createExperience()} type="button" className="btn btn-outline-info btn-rounded-floating" data-mdb-ripple-color="dark">
-                                    <i className="bi bi-plus"></i>
-                                </button>
+                                <div className="col-12 col-md-1 px-1 mt-1">
+                                    <button onClick={() => createExperience()} type="button" className="btn btn-outline-info btn-rounded-floating" data-mdb-ripple-color="dark">
+                                        <i className="bi bi-plus"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
     )
 }

@@ -131,14 +131,21 @@ export default function Langues() {
 
                         {/* <!-- Add button --> */}
 
-                        <div className="input-group mb-3">
-                            <input type='text' className="form-control" value={langueInput} placeholder="Saisir votre langue" onChange={(event) => setLangueInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                        <div className="row-fluid input-group mb-3 px-1">
 
-                            <input type='text' className="form-control" value={niveauInput} placeholder="Saisir votre niveau" onChange={(event) => setNiveauInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                            <div className="col-12 col-md-3 px-1 mt-1">
+                                <input type='text' className="form-control" value={langueInput} placeholder="Saisir votre langue" onChange={(event) => setLangueInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                            </div>
 
-                            <button onClick={() => CreateLangue()} type="button" className="btn btn-outline-info" data-mdb-ripple-color="dark">
-                                <i className="bi bi-plus"></i>
-                            </button>
+                            <div className="col-12 col-md-3 px-1 mt-1">
+                                <input type='text' className="form-control" value={niveauInput} placeholder="Saisir votre niveau" onChange={(event) => setNiveauInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                            </div>
+
+                            <div className="col-12 col-md-3 px-1 mt-1">
+                                <button onClick={() => CreateLangue()} type="button" className="btn btn-outline-info" data-mdb-ripple-color="dark">
+                                    <i className="bi bi-plus"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
