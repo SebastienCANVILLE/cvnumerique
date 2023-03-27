@@ -139,7 +139,7 @@ export default function ModificationExperience(props: any)
                         </input>
                         <input type='text' className="form-control" value={descriptifInput} placeholder="Descriptif" onChange={(event) => setDescriptifInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2">
                         </input>
-                        <button onClick={PatchExperience} type="button" className="btn btn-outline-success btn-rounded-floating ms-1" data-mdb-ripple-color="dark"><i className="bi bi-check"></i></button>
+                        <button onClick={PatchExperience} type="button" className="btn btn-outline-primary btn-rounded-floating ms-1" data-mdb-ripple-color="dark"><i className="bi bi-check"></i></button>
                         <button onClick={handleCancel} type="button" className="btn btn-outline-secondary btn-rounded-floating ms-1" data-mdb-ripple-color="dark"><i className="bi bi-x"></i></button>
                     </li>}
                 </div>
@@ -147,7 +147,7 @@ export default function ModificationExperience(props: any)
                 <div className="col">
                     <div className="btn-group mb-2 mt-2 ms-5" role="group" aria-label="Third group">
                         {/* bouton modifier */}
-                        <button onClick={update} type="button" className="btn btn-outline-success btn-rounded-floating ms-1" data-mdb-ripple-color="dark" >
+                        <button onClick={update} type="button" className="btn btn-outline-warning btn-rounded-floating ms-1" data-mdb-ripple-color="dark" >
                             <i className="bi bi-pencil"></i>
                         </button>
                         {/* bouton supprimer */}
