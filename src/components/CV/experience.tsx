@@ -9,7 +9,6 @@ import { AuthContext } from '../../context/authContext';
 export default function ModificationExperience(props: any) {
     console.log(props);
 
-    const [experience, setExperience] = useState<TExperience[]>([]);
     /* const [ experienceInput, setExperienceInput ] = useState(""); */
     const [intituleInput, setIntituleInput] = useState("");
     const [entrepriseInput, setEntrepriseInput] = useState("");
