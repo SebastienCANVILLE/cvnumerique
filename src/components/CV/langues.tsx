@@ -15,7 +15,6 @@ type TLangue = {
  * * **GetLangue    : fonction qui va utiloser le front pour faire un 'GET'.
  */
 export default function Langues() {
-    const [langue, setLangue] = useState<TLangue[]>([]);
     const [langueInput, setLangueInput] = useState("");
     const [niveauInput, setNiveauInput] = useState("");
 
