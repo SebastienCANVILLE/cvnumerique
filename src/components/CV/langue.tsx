@@ -1,13 +1,7 @@
 import { useState, useContext } from "react";
 import { AuthContext } from '../../context/authContext';
-import Langue from "./langues";
 
-// Typage de la table 'langues'
-type TLangue = {
-    id: number;
-    langue: string;
-    niveau: string;
-}
+
 
 
 /** Foncton qui appelle:
@@ -16,11 +10,6 @@ type TLangue = {
  */
 export default function ModificationLangue(props: any)
 {
-    console.log(props, "phase 1");
-
-    const test = useContext(AuthContext).user;
-    const setUser = useContext(AuthContext).setUser;
-
 
     /*  const [ langue, setLangue ] = useState<TLangue[]>([]); */
     const [ langueInput, setLangueInput ] = useState("");
