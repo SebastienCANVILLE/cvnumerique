@@ -20,8 +20,6 @@ type TExperience = {
  * * **DeleteExperience : fonction qui va utiliser le front pour faire un 'DELETE'.
  */
 export default function Experience() {
-    const [experience, setExperience] = useState<TExperience[]>([]);
-    const [experienceInput, setExperienceInput] = useState("");
     const [intituleInput, setIntituleInput] = useState("");
     const [entrepriseInput, setEntrepriseInput] = useState("");
     const [lieuInput, setLieuInput] = useState("");
