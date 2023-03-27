@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Alert } from 'react-bootstrap';
 
 // permet le typage de la partie body
 type ProfilRegister = {
@@ -79,6 +80,7 @@ export default function Register() {
 
         if (responseJson.statusCode === 201) {
             resetInput()
+            alert("Compte créé avec succès");
         }
 
         else {
