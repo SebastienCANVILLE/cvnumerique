@@ -84,9 +84,6 @@ export default function Techniques() {
     /* console.log(listTechnique);
     console.log(user); */
 
-
-
-
     return (
         <div className='container mt-5'>
             <div className="accordion" id="accordionPanelsStayOpenExample">

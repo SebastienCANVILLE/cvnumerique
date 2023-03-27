@@ -7,6 +7,9 @@ export default function Navbar() {
 
     const { setUser } = useContext(AuthContext);
 
+    const lastname = useContext(AuthContext).user?.user.lastname;
+    const firstname = useContext(AuthContext).user?.user.firstname;
+
     const logOut = () => {
         setUser(null);
     };
@@ -15,7 +18,7 @@ export default function Navbar() {
     return (
         <nav className="navbar navbar-dark bg-dark fixed-top ">
             <div className="container-fluid">
-                <a className="navbar-brand" href="#">Votre profil utilisateur</a>
+                <a className="navbar-brand" href="#">Bonjour {lastname} {firstname}</a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
                     <span className="navbar-toggler-icon"></span>
                 </button>
