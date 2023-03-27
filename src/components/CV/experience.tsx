@@ -113,7 +113,7 @@ export default function ModificationExperience(props: any)
             <div className="row">
                 <div className="col">
                     <li className="hardSkills fw-bold">
-                        {props.item?.Intitulé}
+                        {props.item?.intitulé_poste}
                     </li>
                     <p className="formation_item formation_item degree-info ps-4">
                         {props.item?.entreprise}
@@ -126,7 +126,7 @@ export default function ModificationExperience(props: any)
                             {props.item?.date_début} {" / "} {props.item?.date_fin}
                         </time>
                     </p>
-                    <p className="col">
+                    <p  className="formation_item formation_item degree-info ps-4">
                         {props.item?.descriptif}
                     </p>
                     {showInput && <div>
