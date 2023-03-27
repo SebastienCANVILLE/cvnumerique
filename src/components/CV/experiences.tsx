@@ -39,7 +39,7 @@ export default function Experience() {
 
 
     // Création d'une expérience : avec le 'create' du front.
-    async function CreateExperience() {
+    async function createExperience() {
         const requestOptions = {
             method: 'POST',
             headers: {
