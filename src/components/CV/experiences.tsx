@@ -19,10 +19,8 @@ type TExperience = {
  * * **PatchExperience  : fonction qui va utiliser le front pour faire un 'PATCH'.
  * * **DeleteExperience : fonction qui va utiliser le front pour faire un 'DELETE'.
  */
-export default function Experience()
+export default function Experiences()
 {
-    const [ experience, setExperience ] = useState<TExperience[]>([]);
-    const [ experienceInput, setExperienceInput ] = useState("");
     const [ intituleInput, setIntituleInput ] = useState("");
     const [ entrepriseInput, setEntrepriseInput ] = useState("");
     const [ lieuInput, setLieuInput ] = useState("");
@@ -40,7 +38,7 @@ export default function Experience()
 
 
     // Création d'une expérience : avec le 'create' du front.
-    async function CreateExperience()
+    async function createExperience()
     {
         const requestOptions = {
             method: 'POST',
@@ -59,24 +57,24 @@ export default function Experience()
         };
         const response = await fetch('http://localhost:8000/experiences', requestOptions);
         const responseJson = await response.json();
-
-        // get error message from body or default to response status
-        /* if (!response.ok)
-        {
-            const error = (responseJson && responseJson.message) || response.status;
-            return Promise.reject(error);
-        } */
-        console.log("Success", responseJson.data);
+        console.log("Success", responseJson);
 
         test!.user.experiences = [ ...test!.user.experiences, responseJson.data ]
-        setIntituleInput("");
-        setEntrepriseInput("");
-        setLieuInput("");
-        setStartDateInput("");
-        setEndDateInput("");
-        setDescriptifInput("");
+        setUser({...test!})
+        resetInput()
     }
 
+    
+    function resetInput()
+    { // remet l'input à zéro.
+        setIntituleInput("")
+        setEntrepriseInput("")
+        setLieuInput("")
+        setStartDateInput("")
+        setEndDateInput("")
+        setDescriptifInput("")
+        document.getElementById('close-btn')?.click()
+    }
 
 
     // Récupération de toutes les expériences: avec le 'get' du front.
@@ -105,26 +103,21 @@ export default function Experience()
 }; */
 
 
-    function PatchExperience(id: number)
+    function experiencePatch(item:TExperience)
     {
-        const experience = test!.user.experiences.map(item => item.id)
-        test!.user.experiences = experience;
-        console.log(test);
-
-        setUser({ ...test! });
-
-    }
-
-    function DeleteExperience(id: number)
-    {
-        const experience = test!.user.experiences.filter(item => item.id !== id);
-        test!.user.experiences = experience;
-        console.log(test);
-
+        const index = test!.user.experiences.findIndex(elm => elm.id === item.id);
+        test!.user.experiences[index] = item;
         setUser({ ...test! });
     }
 
-    const listExperience = user?.experiences.map(item => <ModificationExperience del={DeleteExperience} pat={PatchExperience} item={item} key={item.id} />);
+    function experienceDeleted(id: number)
+    {
+        const exp = test!.user.experiences.filter(item => item.id !== id);
+        test!.user.experiences = exp;
+        setUser({ ...test! });
+    }
+
+    const listExperience = user?.experiences.map((item: TExperience) => <ModificationExperience del={experienceDeleted} patch={experiencePatch} item={item} key={item.id} />);
     console.log(listExperience);
     console.log(user);
 
@@ -140,7 +133,7 @@ export default function Experience()
 
                     {/*Titre dans l'entête accordéon */}
                     <h2 className="accordion-header" id="panelsStayOpen-headingFour">
-                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
+                        <button className="accordion-button collapsed shadow p-3  bg-body-tertiary rounded" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
                             <div className="position-absolute top-50 start-50 translate-middle text-center">EXPÉRIENCES PROFESSIONNELLES</div>
                         </button>
                     </h2>
@@ -149,7 +142,7 @@ export default function Experience()
                         <div id="collapseFour" className="accordion-collapse collapse show" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
                             <div className="accordion-body">
                                 <div className="p-2">
-                                    <ul className="list-inline">
+                                    <ul className="col">
                                         {listExperience}
                                     </ul>
                                 </div>
@@ -179,17 +172,10 @@ export default function Experience()
                                 <input type='text' className="form-control" value={descriptifInput} placeholder="Descriptif" onChange={(event) => setDescriptifInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2">
                                 </input>
 
-                                <button onClick={() => CreateExperience()} type="button" className="btn btn-outline-info btn-rounded-floating" data-mdb-ripple-color="dark">
+                                <button onClick={() => createExperience()} type="button" className="btn btn-outline-info btn-rounded-floating" data-mdb-ripple-color="dark">
                                     <i className="bi bi-plus"></i>
                                 </button>
                             </div>
-
-                            {/* <button type="button" className="btn btn-outline-warning btn-rounded-floating" data-mdb-ripple-color="dark" >
-                                <i className="bi bi-pencil"></i>
-                            </button>
-                            <button type="button" className="btn btn-outline-danger btn-rounded-floating" data-mdb-ripple-color="dark" >
-                                <i className="bi bi-trash3"></i>
-                            </button> */}
                         </div>
                     </div>
                 </div>
