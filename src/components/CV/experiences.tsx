@@ -20,12 +20,12 @@ type TExperience = {
  * * **DeleteExperience : fonction qui va utiliser le front pour faire un 'DELETE'.
  */
 export default function Experience() {
-    const [intituleInput, setIntituleInput] = useState("");
-    const [entrepriseInput, setEntrepriseInput] = useState("");
-    const [lieuInput, setLieuInput] = useState("");
-    const [startDateInput, setStartDateInput] = useState("");
-    const [endDateInput, setEndDateInput] = useState("");
-    const [descriptifInput, setDescriptifInput] = useState("");
+    const [intituleInput, setIntituleInput] = useState<string>("");
+    const [entrepriseInput, setEntrepriseInput] = useState<string>("");
+    const [lieuInput, setLieuInput] = useState<string>("");
+    const [startDateInput, setStartDateInput] = useState<string>("");
+    const [endDateInput, setEndDateInput] = useState<string>("");
+    const [descriptifInput, setDescriptifInput] = useState<string>("");
 
     const token = useContext(AuthContext).user?.access_token;
     const user = useContext(AuthContext).user?.user;
@@ -58,12 +58,8 @@ export default function Experience() {
         console.log("Success", responseJson);
 
         test!.user.experiences = [...test!.user.experiences, responseJson.data]
-        setIntituleInput("");
-        setEntrepriseInput("");
-        setLieuInput("");
-        setStartDateInput("");
-        setEndDateInput("");
-        setDescriptifInput("");
+        setUser({ ...test! });
+        resetInput();
     }
 
     
