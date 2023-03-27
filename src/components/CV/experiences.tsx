@@ -139,9 +139,9 @@ export default function Experience() {
                         <div id="collapseFour" className="accordion-collapse collapse show" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
                             <div className="accordion-body">
                                 <div className="p-2">
-                                    <ul className="col">
+                                    <div className="col">
                                         {listExperience}
-                                    </ul>
+                                    </div>
                                 </div>
                             </div>
 
