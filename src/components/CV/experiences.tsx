@@ -140,9 +140,9 @@ export default function Experience() {
                         <div id="collapseFour" className="accordion-collapse collapse show" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
                             <div className="accordion-body">
                                 <div className="p-2">
-                                    <ul className="col">
+                                    <div className="col">
                                         {listExperience}
-                                    </ul>
+                                    </div>
                                 </div>
                             </div>
 
@@ -170,7 +170,7 @@ export default function Experience() {
                                 <input type='text' className="form-control" value={descriptifInput} placeholder="Descriptif" onChange={(event) => setDescriptifInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2">
                                 </input>
 
-                                <button onClick={() => createExperience()} type="button" className="btn btn-outline-info btn-rounded-floating" data-mdb-ripple-color="dark">
+                                <button onClick={() => createExperience()} type="button" className="btn btn-outline-info " data-mdb-ripple-color="dark">
                                     <i className="bi bi-plus"></i>
                                 </button>
                             </div>
