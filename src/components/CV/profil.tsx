@@ -1,61 +1,71 @@
 import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../context/authContext';
-import './cv.css' 
+import './cv.css'
 
 
 export default function ProfilCv() {
 
-    const token = useContext(AuthContext).user?.access_token;
+    const test = useContext(AuthContext).user;
+    const setUser = useContext(AuthContext).setUser;
 
-
+    const lastname = useContext(AuthContext).user?.user.lastname;
+    const firstname = useContext(AuthContext).user?.user.firstname;
+    const classe_professionnelle = useContext(AuthContext).user?.user.classe_professionnelle;
+    const poste_actuel = useContext(AuthContext).user?.user.poste_actuel;
+    const ville_affectation = useContext(AuthContext).user?.user.ville_affectation;
+    const region_affectation = useContext(AuthContext).user?.user.region_affectation;
+    const email = useContext(AuthContext).user?.user.email;
+    const telephone = useContext(AuthContext).user?.user.telephone;
 
 
 
     return (
-        <div className="container mt-5 ">
+        <div className="container-profil mt-5 ">
 
-            <div className="bg-body rounded-4 text-center" >
+            <div className="bg-body rounded-4 text-center ms-4 me-4" >
 
-                <img className="img-fluid rounded-4" src="/photos/photoEcranLog.jpg" style={{ height: "32vh", width: "100vw" }}></img>
-
-
-                <div className="row rounded-4 text-center" id=" image-profil">
-                    <div className="col">
-                        IMAGE PROFIL
+                <div className="row">
+                    <div className="col-12 imgcvbgprofil">
+                        <img className="img-fluid rounded-4 w-100 " src="/photos/photoEcranLog.jpg" style={{ height: "50vh" }}></img>
+                    </div>
+                    <div className="col-12 imgcvprofil position-absolute">
+                        <img className="photo_profil col-12 img-thumbnail rounded-circle" src="/photos/Photo_profil.jpg" style={{ width: "170px", height: "170px" }} />
                     </div>
                 </div>
 
-                <div className="row rounded-4 text-center" id="profil-name">
+
+                <div className="row rounded-4 text-center mt-5" id="profil-name">
                     <div className="col">
-                        Aliénor JSON
+                        <h1>{lastname} {firstname}</h1>
                     </div>
                 </div>
 
-                <div className="row rounded-4 text-center " id="profil-social">
+                <div className="row rounded-4 text-center mt-3 text-danger" id="profil-social">
                     <div className="col">
-                        CHEF DE PROJET
+                        <h5>{classe_professionnelle}</h5>
                     </div>
                 </div>
 
-                <div className="row rounded-4 text-center" id="profil-job">
+                <div className="row rounded-4 text-center mt-1" id="profil-job">
                     <div className="col">
-                        Développeur Web et Web Mobile
+                        <h5>{poste_actuel}</h5>
                     </div>
                 </div>
 
-                <div className="row rounded-4 text-center" id="profil-cityRegion">
+                <div className="row rounded-4 text-center mt-4 text-secondary" id="profil-cityRegion">
                     <div className="col">
-                        Bordeaux, Nouvelle-Aquitaine
+                        {ville_affectation}, {region_affectation}
                     </div>
                 </div>
 
-                <div className="row rounded-4 text-center" id="profil-emailAndPhone">
+                <div className="row rounded-4 text-center mt-1 text-secondary" id="profil-emailAndPhone">
                     <div className="col">
-                        alienor.json@seb.fr / 06.66.66.66.66
+                        {email} / {telephone}
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
+
     )
 
 }

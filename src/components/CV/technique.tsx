@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/authContext';
 import { Trash as TrashIcon } from 'react-bootstrap-icons';
-import { Pencil as PencilIcon } from 'react-bootstrap-icons';
+import { Pencil as PencilIcon} from 'react-bootstrap-icons';
 
 
 
