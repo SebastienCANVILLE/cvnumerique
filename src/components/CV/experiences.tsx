@@ -151,32 +151,32 @@ export default function Experience() {
 
                             <div className=" row-fluid input-group mb-3 px-1">
 
-                                <div className="col-12 col-md-3 px-1 mt-1">
+                                <div className="col-12 col-md-4 px-1 mt-1">
                                     <input type='text' className="form-control" value={intituleInput} placeholder="Intitulé-poste" onChange={(event) => setIntituleInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2">
                                     </input>
                                 </div>
 
-                                <div className="col-12 col-md-3 px-1 mt-1">
+                                <div className="col-12 col-md-4 px-1 mt-1">
                                     <input type='text' className="form-control" value={entrepriseInput} placeholder="Entreprise" onChange={(event) => setEntrepriseInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2">
                                     </input>
                                 </div>
 
-                                <div className="col-12 col-md-3 px-1 mt-1">
+                                <div className="col-12 col-md-4 px-1 mt-1">
                                     <input type='text' className="form-control" value={lieuInput} placeholder="Lieu" onChange={(event) => setLieuInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2">
                                     </input>
                                 </div>
 
-                                <div className="col-12 col-md-3 px-1 mt-1">
+                                <div className="col-12 col-md-4 px-1 mt-1">
                                     <input type='text' className="form-control" value={startDateInput} placeholder="Date-début" onChange={(event) => setStartDateInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2">
                                     </input>
                                 </div>
 
-                                <div className="col-12 col-md-3 px-1 mt-1">
+                                <div className="col-12 col-md-4 px-1 mt-1">
                                     <input type='text' className="form-control" value={endDateInput} placeholder="Date-fin" onChange={(event) => setEndDateInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2">
                                     </input>
                                 </div>
 
-                                <div className="col-12 col-md-3 px-1 mt-1">
+                                <div className="col-12 col-md-4 px-1 mt-1">
                                     <input type='text' className="form-control" value={descriptifInput} placeholder="Descriptif" onChange={(event) => setDescriptifInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2">
                                     </input>
                                 </div>
