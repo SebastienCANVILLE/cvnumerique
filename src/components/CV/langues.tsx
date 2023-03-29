@@ -20,7 +20,7 @@ export default function Langues() {
 
     const token = useContext(AuthContext).user?.access_token;
     const user = useContext(AuthContext).user?.user;
-    console.log(user);
+    
 
     const test = useContext(AuthContext).user;
     const setUser = useContext(AuthContext).setUser;
@@ -41,7 +41,6 @@ export default function Langues() {
         const response = await fetch('http://localhost:8000/langues', requestOptions);
         const responseJson = await response.json();
 
-        console.log("Success", responseJson.data);
 
         /* setLangue([...langue, responseJson.data]); */
         test!.user.langues = [...test!.user.langues, responseJson.data]
@@ -50,28 +49,6 @@ export default function Langues() {
         setNiveauInput("");
     }
 
-    // Récupération de toutes les langues dans la BDD.
-    /*   async function GetLangue()
-      {
-          const requestOptions = {
-              method: 'GET',
-              headers: {
-                  Authorization: `Bearer ${token}`
-              },
-          };
-          const response = await fetch('http://localhost:8000/langues', requestOptions);
-  
-          const responseJson = await response.json();
-  
-          console.log("Success", responseJson);
-  
-          setLangue(responseJson.data);
-      } */
-
-
-    /*  useEffect(() => {
-         GetLangue();
-     }, []); */
 
     function patchLangue(item: TLangue) {
         /*  const langue = test!.user.langues.filter((elm)=> elm.id !== item.id);
@@ -85,15 +62,12 @@ export default function Langues() {
         test!.user.langues[index] = item;
         setUser({ ...test! });
 
-
-
     }
     function deleteLangue(id: number) {
         /* const newLangue = langue.filter(item => item.id !==id)
         setLangue(newLangue) */
         const langue = test!.user.langues.filter(item => item.id !== id);
         test!.user.langues = langue;
-        console.log(test);
 
         setUser({ ...test! });
     }

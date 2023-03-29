@@ -11,8 +11,7 @@ export default function Login() {
     const [emailInput, setEmailLogInput] = useState("")
     const [passwordInput, setPasswordLogInput] = useState("")
 
-    const auth = useContext(AuthContext)
-    //console.log(auth);    
+    const auth = useContext(AuthContext)  
 
     async function fetchDataLog() {
 
@@ -29,7 +28,7 @@ export default function Login() {
 
         const response = await fetch('http://localhost:8000/auth/login', requestOptions);
         const responseJson = await response.json();
-        console.log(responseJson);
+        
 
         if (responseJson.access_token) {
             auth.setUser({...responseJson});

@@ -37,7 +37,7 @@ export default function ModificationLangue(props: any)
 
         const response = await fetch(`http://localhost:8000/langues/${props.item.id}`, requestOptions)
         const responseJson = await response.json();
-        console.log('success', responseJson);
+       
 
         if (responseJson.statusCode === 200)
         {
@@ -65,7 +65,6 @@ export default function ModificationLangue(props: any)
         const response = await fetch(`http://localhost:8000/langues/${props.item.id}`, requestOptions);
         const responseJson = await response.json();
 
-        console.log('success', responseJson);
 
         if (responseJson.statusCode === 200)
         {
