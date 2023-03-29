@@ -74,7 +74,7 @@ export default function Register() {
 
         const response = await fetch('http://localhost:8000/users/register', requestOptions);
         const responseJson = await response.json();
-        console.log(responseJson);
+        
 
         //si nous avons la réponse json du register dans la console, alors nous faisons un reset des input du formulaire
 
@@ -104,9 +104,6 @@ export default function Register() {
 
         document.getElementById('close-btn')?.click()
 
-        /* setTimeout(() => {
-            document.getElementById("close")?.click();
-        }, 1500); */
 
     }
 

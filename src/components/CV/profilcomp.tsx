@@ -1,8 +1,6 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../../context/authContext";
 
-
-
 export default function ProfilPatch (){
 
     const token = useContext(AuthContext).user?.access_token;
@@ -36,7 +34,7 @@ async function patchCompetence() {
     };
     const response = await fetch(`http://localhost:8000/users/${test}`, requestOptions)
     const responseJson = await response.json();
-    console.log("Success!", responseJson);
+    
 }
 
 return(
