@@ -6,26 +6,24 @@ import { AuthContext } from '../../context/authContext';
 /**Foncton qui appelle:
  * * **PatchExperience  : fonction qui va utiliser le front pour faire un 'PATCH'.
  * * **DeleteExperience : fonction qui va utiliser le front pour faire un 'DELETE'. */
-export default function ModificationExperience(props: any)
-{
+export default function ModificationExperience(props: any) {
 
     /* const [ experienceInput, setExperienceInput ] = useState(""); */
-    const [ intituleInput, setIntituleInput ] = useState<string>("");
-    const [ entrepriseInput, setEntrepriseInput ] = useState<string>("");
-    const [ lieuInput, setLieuInput ] = useState<string>("");
-    const [ startDateInput, setStartDateInput ] = useState<string>("");
-    const [ endDateInput, setEndDateInput ] = useState<string>("");
-    const [ descriptifInput, setDescriptifInput ] = useState<string>("");
+    const [intituleInput, setIntituleInput] = useState<string>("");
+    const [entrepriseInput, setEntrepriseInput] = useState<string>("");
+    const [lieuInput, setLieuInput] = useState<string>("");
+    const [startDateInput, setStartDateInput] = useState<string>("");
+    const [endDateInput, setEndDateInput] = useState<string>("");
+    const [descriptifInput, setDescriptifInput] = useState<string>("");
 
-    const [ showInput, setShowInput ] = useState(false)
+    const [showInput, setShowInput] = useState(false)
 
     const token = useContext(AuthContext).user?.access_token;
 
 
 
     // Modification d'une expérience : avec le 'patch' du front.
-    async function patchExperience()
-    {
+    async function patchExperience() {
 
         const requestOptions = {
             method: 'PATCH',
@@ -44,10 +42,9 @@ export default function ModificationExperience(props: any)
         };
         const response = await fetch(`http://localhost:8000/experiences/${props.item.id}`, requestOptions);
         const responseJson = await response.json();
-        console.log('success', responseJson);
 
-        if (responseJson.statusCode === 200)
-        {
+
+        if (responseJson.statusCode === 200) {
             props.pat(responseJson.data);
             setShowInput(false);
         }
@@ -58,8 +55,7 @@ export default function ModificationExperience(props: any)
 
 
     // Suppression d'une expérience : avec le 'delete' du front.
-    async function deleteExperience()
-    {
+    async function deleteExperience() {
 
         const requestOptions = {
             method: 'DELETE',
@@ -71,22 +67,19 @@ export default function ModificationExperience(props: any)
 
         const response = await fetch(`http://localhost:8000/experiences/${props.item.id}`, requestOptions);
         const responseJson = await response.json();
-        console.log('success', responseJson);
 
-        if (responseJson.statusCode === 200)
-        {
+
+        if (responseJson.statusCode === 200) {
 
             props.del(props.item.id)
         };
     };
 
-    function update()
-    {
+    function update() {
         setShowInput(true)
     }
 
-    function resetInput()
-    { // remet l'input à zéro.
+    function resetInput() { // remet l'input à zéro.
         setIntituleInput("")
         setEntrepriseInput("")
         setLieuInput("")
@@ -96,8 +89,7 @@ export default function ModificationExperience(props: any)
         document.getElementById('close-btn')?.click()
     }
 
-    function handleCancel()
-    { // annul l'opération
+    function handleCancel() { // annul l'opération
         setIntituleInput(intituleInput)
         setEntrepriseInput(entrepriseInput)
         setLieuInput(lieuInput)
@@ -126,7 +118,7 @@ export default function ModificationExperience(props: any)
                             {props.item?.date_début} {" / "} {props.item?.date_fin}
                         </time>
                     </p>
-                    <p  className="formation_item formation_item degree-info ps-4">
+                    <p className="formation_item formation_item degree-info ps-4">
                         {props.item?.descriptif}
                     </p>
                     {showInput && <div>

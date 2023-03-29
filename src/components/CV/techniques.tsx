@@ -9,12 +9,12 @@ type TTech = {
 
 export default function Techniques() {
 
-    /* const [technique, setTechnique] = useState<TTech[]>([]); *///array qui contient des techniques
+
     const [techInput, setTechInput] = useState<string>("");
 
     const token = useContext(AuthContext).user?.access_token;
     const user = useContext(AuthContext).user?.user;
-    /* console.log(user); */
+
 
     const test = useContext(AuthContext).user;
     const setUser = useContext(AuthContext).setUser;
@@ -34,55 +34,37 @@ export default function Techniques() {
         };
         const response = await fetch('http://localhost:8000/techniques', /*{ method: "POST" }*/requestOptions);
         const responseJson = await response.json();
-        console.log("Success!", responseJson);
+
 
         test!.user.techniques = [...test!.user.techniques, responseJson.data]
-        /* console.log(test); */
+
         setUser({ ...test! });
         setTechInput("");
     };
 
 
-    /*  async function getTechnique() {
-         const requestOptions = {
-             method: 'GET',
-             headers: {
-                 Authorization: `Bearer ${token}`
-             },
-         };
-         const response = await fetch('http://localhost:8000/techniques', requestOptions)
-         const responseJson = await response.json();
-         console.log(responseJson);
-         console.log("Success!", responseJson); */
-    /*   setTechnique(responseJson); */
-    /* };
 
-    useEffect(() => { */
-    // getTechnique();
-    /*   }, []); */
     function patchTechnique(item: TTech) {
-         const technique = test!.user.techniques.filter((elm) => elm.id !== item.id);
-        console.log(technique);
+        const technique = test!.user.techniques.filter((elm) => elm.id !== item.id);
+
 
         const newTech = [...technique, item];
-        console.log(newTech);
+
         test!.user.techniques = newTech;
         setUser({ ...test! });
-        
+
     }
 
     function deleteTechnique(id: number) {
-        /* const newTechnique = technique.filter(item => item.id !== id)
-        setTechnique(newTechnique); */
+
         const tech = test!.user.techniques.filter(item => item.id !== id)
         test!.user.techniques = tech;
-        /* console.log(test); */
+
         setUser({ ...test! });
 
     }
     const listTechnique = user?.techniques?.map(item => <Technique del={deleteTechnique} patch={patchTechnique} item={item} key={item.id} />)
-    /* console.log(listTechnique);
-    console.log(user); */
+
 
     return (
         <div className='container px-0 mt-5'>
@@ -97,9 +79,9 @@ export default function Techniques() {
                     <div id="panelsStayOpen-collapseFive" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFive">
                         <div id="collapseFive" className="accordion-collapse collapse show" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
                             <div className="accordion-body">
-                                
-                                        {listTechnique}
-                                
+
+                                {listTechnique}
+
 
                                 {/* <!-- Add Technique button --> */}
                                 <div className="input-group mb-3">

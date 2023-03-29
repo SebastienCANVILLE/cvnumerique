@@ -9,7 +9,7 @@ type TComp = {
 }
 export default function Competences() {
 
-    /* const [competence, setCompetence] = useState<TComp[]>([]); */
+
     const [compInput, setCompInput] = useState<string>("");
     //POST request fetch inside useEffect React hooks
 
@@ -38,34 +38,14 @@ export default function Competences() {
         setCompInput("");
     };
 
-    /* async function getCompetence() {
-        const requestOptions = {
-            method: 'GET',
-            headers: {
-                Authorization: `Bearer ${token}`
-            },
-        };
-        const response = await fetch('http://localhost:8000/competences', requestOptions)
-        const responseJson = await response.json();
-        console.log(responseJson);
-        console.log("Success!", responseJson);
-        setCompetence(responseJson);
-    };
 
-    useEffect(() => {
-        getCompetence();
-    }, []);
- */
-    /*  function patchCompetence(id: number) {
-         const newCompetence = test!.user.competences?.map(item =>item.id)
-         const CompetenceList = newCompetence;
-     } */
-     function patchCompetence(item:TComp) {
+
+    function patchCompetence(item: TComp) {
         const comp = test!.user.competences.filter(elm => elm.id !== item.id);
-        const newComp =[...comp, item];
-        test!.user.competences= newComp;
-        setUser({...test!});
-     }
+        const newComp = [...comp, item];
+        test!.user.competences = newComp;
+        setUser({ ...test! });
+    }
 
 
     function deleteCompetence(id: number) {
@@ -75,8 +55,8 @@ export default function Competences() {
     }
 
 
-    const competenceList = user?.competences?.map((item :({id : any}))=>
-        <Competence del={deleteCompetence} patch = {patchCompetence} item={item} key={item.id} />)
+    const competenceList = user?.competences?.map((item: ({ id: any })) =>
+        <Competence del={deleteCompetence} patch={patchCompetence} item={item} key={item.id} />)
 
 
 

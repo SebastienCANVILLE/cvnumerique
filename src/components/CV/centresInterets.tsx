@@ -10,7 +10,7 @@ type TCInt = {
 
 export default function CentreInterets() {
 
-    /* const [interet, setInteret] = useState<TCInt[]>([]); */
+
     const [intInput, setIntInput] = useState<string>("");
 
     //POST request fetch inside useEffect React hooks
@@ -34,34 +34,14 @@ export default function CentreInterets() {
         };
         const response = await fetch('http://localhost:8000/interets', /*{ method: "POST" }*/requestOptions);
         const responseJson = await response.json();
-        console.log("Success!", responseJson);
+
         test!.user.centres_interets = [...test!.user.centres_interets, responseJson.data]
         setUser({ ...test! });
         setIntInput("");
     };
-    /* async function getInteret() {
-        const requestOptions = {
-            method: 'GET',
-            headers: {
-                Authorization: `Bearer ${token}`
-            },
-        };
-        const response = await fetch('http://localhost:8000/interets', requestOptions)
-        const responseJson = await response.json();
-        console.log(responseJson);
-        console.log("Success!", responseJson);
-        setInteret(responseJson);
 
-    };
-    useEffect(() => {
-        getInteret();
-    }, []);
- */
     function patchInteret(item: TCInt) {
-        /* const interet = test!.user.centres_interets.filter((elm) => elm.id !== item.id);
-        const newInteret= [...interet, item];
-        test!.user.centres_interets = newInteret;
-        setUser({...test!}); */
+
         const index = test!.user.centres_interets.findIndex(elm => elm.id === item.id);
         test!.user.centres_interets[index] = item;
         setUser({ ...test! });
@@ -69,7 +49,7 @@ export default function CentreInterets() {
     function deleteInteret(id: number) {
         const interet = test!.user.centres_interets.filter(item => item.id !== id);
         test!.user.centres_interets = interet;
-        console.log(test);
+
 
         setUser({ ...test! });
     }

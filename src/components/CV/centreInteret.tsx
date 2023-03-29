@@ -4,9 +4,9 @@ import { AuthContext } from '../../context/authContext';
 
 
 export default function CentreInteret(props: any) {
-    /*   console.log(props); */
 
-    /*  const [interet, setInteret] = useState<TCInt[]>([]); */
+
+
     const [intInput, setIntInput] = useState<string>("");
     const [showInput, setShowInput] = useState(false);
 
@@ -27,7 +27,7 @@ export default function CentreInteret(props: any) {
         const response = await fetch(`http://localhost:8000/interets/${props.item.id}`, requestOptions)
         const responseJson = await response.json();
 
-        console.log("Success!", responseJson);
+
 
         if (responseJson.statusCode === 200) {
             props.patch(responseJson.data)

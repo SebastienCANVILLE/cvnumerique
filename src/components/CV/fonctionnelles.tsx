@@ -9,7 +9,7 @@ type TFonc = {
 }
 export default function Fonctionnelles() {
 
-    /*  const [fonctionnelle, setFonctionnelle] = useState<TFonc[]>([]); */
+
     const [foncInput, setFoncInput] = useState<string>("");
 
     //POST request fetch inside useEffect React hooks
@@ -34,44 +34,25 @@ export default function Fonctionnelles() {
         };
         const response = await fetch('http://localhost:8000/fonctionnelles', requestOptions)
         const responseJson = await response.json();
-        console.log("Success", responseJson);
+
         test!.user.fonctionnelles = [...test!.user.fonctionnelles, responseJson.data]
 
-        /* const newFonc= [...fonctionnelle, responseJson.data];
-        console.log(newFonc);
-        
-        setFonctionnelle([...fonctionnelle, responseJson.data]); */
+
         setUser({ ...test! });
         setFoncInput("");
     };
 
 
-    /* async function getFonctionnelle() {
-        const requestOptions = {
-            method: 'GET',
-            headers: {
-                Authorization: `Bearer ${token}`
-            },
-        };
-        const response = await fetch('http://localhost:8000/fonctionnelles', requestOptions)
-        const responseJson = await response.json();
-        console.log(responseJson);
-        console.log("Success!", responseJson);
-        setFonctionnelle(responseJson.data);
-    };
 
-    useEffect(() => {
-        getFonctionnelle();
-    }, []); */
-    function patchFonctionnelle(item: TFonc){
+    function patchFonctionnelle(item: TFonc) {
         const fonctionnelle = test!.user.fonctionnelles.filter((elm) => elm.id !== item.id);
-        console.log(fonctionnelle);
+
 
         const newFonc = [...fonctionnelle, item];
-        console.log(newFonc);
+
         test!.user.fonctionnelles = newFonc;
-        setUser({ ...test! }); 
-       
+        setUser({ ...test! });
+
     }
     function deleteFonctionnelle(id: number) {
         const newFonctionnelle = test!.user.fonctionnelles.filter(item => item.id !== id)
@@ -79,7 +60,7 @@ export default function Fonctionnelles() {
         setUser({ ...test! });
     }
     const listFonctionnelle = user?.fonctionnelles?.map(item =>
-        <Fonctionnelle del={deleteFonctionnelle} patch ={patchFonctionnelle} item={item} key={item.id} />)
+        <Fonctionnelle del={deleteFonctionnelle} patch={patchFonctionnelle} item={item} key={item.id} />)
 
 
     return (
@@ -95,10 +76,10 @@ export default function Fonctionnelles() {
                     <div id="panelsStayOpen-collapseSix" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingSix">
                         <div id="collapseSix" className="accordion-collapse collapse show" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
                             <div className="accordion-body">
-                               
-                                        {listFonctionnelle}
-                                
-                               
+
+                                {listFonctionnelle}
+
+
 
                                 {/* <!-- Add button --> */}
                                 <div className="input-group mb-3 mt-2">

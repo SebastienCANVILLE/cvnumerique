@@ -5,13 +5,13 @@ import { AuthContext } from '../../context/authContext';
 
 export default function Technique(props: any) {
     const [isTrashHovered, setIsTrashHovered] = useState(false);
-    /*   console.log(props); */
+
 
     const [techInput, setTechInput] = useState<string>("");
     const [showInput, setShowInput] = useState(false);
 
     const token = useContext(AuthContext).user?.access_token;
-    /*  console.log("test ", token); */
+
 
 
 
@@ -28,13 +28,13 @@ export default function Technique(props: any) {
         };
         const response = await fetch(`http://localhost:8000/techniques/${props.item.id}`, requestOptions)
         const responseJson = await response.json();
-        console.log("Success!", responseJson);
+
 
         if (responseJson.statusCode === 200) {
             props.patch(responseJson.data)
             setShowInput(false);
-            console.log(props.patch);
-            
+
+
         }
     };
 
@@ -48,10 +48,10 @@ export default function Technique(props: any) {
         };
         const response = await fetch(`http://localhost:8000/techniques/${props.item.id}`, requestOptions)
         const responseJson = await response.json()
-        /* console.log("Success!", responseJson); */
+
         if (responseJson.statusCode === 200) {
             props.del(props.item.id)
-          
+
         }
     }
 
@@ -79,20 +79,7 @@ export default function Technique(props: any) {
 
                 <div className="col">
                     <div className="btn-group mb-2 ms-5 float-md-end " role="group" aria-label="Third group">
-                        {/* <!-- Update button --> */}
-                        {/* <button onClick={() => patchTechnique()} type="button" className="btn" data-mdb-ripple-color="dark" >
-                        <PencilIcon size ={20}
-                            onMouseEnter = {()=>setIsTrashHovered(true)}
-                            onMouseLeave = {()=> setIsTrashHovered(false)}
-                            style = {{color:isTrashHovered? "#e9c131": "#b8b8b8"}}/>
-                        </button> */}
-                        {/* <!-- Delete button -->  */}
-                        {/*  <button onClick={deleteTechnique} type="button" className="btn" data-mdb-ripple-color="dark" >
-                            <TrashIcon size ={20}
-                            onMouseEnter = {()=>setIsTrashHovered(true)}
-                            onMouseLeave = {()=> setIsTrashHovered(false)}
-                            style = {{color:isTrashHovered? "#be0808": "#b8b8b8"}}/>
-                        </button>   */}
+
 
                         <button onClick={update} type="button" className="btn btn-outline-warning btn-rounded-floating ms-1" data-mdb-ripple-color="dark" >
                             <i className="bi bi-pencil"></i>

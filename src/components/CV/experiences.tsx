@@ -29,7 +29,7 @@ export default function Experience() {
 
     const token = useContext(AuthContext).user?.access_token;
     const user = useContext(AuthContext).user?.user;
-    console.log(user);
+
 
     const test = useContext(AuthContext).user;
     const setUser = useContext(AuthContext).setUser;
@@ -55,7 +55,7 @@ export default function Experience() {
         };
         const response = await fetch('http://localhost:8000/experiences', requestOptions);
         const responseJson = await response.json();
-        console.log("Success", responseJson);
+
 
         test!.user.experiences = [...test!.user.experiences, responseJson.data]
         setUser({ ...test! });
@@ -74,30 +74,7 @@ export default function Experience() {
     }
 
 
-    // Récupération de toutes les expériences: avec le 'get' du front.
-    /* async function GetExperience()
-    {
-        const requestOptions = {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`
-            },
-            body: JSON.stringify(body)
-        };
-        const response = await fetch('http://localhost:8000/experiences', requestOptions);
-        const responseJson = await response.json(); */
 
-    // get error message from body or default to response status
-    /* if (!response.ok)
-    {
-        const error = (responseJson && responseJson.message) || response.status;
-        return Promise.reject(error);
-    }
-    console.log("Success", responseJson);
-
-    setExperience(responseJson.experience);
-}; */
 
 
     function patchExperience(item: TExperience) {
@@ -109,14 +86,13 @@ export default function Experience() {
     function deleteExperience(id: number) {
         const experience = test!.user.experiences.filter(item => item.id !== id);
         test!.user.experiences = experience;
-        console.log(test);
+
 
         setUser({ ...test! });
     }
 
     const listExperience = user?.experiences.map(item => <ModificationExperience del={deleteExperience} pat={patchExperience} item={item} key={item.id} />);
-    console.log(listExperience);
-    console.log(user);
+
 
 
 

@@ -5,7 +5,7 @@ import { AuthContext } from '../../context/authContext';
 
 export default function Fonctionnelle(props: any) {
 
-    /* const [fonctionnelle, setFonc] = useState<TFonc[]>([]); */
+
     const [foncInput, setFoncInput] = useState<string>("");
     const [showInput, setShowInput] = useState(false);
 
@@ -26,7 +26,7 @@ export default function Fonctionnelle(props: any) {
         };
         const response = await fetch(`http://localhost:8000/fonctionnelles/${props.item.id}`, requestOptions)
         const responseJson = await response.json();
-        console.log("Success!", responseJson);
+
 
         if (responseJson.statusCode === 200) {
             props.patch(responseJson.data)
@@ -44,7 +44,7 @@ export default function Fonctionnelle(props: any) {
         };
         const response = await fetch(`http://localhost:8000/fonctionnelles/${props.item.id}`, requestOptions)
         const responseJson = await response.json()
-        console.log("Success!", responseJson);
+
         if (responseJson.statusCode === 200) {
             props.del(props.item.id)
         }

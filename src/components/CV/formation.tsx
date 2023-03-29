@@ -44,13 +44,13 @@ export default function Formation(props: any) {
         };
         const response = await fetch(`http://localhost:8000/formations/${props.item.id}`, requestOptions)
         const responseJson = await response.json()
-        console.log("Success!", responseJson);
+
 
         if (responseJson.statusCode === 200) {
 
             props.del(props.item.id)
         }
-        console.log(responseJson);
+
     };
     function update() {
         setShowInput(true)

@@ -13,7 +13,7 @@ type TForm = {
 
 export default function Formations() {
 
-    /*   const [formation, setFormation] = useState<TForm[]>([]); */
+
 
     const [formInput, setFormInput] = useState<string>("");
     const [diplomeInput, setDiplomeInput] = useState<string>("");
@@ -44,14 +44,10 @@ export default function Formations() {
         const response = await fetch('http://localhost:8000/formations', requestOptions)
         const responseJson = await response.json();
 
-        /*  if (!response.ok) {
-             // get error message from body or default to response status
-             const error = (responseJson && responseJson.message) || response.status;
-             return Promise.reject(error);
-         } */
+
         console.log("Success!", responseJson);
         test!.user.formations = [...test!.user.formations, responseJson.data]
-        /*  setFormation([...formation, responseJson.data]); */
+
         setUser({ ...test! });
         setFormInput("");
         setDiplomeInput("");
@@ -59,31 +55,7 @@ export default function Formations() {
 
     };
 
-    /*  async function getFormations() {
- 
-         const requestOptions = {
-             method: 'GET',
-             headers: {
-                 Authorization: `Bearer ${token}`
-             },
-         };
- 
- 
-         const response = await fetch('http://localhost:8000/formations', requestOptions)
-         const responseJson = await response.json();
- 
-         /* if (!response.ok) {
-             // get error message from body or default to response status
-             const error = (responseJson && responseJson.message) || response.status;
-             return Promise.reject(error);
-         } */
-    /*    console.log("Success!", responseJson);
-       setFormation(responseJson.data);
 
-   };
-   useEffect(() => {
-       getFormations();
-   }, []);  */
     function patchFormation(item: TForm) {
         const index = test!.user.formations.findIndex(elm => elm.id === item.id);
         test!.user.formations[index] = item;
@@ -92,18 +64,16 @@ export default function Formations() {
 
     }
     function deleteFormation(id: number) {
-        /* const newTechnique = technique.filter(item => item.id !== id)
-        setTechnique(newTechnique); */
+
         const form = test!.user.formations.filter(item => item.id !== id)
         test!.user.formations = form;
-        console.log(test);
+
 
         setUser({ ...test! });
 
     }
     const listFormation = user?.formations?.map(item => <Formation del={deleteFormation} patch={patchFormation} item={item} key={item.id} />)
-    console.log(listFormation);
-    console.log(user);
+
 
 
 

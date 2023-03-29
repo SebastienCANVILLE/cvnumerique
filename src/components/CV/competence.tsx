@@ -1,13 +1,10 @@
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/authContext';
 
-/* type TComp = {
-    id: number;
-    competence_clé: string;
-} */
+
 
 export default function Competence(props: any) {
-    /*   console.log(props); */
+
     const [showInput, setShowInput] = useState(false)
     const [compInput, setCompInput] = useState<string>("");
 
@@ -28,16 +25,16 @@ export default function Competence(props: any) {
         };
         const response = await fetch(`http://localhost:8000/competences/${props.item.id}`, requestOptions)
         const responseJson = await response.json();
-        console.log("Success!", responseJson);
+
 
         if (responseJson.statusCode === 200) {
             props.patch(responseJson.data)
-            console.log(props.patch);
+
             setShowInput(false);
-            
+
         }
-        
-        
+
+
     };
 
 
@@ -55,9 +52,9 @@ export default function Competence(props: any) {
             props.del(props.item.id)
         }
     };
- function update(){
-    setShowInput(true)
- };
+    function update() {
+        setShowInput(true)
+    };
 
     return (
         <div className="container">
@@ -67,11 +64,11 @@ export default function Competence(props: any) {
                         {props.item?.competence_clé}
                     </li >
                     {showInput && <li>
-                    <input type='text' className="form-control" value={compInput} placeholder="Modifier votre soft skill" onChange={(event) => setCompInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
-                    <button onClick={patchCompetence} type="button" className="btn btn-outline-success btn-sm" data-mdb-ripple-color="dark" >
+                        <input type='text' className="form-control" value={compInput} placeholder="Modifier votre soft skill" onChange={(event) => setCompInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                        <button onClick={patchCompetence} type="button" className="btn btn-outline-success btn-sm" data-mdb-ripple-color="dark" >
                             <i className="bi bi-check-circle-fill"></i>
                         </button>
-                </li>}
+                    </li>}
                 </div>
                 <div className="col">
                     <div className="btn-group mb-2 ms-5 float-md-end" role="group" aria-label="Third group">
